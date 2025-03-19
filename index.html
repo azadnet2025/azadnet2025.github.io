@@ -16,11 +16,26 @@
     <link rel="alternate" hreflang="ar" href="https://azadnet.com/ar/">
     <link rel="alternate" hreflang="zh" href="https://azadnet.com/zh/">
     <link rel="alternate" hreflang="ru" href="https://azadnet.com/ru/">
-    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Estedad:wght@300;700&display=swap" as="style" onload="this.rel='stylesheet'" crossorigin>
+    <!-- حذف لینک فونت گوگل -->
     <style>
         @font-face {
             font-family: 'Aparat';
             src: url('https://example.com/aparat.woff2') format('woff2');
+        }
+
+        /* اضافه کردن فونت Estedad از روت */
+        @font-face {
+            font-family: 'Estedad';
+            src: url('/Estedad-Thin.woff2') format('woff2');
+            font-weight: 300; /* وزن سبک */
+            font-style: normal;
+        }
+
+        @font-face {
+            font-family: 'Estedad';
+            src: url('/Estedad-Bold.woff2') format('woff2');
+            font-weight: 700; /* وزن بولد */
+            font-style: normal;
         }
 
         body {
@@ -651,18 +666,11 @@
             }
         }
 
-        // حذف یا غیرفعال کردن تابع onscroll برای همیشه نمایش دادن دکمه
-        // window.onscroll = function() {
-        //     const backToTop = document.getElementById('backToTop');
-        //     backToTop.style.display = window.scrollY > 100 ? 'block' : 'none';
-        // };
-
         window.onload = function() {
             updateContent();
             updateNavMenu('fa');
             loadSectionFromHash();
             updateSectionTitles('fa');
-            // تنظیم اولیه برای اطمینان از نمایش دکمه
             document.getElementById('backToTop').style.display = 'block';
         };
 
