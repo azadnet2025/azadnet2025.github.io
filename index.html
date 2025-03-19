@@ -89,6 +89,7 @@
         [lang="en"] .nav-menu, [lang="zh"] .nav-menu, [lang="ru"] .nav-menu, [lang="tr"] .nav-menu {
             right: auto;
             left: 0;
+            direction: ltr;
         }
 
         .nav-menu.hidden {
@@ -99,12 +100,11 @@
             left: -200px;
         }
 
-        .nav-menu .site-title {
-            font-family: 'Estedad', sans-serif;
-            font-size: 32px;
-            color: var(--text-color);
-            text-align: center;
-            margin: 20px 0;
+        .nav-menu .site-logo {
+            display: block;
+            width: 100px; /* اندازه لوگو در دسکتاپ */
+            height: auto;
+            margin: 20px auto;
             user-select: none;
             will-change: transform;
             animation: dizzyAnimation 5s linear infinite;
@@ -302,8 +302,9 @@
                 right: 0; /* منو در همه زبان‌ها از راست ظاهر می‌شود */
             }
 
-            .nav-menu .site-title {
-                font-family: 'Estedad', sans-serif; /* فقط فونت Aparat در موبایل */
+            .nav-menu .site-logo {
+                width: 80px; /* اندازه لوگو در موبایل */
+                margin: 20px auto;
             }
 
             .nav-menu ul {
@@ -360,7 +361,7 @@
 <body>
     <div class="container">
         <nav class="nav-menu">
-            <h1 class="site-title">آزادنت</h1>
+            <img src="images/logo.png" alt="آزادنت لوگو" class="site-logo">
             <ul>
                 <li><a href="#home" onclick="showSection('home'); return false;" data-lang-fa="خانه" data-lang-en="Home" data-lang-ar="الرئيسية" data-lang-zh="首页" data-lang-ru="Главная" data-lang-tr="Ana Sayfa">خانه</a></li>
                 <li><a href="#rescue" onclick="showSection('rescue'); return false;" data-lang-fa="پکیج نجات" data-lang-en="Rescue Package" data-lang-ar="باقة الإنقاذ" data-lang-zh="救援包" data-lang-ru="Пакет спасения" data-lang-tr="Kurtarma Paketi">پکیج نجات</a></li>
@@ -377,7 +378,7 @@
                 </select>
             </div>
             <div class="theme-menu">
-                <select onchange="changeTheme(this.value)" aria-label="انتخاب تم">
+                <select id="theme-select" onchange="changeTheme(this.value)" aria-label="انتخاب تم">
                     <option value="default">Default</option>
                     <option value="theme1">Theme 1</option>
                     <option value="theme2">Theme 2</option>
@@ -643,9 +644,20 @@
                     root.style.setProperty('--link-color', '#1A3C34');
                     break;
             }
+            // ذخیره تم در localStorage
+            localStorage.setItem('selectedTheme', theme);
+        }
+
+        // تابع برای بارگذاری تم ذخیره‌شده
+        function loadSavedTheme() {
+            const savedTheme = localStorage.getItem('selectedTheme') || 'default';
+            changeTheme(savedTheme);
+            // تنظیم مقدار منوی کشویی بر اساس تم ذخیره‌شده
+            document.getElementById('theme-select').value = savedTheme;
         }
 
         window.onload = function() {
+            loadSavedTheme(); // بارگذاری تم ذخیره‌شده
             updateContent();
             updateNavMenu('fa');
             loadSectionFromHash();
