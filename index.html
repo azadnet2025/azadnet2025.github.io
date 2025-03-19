@@ -78,6 +78,14 @@
             left: 0;
         }
 
+        .nav-menu.hidden {
+            right: -200px; /* مخفی شدن منو در دسکتاپ */
+        }
+
+        [lang="en"] .nav-menu.hidden, [lang="zh"] .nav-menu.hidden, [lang="ru"] .nav-menu.hidden {
+            left: -200px;
+        }
+
         .nav-menu .site-title {
             font-family: 'Aparat', 'Estedad', sans-serif;
             font-size: 32px;
@@ -145,11 +153,17 @@
         .content-wrapper {
             flex-grow: 1;
             margin-right: 200px;
+            transition: margin 0.3s ease;
         }
 
         [lang="en"] .content-wrapper, [lang="zh"] .content-wrapper, [lang="ru"] .content-wrapper {
             margin-right: 0;
             margin-left: 200px;
+        }
+
+        .content-wrapper.expanded {
+            margin-right: 0; /* وقتی منو مخفی می‌شه، محتوا وسط میاد */
+            margin-left: 0;
         }
 
         .content {
@@ -165,6 +179,10 @@
 
         .content.active {
             display: flex;
+        }
+
+        #blog.content.active {
+            padding-top: 80px; /* فاصله بیشتر از بالا در صفحه بلاگ */
         }
 
         .text-section {
@@ -253,6 +271,19 @@
             z-index: 999;
         }
 
+        .hamburger {
+            display: block;
+            position: fixed;
+            top: 10px;
+            right: 10px;
+            font-size: 24px;
+            background: none;
+            border: none;
+            color: var(--text-color);
+            cursor: pointer;
+            z-index: 1002;
+        }
+
         /* ریسپانسیو موبایل */
         @media (max-width: 768px) {
             .container {
@@ -268,11 +299,14 @@
                 right: -100%;
                 height: 100vh;
                 transition: right 0.3s ease;
-                z-index: 1001;
             }
 
             .nav-menu.active {
                 right: 0;
+            }
+
+            .nav-menu.hidden {
+                right: -100%; /* توی موبایل همیشه با همبرگر کنترل می‌شه */
             }
 
             .nav-menu ul {
@@ -289,40 +323,32 @@
                 margin: 0;
             }
 
+            .content-wrapper.expanded {
+                margin: 0; /* توی موبایل تغییری نمی‌کنه */
+            }
+
             .content {
                 padding: 10px;
                 max-height: none;
                 margin-top: 60px;
             }
 
+            #blog.content.active {
+                padding-top: 60px; /* فاصله کمتر توی موبایل */
+            }
+
             .text-section {
                 padding: 10px;
             }
 
-            #blog-posts W
+            #blog-posts {
                 padding: 10px;
-            }
-
-            .hamburger {
-                display: block;
-                position: fixed;
-                top: 10px;
-                right: 10px;
-                font-size: 24px;
-                background: none;
-                border: none;
-                color: var(--text-color);
-                cursor: pointer;
-                z-index: 1002;
             }
         }
 
         @media (min-width: 769px) {
             .text-section {
                 height: 50vh;
-            }
-            .hamburger {
-                display: none;
             }
         }
     </style>
@@ -389,7 +415,7 @@
                         <span lang="fa"><strong>پکیج نجات</strong>: محتوای پکیج نجات در حال آماده‌سازی است. لطفاً بعداً مراجعه کنید.</span>
                         <span lang="en" style="display:none"><strong>Rescue Package</strong>: The content of the Rescue Package is under preparation. Please check back later.</span>
                         <span lang="ar" style="display:none"><strong>باقة الإنقاذ</strong>: محتوى باقة الإنقاذ قيد التحضير. يرجى العودة لاحقًا.</span>
-                        <span LANG="zh" style="display:none"><strong>救援包</strong>: 救援包内容正在准备中。请稍后再回来查看。</span>
+                        <span lang="zh" style="display:none"><strong>救援包</strong>: 救援包内容正在准备中。请稍后再回来查看。</span>
                         <span lang="ru" style="display:none"><strong>Пакет спасения</strong>: Содержимое спасательного пакета находится в стадии подготовки. Пожалуйста, зайдите позже.</span>
                     </p>
                 </div>
@@ -422,7 +448,7 @@
             links.forEach(link => link.removeAttribute('aria-current'));
             const activeLink = document.querySelector(`a[href="#${id}"]`);
             activeLink.setAttribute('aria-current', 'page');
-            window.location.hash = id; // به‌روزرسانی hash توی URL
+            window.location.hash = id;
             updateContent();
         }
 
@@ -455,12 +481,17 @@
 
         function toggleMenu() {
             const navMenu = document.querySelector('.nav-menu');
-            navMenu.classList.toggle('active');
+            const contentWrapper = document.querySelector('.content-wrapper');
+            navMenu.classList.toggle('hidden');
+            if (window.innerWidth > 768) {
+                contentWrapper.classList.toggle('expanded'); // فقط توی دسکتاپ محتوا رو وسط می‌کنه
+            } else {
+                navMenu.classList.toggle('active'); // توی موبایل منو رو باز/بسته می‌کنه
+            }
         }
 
-        // تابع جدید برای لود بخش بر اساس hash موقع رفرش
         function loadSectionFromHash() {
-            const hash = window.location.hash.substring(1); // حذف # از اول
+            const hash = window.location.hash.substring(1);
             const validSections = ['home', 'telegram', 'rescue', 'blog'];
             if (hash && validSections.includes(hash)) {
                 showSection(hash);
@@ -468,7 +499,7 @@
                     loadBlogPosts();
                 }
             } else {
-                showSection('home'); // پیش‌فرض صفحه خانه
+                showSection('home');
             }
         }
 
@@ -485,7 +516,7 @@
             const feedUrl = 'https://api.allorigins.win/raw?url=' + encodeURIComponent('https://hpip.blogspot.com/feeds/posts/default');
             try {
                 const controller = new AbortController();
-                const timeoutId = setTimeout(() => controller.abort(), 5000); // 5 ثانیه مهلت
+                const timeoutId = setTimeout(() => controller.abort(), 5000);
                 const response = await fetch(feedUrl, { signal: controller.signal });
                 clearTimeout(timeoutId);
                 const data = await response.text();
@@ -578,14 +609,12 @@
             backToTop.style.display = window.scrollY > 100 ? 'block' : 'none';
         };
 
-        // اجرا موقع لود صفحه
         window.onload = function() {
             updateContent();
             updateNavMenu('fa');
-            loadSectionFromHash(); // لود بخش بر اساس hash
+            loadSectionFromHash();
         };
 
-        // گوش دادن به تغییرات hash
         window.onhashchange = loadSectionFromHash;
     </script>
 </body>
