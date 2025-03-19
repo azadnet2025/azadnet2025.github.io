@@ -301,31 +301,33 @@
                 justify-content: flex-start; /* محتوا از بالا شروع شود */
             }
 
-            /* حذف تنظیمات LTR برای موبایل، چون همه از راست باز می‌شوند */
             .nav-menu.active {
                 right: 0; /* منو در همه زبان‌ها از راست ظاهر می‌شود */
+            }
+
+            .nav-menu .site-title {
+                font-family: 'Aparat'; /* فقط فونت Aparat در موبایل */
             }
 
             .nav-menu ul {
                 flex-direction: column;
                 justify-content: flex-start;
                 margin-top: 60px;
-                margin-bottom: 20px; /* فاصله بین ناوبری و گزینه‌های زبان/تم */
+                margin-bottom: 0; /* حذف فاصله پایین برای نزدیک شدن دکمه‌ها */
             }
 
             .nav-menu ul li {
-                margin: 10px 0;
+                margin: 10px 0; /* فاصله یکسان بین گزینه‌های ناوبری */
             }
 
-            /* تنظیم جایگاه و اندازه گزینه‌های زبان و تم */
             .language-menu, .theme-menu {
-                margin-top: 5px; /* فاصله کمتر از بالا */
-                padding: 8px; /* کمی کوچکتر */
+                margin-top: 10px; /* فاصله یکسان با گزینه‌های بالا */
+                padding: 6px; /* کوچکتر کردن دکمه‌ها */
             }
 
             .language-menu select, .theme-menu select {
-                font-size: 14px; /* اندازه فونت کوچکتر از 16px فعلی */
-                padding: 6px; /* پدینگ کمتر */
+                font-size: 12px; /* اندازه فونت کوچکتر از 14px فعلی */
+                padding: 4px; /* پدینگ کمتر برای کوچکتر شدن */
             }
 
             .content-wrapper {
@@ -411,7 +413,7 @@
                         <span lang="ar" style="display:none"><strong>باقة الإنقاذ</strong>: محتوى باقة الإنقاذ قيد التحضير. يرجى العودة لاحقًا.</span>
                         <span lang="zh" style="display:none"><strong>救援包</strong>: 救援包内容正在准备中。请稍后再回来查看。</span>
                         <span lang="ru" style="display:none"><strong>Пакет спасения</strong>: Содержимое спасательного пакета находится в стадии подготовки. Пожалуйста, зайдите позже.</span>
-                        <span lang="tr" style="display:none"><strong>Kurtarma Paketi</strong>: Kurtarma Paketi'nin içeriği hazırlanmaktadır. Lütfen daha sonra tekrar kontrol edin.</span>
+                        <span lang="tr" style="display:none"><strong>Kurtarma Paketi</strong>: Kurtarma Paketi'nin içeriği hazırlanmaktadır. Lütfen daha sonra tekrar kontrol edin。</span>
                     </p>
                 </div>
             </div>
