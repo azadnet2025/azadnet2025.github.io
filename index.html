@@ -354,7 +354,7 @@
 </head>
 <body>
     <div class="container">
-        <nav class=" invit-menu">
+        <nav class="nav-menu">
             <h1 class="site-title">آزادنت</h1>
             <ul>
                 <li><a href="#home" onclick="showSection('home'); return false;" data-lang-fa="خانه" data-lang-en="Home" data-lang-ar="الرئيسية" data-lang-zh="首页" data-lang-ru="Главная" data-lang-tr="Ana Sayfa">خانه</a></li>
@@ -474,6 +474,14 @@
                     'ru': 'Добро пожаловать',
                     'tr': 'Hoş Geldiniz'
                 },
+                'telegram': {
+                    'fa': 'تلگرام',
+                    'en': 'Telegram',
+                    'ar': 'تيليغرام',
+                    'zh': 'Telegram',
+                    'ru': 'Telegram',
+                    'tr': 'Telegram'
+                },
                 'rescue': {
                     'fa': 'پکیج نجات',
                     'en': 'Rescue Package',
@@ -485,13 +493,16 @@
             };
 
             const welcomeText = document.getElementById('welcome-text');
+            const telegramText = document.getElementById('telegram-text');
             const rescueText = document.getElementById('rescue-text');
 
             if (lang !== 'fa') {
                 welcomeText.textContent = await translateText(translations['welcome']['fa'], 'fa', lang) || translations['welcome'][lang];
+                if (telegramText) telegramText.textContent = translations['telegram'][lang];
                 rescueText.textContent = await translateText(translations['rescue']['fa'], 'fa', lang) || translations['rescue'][lang];
             } else {
                 welcomeText.textContent = translations['welcome']['fa'];
+                if (telegramText) telegramText.textContent = translations['telegram']['fa'];
                 rescueText.textContent = translations['rescue']['fa'];
             }
         }
@@ -509,7 +520,7 @@
 
         function loadSectionFromHash() {
             const hash = window.location.hash.substring(1);
-            const validSections = ['home', 'rescue', 'blog'];
+            const validSections = ['home', 'telegram', 'rescue', 'blog'];
             if (hash && validSections.includes(hash)) {
                 showSection(hash);
                 if (hash === 'blog') {
