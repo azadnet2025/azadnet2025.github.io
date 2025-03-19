@@ -16,25 +16,23 @@
     <link rel="alternate" hreflang="ar" href="https://azadnet.com/ar/">
     <link rel="alternate" hreflang="zh" href="https://azadnet.com/zh/">
     <link rel="alternate" hreflang="ru" href="https://azadnet.com/ru/">
-    <!-- حذف لینک فونت گوگل -->
     <style>
         @font-face {
             font-family: 'Aparat';
             src: url('/aparat.woff2') format('woff2');
         }
 
-        /* اضافه کردن فونت Estedad از روت */
         @font-face {
             font-family: 'Estedad';
             src: url('/Estedad-Thin.woff2') format('woff2');
-            font-weight: 300; /* وزن سبک */
+            font-weight: 300;
             font-style: normal;
         }
 
         @font-face {
             font-family: 'Estedad';
             src: url('/Estedad-Bold.woff2') format('woff2');
-            font-weight: 700; /* وزن بولد */
+            font-weight: 700;
             font-style: normal;
         }
 
@@ -267,11 +265,14 @@
             border-radius: 50%;
             font-size: 20px;
             cursor: pointer;
-            display: block; /* همیشه نمایش داده می‌شه */
-            z-index: 1000;
+            display: none; /* به صورت پیش‌فرض مخفی */
+            z-index: 1001; /* بالای سایر عناصر */
+            opacity: 0.8;
+            transition: opacity 0.3s ease;
         }
 
         #backToTop:hover {
+            opacity: 1;
             background: #0056b3;
         }
 
@@ -305,7 +306,6 @@
             left: 10px;
         }
 
-        /* ریسپانسیو موبایل */
         @media (max-width: 768px) {
             .container {
                 flex-direction: column;
@@ -666,12 +666,20 @@
             }
         }
 
+        window.onscroll = function() {
+            const backToTopButton = document.getElementById('backToTop');
+            if (document.body.scrollTop > 100 || document.documentElement.scrollTop > 100) {
+                backToTopButton.style.display = 'block';
+            } else {
+                backToTopButton.style.display = 'none';
+            }
+        };
+
         window.onload = function() {
             updateContent();
             updateNavMenu('fa');
             loadSectionFromHash();
             updateSectionTitles('fa');
-            document.getElementById('backToTop').style.display = 'block';
         };
 
         window.onhashchange = loadSectionFromHash;
