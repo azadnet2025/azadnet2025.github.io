@@ -16,6 +16,7 @@
     <link rel="alternate" hreflang="ar" href="https://azadnet.com/ar/">
     <link rel="alternate" hreflang="zh" href="https://azadnet.com/zh/">
     <link rel="alternate" hreflang="ru" href="https://azadnet.com/ru/">
+    <link rel="alternate" hreflang="tr" href="https://azadnet.com/tr/">
     <style>
         @font-face {
             font-family: 'Aparat';
@@ -48,7 +49,7 @@
             color: var(--text-color, #333);
         }
 
-        [lang="en"] body, [lang="zh"] body, [lang="ru"] body {
+        [lang="en"] body, [lang="zh"] body, [lang="ru"] body, [lang="tr"] body {
             direction: ltr;
         }
 
@@ -86,7 +87,7 @@
             z-index: 1000;
         }
 
-        [lang="en"] .nav-menu, [lang="zh"] .nav-menu, [lang="ru"] .nav-menu {
+        [lang="en"] .nav-menu, [lang="zh"] .nav-menu, [lang="ru"] .nav-menu, [lang="tr"] .nav-menu {
             right: auto;
             left: 0;
         }
@@ -95,7 +96,7 @@
             right: -200px;
         }
 
-        [lang="en"] .nav-menu.hidden, [lang="zh"] .nav-menu.hidden, [lang="ru"] .nav-menu.hidden {
+        [lang="en"] .nav-menu.hidden, [lang="zh"] .nav-menu.hidden, [lang="ru"] .nav-menu.hidden, [lang="tr"] .nav-menu.hidden {
             left: -200px;
         }
 
@@ -169,7 +170,7 @@
             transition: margin 0.3s ease;
         }
 
-        [lang="en"] .content-wrapper, [lang="zh"] .content-wrapper, [lang="ru"] .content-wrapper {
+        [lang="en"] .content-wrapper, [lang="zh"] .content-wrapper, [lang="ru"] .content-wrapper, [lang="tr"] .content-wrapper {
             margin-right: 0;
             margin-left: 200px;
         }
@@ -253,29 +254,6 @@
             text-decoration: underline;
         }
 
-        #backToTop {
-            position: fixed;
-            bottom: 20px;
-            left: 20px;
-            width: 40px;
-            height: 40px;
-            background: var(--link-color);
-            color: #fff;
-            border: none;
-            border-radius: 50%;
-            font-size: 20px;
-            cursor: pointer;
-            display: none; /* به صورت پیش‌فرض مخفی */
-            z-index: 1001; /* بالای سایر عناصر */
-            opacity: 0.8;
-            transition: opacity 0.3s ease;
-        }
-
-        #backToTop:hover {
-            opacity: 1;
-            background: #0056b3;
-        }
-
         footer {
             text-align: center;
             padding: 10px;
@@ -301,7 +279,7 @@
             transition: all 0.3s ease;
         }
 
-        [lang="en"] .hamburger, [lang="zh"] .hamburger, [lang="ru"] .hamburger {
+        [lang="en"] .hamburger, [lang="zh"] .hamburger, [lang="ru"] .hamburger, [lang="tr"] .hamburger {
             right: auto;
             left: 10px;
         }
@@ -379,10 +357,10 @@
         <nav class="nav-menu">
             <h1 class="site-title">آزادنت</h1>
             <ul>
-                <li><a href="#home" onclick="showSection('home'); return false;" data-lang-fa="خانه" data-lang-en="Home" data-lang-ar="الرئيسية" data-lang-zh="首页" data-lang-ru="Главная">خانه</a></li>
-                <li><a href="#telegram" onclick="showSection('telegram'); return false;" data-lang-fa="تلگرام" data-lang-en="Telegram" data-lang-ar="تيليغرام" data-lang-zh="Telegram" data-lang-ru="Telegram">تلگرام</a></li>
-                <li><a href="#rescue" onclick="showSection('rescue'); return false;" data-lang-fa="پکیج نجات" data-lang-en="Rescue Package" data-lang-ar="باقة الإنقاذ" data-lang-zh="救援包" data-lang-ru="Пакет спасения">پکیج نجات</a></li>
-                <li><a href="#blog" onclick="showSection('blog'); loadBlogPosts(); return false;" data-lang-fa="وبلاگ" data-lang-en="Blog" data-lang-ar="مدونة" data-lang-zh="博客" data-lang-ru="Блог">وبلاگ</a></li>
+                <li><a href="#home" onclick="showSection('home'); return false;" data-lang-fa="خانه" data-lang-en="Home" data-lang-ar="الرئيسية" data-lang-zh="首页" data-lang-ru="Главная" data-lang-tr="Ana Sayfa">خانه</a></li>
+                <li><a href="#telegram" onclick="showSection('telegram'); return false;" data-lang-fa="تلگرام" data-lang-en="Telegram" data-lang-ar="تيليغرام" data-lang-zh="Telegram" data-lang-ru="Telegram" data-lang-tr="Telegram">تلگرام</a></li>
+                <li><a href="#rescue" onclick="showSection('rescue'); return false;" data-lang-fa="پکیج نجات" data-lang-en="Rescue Package" data-lang-ar="باقة الإنقاذ" data-lang-zh="救援包" data-lang-ru="Пакет спасения" data-lang-tr="Kurtarma Paketi">پکیج نجات</a></li>
+                <li><a href="#blog" onclick="showSection('blog'); loadBlogPosts(); return false;" data-lang-fa="وبلاگ" data-lang-en="Blog" data-lang-ar="مدونة" data-lang-zh="博客" data-lang-ru="Блог" data-lang-tr="Blog">وبلاگ</a></li>
             </ul>
             <div class="language-menu">
                 <select onchange="changeLanguage(this.value)" aria-label="انتخاب زبان">
@@ -391,6 +369,7 @@
                     <option value="ar">العربية</option>
                     <option value="zh">中文</option>
                     <option value="ru">Русский</option>
+                    <option value="tr">Turkish</option>
                 </select>
             </div>
             <div class="theme-menu">
@@ -414,6 +393,7 @@
                         <span lang="ar" style="display:none">نحن مجموعة تجمعت تحت اسم "آزادنت" لتقديم خدمات مجانية وبلا قيود للوصول إلى المعلومات الحرة. لا نتبع القوانين الظالمة ونسعى للحرية والكرامة.</span>
                         <span lang="zh" style="display:none">我们是一群以“自由网”之名聚集在一起的人，旨在提供免费且无限制的信息访问服务。我们不遵循压迫性法律，致力于自由与尊严。</span>
                         <span lang="ru" style="display:none">Мы - группа, собравшаяся под названием "Азаднет", чтобы предоставить бесплатный и неограниченный доступ к информации. Мы не подчиняемся угнетающим законам и стремимся к свободе и достоинству.</span>
+                        <span lang="tr" style="display:none">Biz, "Azadnet" adı altında toplanmış bir grup olarak, bilgiye ücretsiz ve kısıtlamasız erişim sağlamak amacıyla bir araya geldik. Baskıcı yasalara uymuyor, özgürlük ve onur için çabalıyoruz.</span>
                     </p>
                 </div>
             </div>
@@ -426,6 +406,7 @@
                         <span lang="ar" style="display:none"><strong>تيليغرام</strong>: نحن فخورون بتقديم أفضل وأأمن الأدوات المجانية لتجاوز القيود الإنترنتية.</span>
                         <span lang="zh" style="display:none"><strong>Telegram</strong>: 我们很荣幸为您介绍最好、最安全的免费工具，以绕过互联网限制。</span>
                         <span lang="ru" style="display:none"><strong>Telegram</strong>: Мы гордимся тем, что представляем вам лучшие и самые безопасные бесплатные инструменты для обхода интернет-ограничений.</span>
+                        <span lang="tr" style="display:none"><strong>Telegram</strong>: Size internet kısıtlamalarını aşmak için en iyi ve en güvenli ücretsiz araçları sunmaktan gurur duyuyoruz.</span>
                     </p>
                 </div>
             </div>
@@ -438,6 +419,7 @@
                         <span lang="ar" style="display:none"><strong>باقة الإنقاذ</strong>: محتوى باقة الإنقاذ قيد التحضير. يرجى العودة لاحقًا.</span>
                         <span lang="zh" style="display:none"><strong>救援包</strong>: 救援包内容正在准备中。请稍后再回来查看。</span>
                         <span lang="ru" style="display:none"><strong>Пакет спасения</strong>: Содержимое спасательного пакета находится в стадии подготовки. Пожалуйста, зайдите позже.</span>
+                        <span lang="tr" style="display:none"><strong>Kurtarma Paketi</strong>: Kurtarma Paketi'nin içeriği hazırlanmaktadır. Lütfen daha sonra tekrar kontrol edin.</span>
                     </p>
                 </div>
             </div>
@@ -448,9 +430,8 @@
             </div>
         </div>
     </div>
-    <button onclick="scrollToTop()" id="backToTop" title="بازگشت به بالا">↑</button>
     <footer>
-        <p>تماس با ما: info@azadnet.com | © 2025 آزادنت</p>
+        <p>تماس با ما: t.me/azadnet | © 1404 آزادنت</p>
     </footer>
     <script>
         const contents = document.querySelectorAll('.content'),
@@ -504,21 +485,24 @@
                     'en': 'Welcome',
                     'ar': 'مرحبًا',
                     'zh': '欢迎',
-                    'ru': 'Добро пожаловать'
+                    'ru': 'Добро пожаловать',
+                    'tr': 'Hoş Geldiniz'
                 },
                 'telegram': {
                     'fa': 'تلگرام',
                     'en': 'Telegram',
                     'ar': 'تيليغرام',
                     'zh': 'Telegram',
-                    'ru': 'Telegram'
+                    'ru': 'Telegram',
+                    'tr': 'Telegram'
                 },
                 'rescue': {
                     'fa': 'پکیج نجات',
                     'en': 'Rescue Package',
                     'ar': 'باقة الإنقاذ',
                     'zh': '救援包',
-                    'ru': 'Пакет спасения'
+                    'ru': 'Пакет спасения',
+                    'tr': 'Kurtarma Paketi'
                 }
             };
 
@@ -535,10 +519,6 @@
                 telegramText.textContent = translations['telegram']['fa'];
                 rescueText.textContent = translations['rescue']['fa'];
             }
-        }
-
-        function scrollToTop() {
-            window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
         function toggleMenu() {
@@ -665,15 +645,6 @@
                     break;
             }
         }
-
-        window.onscroll = function() {
-            const backToTopButton = document.getElementById('backToTop');
-            if (document.body.scrollTop > 100 || document.documentElement.scrollTop > 100) {
-                backToTopButton.style.display = 'block';
-            } else {
-                backToTopButton.style.display = 'none';
-            }
-        };
 
         window.onload = function() {
             updateContent();
