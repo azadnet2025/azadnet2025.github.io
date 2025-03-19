@@ -295,17 +295,14 @@
                 padding: 10px;
                 position: fixed;
                 top: 0;
-                right: -100%;
+                right: -100%; /* منو به صورت پیش‌فرض مخفی است */
                 height: 100vh;
-                transition: right 0.3s ease;
+                transition: right 0.3s ease; /* فقط right تغییر می‌کند */
             }
 
+            /* حذف کلاس hidden در موبایل، چون فقط active استفاده می‌شود */
             .nav-menu.active {
-                right: 0;
-            }
-
-            .nav-menu.hidden {
-                right: -100%;
+                right: 0; /* منو با کلیک روی همبرگر ظاهر می‌شود */
             }
 
             .nav-menu ul {
@@ -319,17 +316,13 @@
             }
 
             .content-wrapper {
-                margin: 0;
-            }
-
-            .content-wrapper.expanded {
-                margin: 0;
+                margin: 0; /* حذف حاشیه‌ها در موبایل */
             }
 
             .content {
                 padding: 10px;
                 max-height: none;
-                margin-top: 60px;
+                margin-top: 60px; /* فضای کافی برای دکمه همبرگر */
             }
 
             #blog.content.active {
@@ -510,10 +503,12 @@
         function toggleMenu() {
             const navMenu = document.querySelector('.nav-menu');
             const contentWrapper = document.querySelector('.content-wrapper');
-            navMenu.classList.toggle('hidden');
             if (window.innerWidth > 768) {
+                // نسخه دسکتاپ بدون تغییر
+                navMenu.classList.toggle('hidden');
                 contentWrapper.classList.toggle('expanded');
             } else {
+                // نسخه موبایل: فقط کلاس active را تغییر می‌دهد
                 navMenu.classList.toggle('active');
             }
         }
