@@ -1,0 +1,617 @@
+<!DOCTYPE html>
+<html lang="fa">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="description" content="آزادنت - ابزارها و خدمات رایگان برای دسترسی به اطلاعات آزاد">
+    <meta name="keywords" content="آزادنت, ابزار رایگان, عبور از فیلتر, اطلاعات آزاد">
+    <meta name="author" content="تیم آزادنت">
+    <meta name="robots" content="index, follow">
+    <meta name="theme-color" content="#000">
+    <title>آزادنت - وبسایت پنج زبانه</title>
+    <link rel="icon" href="ficon.png" type="image/x-icon">
+    <link rel="alternate" hreflang="fa" href="https://azadnet.com/fa/">
+    <link rel="alternate" hreflang="en" href="https://azadnet.com/en/">
+    <link rel="alternate" hreflang="ar" href="https://azadnet.com/ar/">
+    <link rel="alternate" hreflang="zh" href="https://azadnet.com/zh/">
+    <link rel="alternate" hreflang="ru" href="https://azadnet.com/ru/">
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Estedad:wght@300;700&display=swap" as="style" onload="this.rel='stylesheet'" crossorigin>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Estedad:wght@300;700&display=swap');
+        @font-face {
+            font-family: 'Aparat';
+            src: url('https://example.com/aparat.woff2') format('woff2');
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Estedad', Arial, sans-serif;
+            font-weight: 300;
+            direction: rtl;
+            height: 100vh;
+            overflow-x: hidden;
+            background-color: var(--bg-color, #ffffff);
+            color: var(--text-color, #333);
+        }
+
+        [lang="en"] body, [lang="zh"] body, [lang="ru"] body {
+            direction: ltr;
+        }
+
+        [lang="ar"] body {
+            direction: rtl;
+        }
+
+        :root {
+            --bg-color: #ffffff;
+            --text-color: #333;
+            --nav-bg: #d3d3d3;
+            --link-color: #007bff;
+        }
+
+        .container {
+            display: flex;
+            min-height: 100vh;
+            position: relative;
+            flex-direction: row;
+        }
+
+        .nav-menu {
+            width: 200px;
+            padding: 20px;
+            background-color: var(--nav-bg);
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            height: 100vh;
+            box-sizing: border-box;
+            position: fixed;
+            top: 0;
+            right: 0;
+            z-index: 1000;
+        }
+
+        [lang="en"] .nav-menu, [lang="zh"] .nav-menu, [lang="ru"] .nav-menu {
+            right: auto;
+            left: 0;
+        }
+
+        .nav-menu .site-title {
+            font-family: 'Aparat', 'Estedad', sans-serif;
+            font-size: 32px;
+            color: var(--text-color);
+            text-align: center;
+            margin: 20px 0;
+            user-select: none;
+            will-change: transform;
+            animation: dizzyAnimation 5s linear infinite;
+        }
+
+        @keyframes dizzyAnimation {
+            0% { transform: rotateY(0deg); }
+            100% { transform: rotateY(360deg); }
+        }
+
+        .nav-menu ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .nav-menu ul li {
+            margin: 15px 0;
+        }
+
+        .nav-menu ul li a {
+            text-decoration: none;
+            color: var(--text-color);
+            font-size: 18px;
+            font-family: 'Estedad', Arial, sans-serif;
+            font-weight: 700;
+            cursor: pointer;
+        }
+
+        .nav-menu ul li a:hover {
+            color: var(--link-color);
+        }
+
+        .language-menu, .theme-menu {
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 10px;
+            padding: 10px;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            margin-top: 10px;
+            backdrop-filter: blur(10px);
+        }
+
+        .language-menu select, .theme-menu select {
+            width: 100%;
+            padding: 8px;
+            background: transparent;
+            border: none;
+            font-size: 16px;
+            font-family: 'Estedad', Arial, sans-serif;
+            font-weight: 300;
+            color: var(--text-color);
+            cursor: pointer;
+        }
+
+        .content-wrapper {
+            flex-grow: 1;
+            margin-right: 200px;
+        }
+
+        [lang="en"] .content-wrapper, [lang="zh"] .content-wrapper, [lang="ru"] .content-wrapper {
+            margin-right: 0;
+            margin-left: 200px;
+        }
+
+        .content {
+            flex-grow: 1;
+            padding: 20px;
+            display: none;
+            justify-content: center;
+            align-items: center;
+            min-height: auto;
+            overflow-y: auto;
+            max-height: 100vh;
+        }
+
+        .content.active {
+            display: flex;
+        }
+
+        .text-section {
+            padding: 20px;
+            max-width: 600px;
+            text-align: justify;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+
+        .text-content span {
+            font-family: 'Estedad', Arial, sans-serif;
+            font-weight: 300;
+        }
+
+        .text-content strong {
+            font-weight: 700;
+        }
+
+        .chat-box {
+            width: 100%;
+            max-width: 600px;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: 10px;
+            margin-top: 20px;
+        }
+
+        .chat-box textarea {
+            width: 100%;
+            height: 100px;
+            padding: 10px;
+            margin-bottom: 10px;
+            font-family: 'Estedad', Arial, sans-serif;
+            font-size: 16px;
+            resize: vertical;
+        }
+
+        .chat-box button {
+            padding: 10px 20px;
+            background: var(--link-color);
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .chat-box button:hover {
+            background: #0056b3;
+        }
+
+        .chat-response {
+            margin-top: 20px;
+            padding: 10px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 5px;
+            min-height: 100px;
+        }
+
+        #blog-posts {
+            width: 100%;
+            max-width: 600px;
+            padding: 20px;
+        }
+
+        .blog-post {
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: 10px;
+            padding: 15px;
+            margin-bottom: 20px;
+            text-align: justify;
+        }
+
+        .blog-post h2 {
+            font-size: 20px;
+            margin-bottom: 10px;
+            color: var(--link-color);
+        }
+
+        .blog-post p {
+            font-size: 16px;
+            line-height: 1.6;
+        }
+
+        .blog-post a {
+            color: var(--link-color);
+            text-decoration: none;
+        }
+
+        .blog-post a:hover {
+            text-decoration: underline;
+        }
+
+        #backToTop {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            width: 40px;
+            height: 40px;
+            background: var(--link-color);
+            color: #fff;
+            border: none;
+            border-radius: 50%;
+            font-size: 20px;
+            cursor: pointer;
+            display: none;
+            z-index: 1000;
+        }
+
+        #backToTop:hover {
+            background: #0056b3;
+        }
+
+        footer {
+            text-align: center;
+            padding: 10px;
+            background: var(--nav-bg);
+            position: relative;
+            width: 100%;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                flex-direction: column;
+                min-height: auto;
+            }
+
+            .nav-menu {
+                width: 100%;
+                padding: 10px;
+                position: static;
+                height: auto;
+            }
+
+            .content-wrapper {
+                margin: 0;
+            }
+
+            .nav-menu ul {
+                flex-direction: row;
+                justify-content: space-around;
+                flex-wrap: wrap;
+                overflow-x: auto;
+            }
+
+            .nav-menu ul li {
+                margin: 10px 5px;
+            }
+
+            .nav-menu .site-title {
+                margin: 10px 0;
+            }
+
+            .content {
+                padding: 10px 0;
+                max-height: none;
+            }
+
+            .text-section {
+                padding: 10px;
+            }
+
+            #blog-posts {
+                padding: 10px;
+            }
+        }
+
+        @media (min-width: 769px) {
+            .text-section {
+                height: 50vh;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <nav class="nav-menu">
+            <h1 class="site-title">آزادنت</h1>
+            <ul>
+                <li><a href="#home" onclick="showSection('home'); return false;" data-lang-fa="خانه" data-lang-en="Home" data-lang-ar="الرئيسية" data-lang-zh="首页" data-lang-ru="Главная">خانه</a></li>
+                <li><a href="#telegram" onclick="showSection('telegram'); return false;" data-lang-fa="تلگرام" data-lang-en="Telegram" data-lang-ar="تيليغرام" data-lang-zh="Telegram" data-lang-ru="Telegram">تلگرام</a></li>
+                <li><a href="#askme" onclick="showSection('askme'); return false;" data-lang-fa="از من بپرس" data-lang-en="Ask Me" data-lang-ar="اسألني" data-lang-zh="问我" data-lang-ru="Спроси меня">از من بپرس</a></li>
+                <li><a href="#rescue" onclick="showSection('rescue'); return false;" data-lang-fa="پکیج نجات" data-lang-en="Rescue Package" data-lang-ar="باقة الإنقاذ" data-lang-zh="救援包" data-lang-ru="Пакет спасения">پکیج نجات</a></li>
+                <li><a href="#blog" onclick="showSection('blog'); loadBlogPosts(); return false;" data-lang-fa="وبلاگ" data-lang-en="Blog" data-lang-ar="مدونة" data-lang-zh="博客" data-lang-ru="Блог">وبلاگ</a></li>
+            </ul>
+            <div class="language-menu">
+                <select onchange="changeLanguage(this.value)" aria-label="انتخاب زبان">
+                    <option value="fa" selected>فارسی</option>
+                    <option value="en">English</option>
+                    <option value="ar">العربية</option>
+                    <option value="zh">中文</option>
+                    <option value="ru">Русский</option>
+                </select>
+            </div>
+            <div class="theme-menu">
+                <select onchange="changeTheme(this.value)" aria-label="انتخاب تم">
+                    <option value="default">Default</option>
+                    <option value="theme1">Theme 1</option>
+                    <option value="theme2">Theme 2</option>
+                    <option value="theme3">Theme 3</option>
+                    <option value="theme4">Theme 4</option>
+                </select>
+            </div>
+        </nav>
+        <div class="content-wrapper">
+            <div id="home" class="content active">
+                <div class="text-section">
+                    <h1><span lang="fa">خوش آمدید</span></h1>
+                    <p class="text-content">
+                        <span lang="fa">ما جمعی هستیم که تحت نام "آزادنت" گرد هم آمده‌ایم، با هدف ارائه خدمات رایگان و بدون محدودیت برای دسترسی به اطلاعات آزاد. ما خود را تابع قوانین ستمگرانه نمی‌دانیم و در راستای آزادی و سربلندی گام برمی‌داریم.</span>
+                        <span lang="en" style="display:none">We are a group gathered under the name "Azadnet" to provide free and unrestricted access to information. We do not follow oppressive laws and strive for freedom and dignity.</span>
+                        <span lang="ar" style="display:none">نحن مجموعة تجمعت تحت اسم "آزادنت" لتقديم خدمات مجانية وبلا قيود للوصول إلى المعلومات الحرة. لا نتبع القوانين الظالمة ونسعى للحرية والكرامة.</span>
+                        <span lang="zh" style="display:none">我们是一群以“自由网”之名聚集在一起的人，旨在提供免费且无限制的信息访问服务。我们不遵循压迫性法律，致力于自由与尊严。</span>
+                        <span lang="ru" style="display:none">Мы - группа, собравшаяся под названием "Азаднет", чтобы предоставить бесплатный и неограниченный доступ к информации. Мы не подчиняемся угнетающим законам и стремимся к свободе и достоинству.</span>
+                    </p>
+                </div>
+            </div>
+            <div id="telegram" class="content">
+                <div class="text-section">
+                    <h1><span lang="fa">تلگرام</span></h1>
+                    <p class="text-content">
+                        <span lang="fa"><strong>تلگرام</strong>: ما مفتخریم که برترین و امن‌ترین ابزارها و برنامه‌های رایگان برای عبور از محدودیت‌های اینترنتی را به شما معرفی می‌کنیم.</span>
+                        <span lang="en" style="display:none"><strong>Telegram</strong>: We are proud to introduce you to the best and most secure free tools for bypassing internet restrictions.</span>
+                        <span lang="ar" style="display:none"><strong>تيليغرام</strong>: نحن فخورون بتقديم أفضل وأأمن الأدوات المجانية لتجاوز القيود الإنترنتية.</span>
+                        <span lang="zh" style="display:none"><strong>Telegram</strong>: 我们很荣幸为您介绍最好、最安全的免费工具，以绕过互联网限制。</span>
+                        <span lang="ru" style="display:none"><strong>Telegram</strong>: Мы гордимся тем, что представляем вам лучшие и самые безопасные бесплатные инструменты для обхода интернет-ограничений.</span>
+                    </p>
+                </div>
+            </div>
+            <div id="askme" class="content">
+                <div class="text-section">
+                    <h1><span lang="fa">از من بپرس</span></h1>
+                    <p class="text-content">
+                        <span lang="fa"><strong>از من بپرس</strong>: سوالات خود را از هوش مصنوعی بپرسید.</span>
+                        <span lang="en" style="display:none"><strong>Ask Me</strong>: Ask your questions and get smart answers.</span>
+                        <span lang="ar" style="display:none"><strong>اسألني</strong>: اطرح أسئلتك واحصل على إجابات ذكية.</span>
+                        <span lang="zh" style="display:none"><strong>问我</strong>: 提出您的问题，获得智能回答。</span>
+                        <span lang="ru" style="display:none"><strong>Спроси меня</strong>: Задавайте свои вопросы и получайте умные ответы.</span>
+                    </p>
+                    <div class="chat-box">
+                        <textarea id="userInput" placeholder="سوال خود را اینجا بنویسید..."></textarea>
+                        <button onclick="sendMessage()">ارسال</button>
+                        <div class="chat-response" id="chatResponse">پاسخ در اینجا نمایش داده می‌شود...</div>
+                    </div>
+                </div>
+            </div>
+            <div id="rescue" class="content">
+                <div class="text-section">
+                    <h1><span lang="fa">پکیج نجات</span></h1>
+                    <p class="text-content">
+                        <span lang="fa"><strong>پکیج نجات</strong>: محتوای پکیج نجات در حال آماده‌سازی است. لطفاً بعداً مراجعه کنید.</span>
+                        <span lang="en" style="display:none"><strong>Rescue Package</strong>: The content of the Rescue Package is under preparation. Please check back later.</span>
+                        <span lang="ar" style="display:none"><strong>باقة الإنقاذ</strong>: محتوى باقة الإنقاذ قيد التحضير. يرجى العودة لاحقًا.</span>
+                        <span lang="zh" style="display:none"><strong>救援包</strong>: 救援包内容正在准备中。请稍后再回来查看。</span>
+                        <span lang="ru" style="display:none"><strong>Пакет спасения</strong>: Содержимое спасательного пакета находится в стадии подготовки. Пожалуйста, зайдите позже.</span>
+                    </p>
+                </div>
+            </div>
+            <div id="blog" class="content">
+                <div id="blog-posts">
+                    <p>در حال بارگذاری پست‌ها...</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <button onclick="scrollToTop()" id="backToTop" title="بازگشت به بالا">↑</button>
+    <footer>
+        <p>تماس با ما: info@azadnet.com | © 2025 آزادنت</p>
+    </footer>
+    <script>
+        const contents = document.querySelectorAll('.content'),
+              spans = document.querySelectorAll('.text-content span'),
+              links = document.querySelectorAll('.nav-menu a');
+        let blogPostsCache = null;
+
+        function showSection(id) {
+            const section = document.getElementById(id);
+            if (!section) {
+                console.warn(`بخش با شناسه ${id} پیدا نشد!`);
+                return;
+            }
+            contents.forEach(content => content.classList.remove('active'));
+            section.classList.add('active');
+            links.forEach(link => link.removeAttribute('aria-current'));
+            const activeLink = document.querySelector(`a[href="#${id}"]`);
+            activeLink.setAttribute('aria-current', 'page');
+            updateContent();
+        }
+
+        function changeLanguage(lang) {
+            document.documentElement.lang = lang;
+            updateContent();
+            updateNavMenu(lang);
+            if (document.getElementById('blog').classList.contains('active')) {
+                loadBlogPosts();
+            }
+        }
+
+        function updateNavMenu(lang) {
+            links.forEach(link => {
+                const text = link.getAttribute(`data-lang-${lang}`);
+                if (text) link.textContent = text;
+            });
+        }
+
+        function updateContent() {
+            const currentLang = document.documentElement.lang;
+            spans.forEach(span => {
+                span.style.display = span.lang === currentLang ? 'block' : 'none';
+            });
+        }
+
+        function scrollToTop() {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        async function loadBlogPosts() {
+            const blogPostsContainer = document.getElementById('blog-posts');
+            const currentLang = document.documentElement.lang || 'fa';
+            blogPostsContainer.innerHTML = '<p>در حال بارگذاری پست‌ها...</p>';
+
+            if (blogPostsCache && currentLang === 'fa') {
+                blogPostsContainer.innerHTML = blogPostsCache;
+                return;
+            }
+
+            const feedUrl = 'https://api.allorigins.win/raw?url=' + encodeURIComponent('https://hpip.blogspot.com/feeds/posts/default');
+            try {
+                const response = await fetch(feedUrl);
+                const data = await response.text();
+                const parser = new DOMParser();
+                const xmlDoc = parser.parseFromString(data, 'text/xml');
+                const entries = xmlDoc.getElementsByTagName('entry');
+
+                blogPostsContainer.innerHTML = '';
+                for (let i = 0; i < entries.length; i++) {
+                    const entry = entries[i];
+                    const title = entry.getElementsByTagName('title')[0].textContent;
+                    const content = entry.getElementsByTagName('content')[0].textContent.replace(/<[^>]+>/g, '');
+                    const link = Array.from(entry.getElementsByTagName('link'))
+                        .find(link => link.getAttribute('rel') === 'alternate')
+                        ?.getAttribute('href') || 'https://hpip.blogspot.com';
+
+                    let translatedTitle = title;
+                    let translatedContent = content;
+                    if (currentLang !== 'fa') {
+                        translatedTitle = await translateText(title, 'fa', currentLang);
+                        translatedContent = await translateText(content, 'fa', currentLang);
+                    }
+
+                    const postDiv = document.createElement('div');
+                    postDiv.className = 'blog-post';
+                    postDiv.innerHTML = `
+                        <h2><a href="${link}" target="_blank">${translatedTitle}</a></h2>
+                        <p>${translatedContent.substring(0, 200)}... <a href="${link}" target="_blank">ادامه مطلب</a></p>
+                    `;
+                    blogPostsContainer.appendChild(postDiv);
+                }
+
+                if (currentLang === 'fa') blogPostsCache = blogPostsContainer.innerHTML;
+            } catch (error) {
+                console.error('خطا در دریافت فید: ', error);
+                blogPostsContainer.innerHTML = '<p>خطایی در بارگذاری پست‌ها رخ داد. <button onclick="loadBlogPosts()">تلاش مجدد</button></p>';
+            }
+        }
+
+        async function translateText(text, fromLang, toLang) {
+            if (fromLang === toLang) return text;
+            try {
+                // شبیه‌سازی استفاده از Grok 2 - برای اتصال واقعی، API Grok 2 را جایگزین کنید
+                const response = await fetch(`https://translate.googleapis.com/translate_a/single?client=gtx&sl=${fromLang}&tl=${toLang}&dt=t&q=${encodeURIComponent(text)}`);
+                const data = await response.json();
+                return data[0][0][0];
+            } catch (error) {
+                console.error('خطا در ترجمه: ', error);
+                return text;
+            }
+        }
+
+        async function sendMessage() {
+            const userInput = document.getElementById('userInput').value;
+            const chatResponse = document.getElementById('chatResponse');
+            if (!userInput) {
+                chatResponse.textContent = "لطفاً سوالی بنویسید!";
+                return;
+            }
+
+            chatResponse.textContent = "در حال پردازش...";
+            try {
+                // شبیه‌سازی اتصال به Grok 2 - برای اتصال واقعی، API را جایگزین کنید
+                const response = "پاسخ شبیه‌سازی‌شده از Grok 2: " + userInput; // جایگذاری API واقعی
+                chatResponse.textContent = response;
+            } catch (error) {
+                chatResponse.textContent = "خطا در دریافت پاسخ!";
+                console.error(error);
+            }
+        }
+
+        function changeTheme(theme) {
+            const root = document.documentElement;
+            switch(theme) {
+                case 'default':
+                    root.style.setProperty('--bg-color', '#ffffff');
+                    root.style.setProperty('--text-color', '#333');
+                    root.style.setProperty('--nav-bg', '#d3d3d3');
+                    root.style.setProperty('--link-color', '#007bff');
+                    break;
+                case 'theme1':
+                    root.style.setProperty('--bg-color', '#F4EDEA');
+                    root.style.setProperty('--text-color', '#5D576B');
+                    root.style.setProperty('--nav-bg', '#D8E2DC');
+                    root.style.setProperty('--link-color', '#5D576B');
+                    break;
+                case 'theme2':
+                    root.style.setProperty('--bg-color', '#FFD7BA');
+                    root.style.setProperty('--text-color', '#5F0F40');
+                    root.style.setProperty('--nav-bg', '#FFB4A2');
+                    root.style.setProperty('--link-color', '#5F0F40');
+                    break;
+                case 'theme3':
+                    root.style.setProperty('--bg-color', '#ECF4D6');
+                    root.style.setProperty('--text-color', '#265073');
+                    root.style.setProperty('--nav-bg', '#9AD0C2');
+                    root.style.setProperty('--link-color', '#265073');
+                    break;
+                case 'theme4':
+                    root.style.setProperty('--bg-color', '#E0F2E9');
+                    root.style.setProperty('--text-color', '#1A3C34');
+                    root.style.setProperty('--nav-bg', '#A4C3B2');
+                    root.style.setProperty('--link-color', '#1A3C34');
+                    break;
+            }
+        }
+
+        window.onscroll = function() {
+            const backToTop = document.getElementById('backToTop');
+            backToTop.style.display = window.scrollY > 100 ? 'block' : 'none';
+        };
+
+        updateContent();
+        updateNavMenu('fa');
+    </script>
+</body>
+</html>
