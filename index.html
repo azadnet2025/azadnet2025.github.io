@@ -79,7 +79,7 @@
         }
 
         .nav-menu.hidden {
-            right: -200px; /* مخفی شدن منو در دسکتاپ */
+            right: -200px;
         }
 
         [lang="en"] .nav-menu.hidden, [lang="zh"] .nav-menu.hidden, [lang="ru"] .nav-menu.hidden {
@@ -162,7 +162,7 @@
         }
 
         .content-wrapper.expanded {
-            margin-right: 0; /* وقتی منو مخفی می‌شه، محتوا وسط میاد */
+            margin-right: 0;
             margin-left: 0;
         }
 
@@ -182,7 +182,7 @@
         }
 
         #blog.content.active {
-            padding-top: 80px; /* فاصله بیشتر از بالا در صفحه بلاگ */
+            padding-top: 80px;
         }
 
         .text-section {
@@ -252,7 +252,7 @@
             border-radius: 50%;
             font-size: 20px;
             cursor: pointer;
-            display: none;
+            display: block; /* همیشه نمایش داده می‌شه */
             z-index: 1000;
         }
 
@@ -282,6 +282,12 @@
             color: var(--text-color);
             cursor: pointer;
             z-index: 1002;
+            transition: all 0.3s ease;
+        }
+
+        [lang="en"] .hamburger, [lang="zh"] .hamburger, [lang="ru"] .hamburger {
+            right: auto;
+            left: 10px;
         }
 
         /* ریسپانسیو موبایل */
@@ -306,7 +312,7 @@
             }
 
             .nav-menu.hidden {
-                right: -100%; /* توی موبایل همیشه با همبرگر کنترل می‌شه */
+                right: -100%;
             }
 
             .nav-menu ul {
@@ -324,7 +330,7 @@
             }
 
             .content-wrapper.expanded {
-                margin: 0; /* توی موبایل تغییری نمی‌کنه */
+                margin: 0;
             }
 
             .content {
@@ -334,7 +340,7 @@
             }
 
             #blog.content.active {
-                padding-top: 60px; /* فاصله کمتر توی موبایل */
+                padding-top: 60px;
             }
 
             .text-section {
@@ -386,7 +392,7 @@
         <div class="content-wrapper">
             <div id="home" class="content active">
                 <div class="text-section">
-                    <h1><span lang="fa">خوش آمدید</span></h1>
+                    <h1 id="welcome-text">خوش آمدید</h1>
                     <p class="text-content">
                         <span lang="fa">ما جمعی هستیم که تحت نام "آزادنت" گرد هم آمده‌ایم، با هدف ارائه خدمات رایگان و بدون محدودیت برای دسترسی به اطلاعات آزاد. ما خود را تابع قوانین ستمگرانه نمی‌دانیم و در راستای آزادی و سربلندی گام برمی‌داریم.</span>
                         <span lang="en" style="display:none">We are a group gathered under the name "Azadnet" to provide free and unrestricted access to information. We do not follow oppressive laws and strive for freedom and dignity.</span>
@@ -398,7 +404,7 @@
             </div>
             <div id="telegram" class="content">
                 <div class="text-section">
-                    <h1><span lang="fa">تلگرام</span></h1>
+                    <h1 id="telegram-text">تلگرام</h1>
                     <p class="text-content">
                         <span lang="fa"><strong>تلگرام</strong>: ما مفتخریم که برترین و امن‌ترین ابزارها و برنامه‌های رایگان برای عبور از محدودیت‌های اینترنتی را به شما معرفی می‌کنیم.</span>
                         <span lang="en" style="display:none"><strong>Telegram</strong>: We are proud to introduce you to the best and most secure free tools for bypassing internet restrictions.</span>
@@ -410,7 +416,7 @@
             </div>
             <div id="rescue" class="content">
                 <div class="text-section">
-                    <h1><span lang="fa">پکیج نجات</span></h1>
+                    <h1 id="rescue-text">پکیج نجات</h1>
                     <p class="text-content">
                         <span lang="fa"><strong>پکیج نجات</strong>: محتوای پکیج نجات در حال آماده‌سازی است. لطفاً بعداً مراجعه کنید.</span>
                         <span lang="en" style="display:none"><strong>Rescue Package</strong>: The content of the Rescue Package is under preparation. Please check back later.</span>
@@ -452,10 +458,11 @@
             updateContent();
         }
 
-        function changeLanguage(lang) {
+        async function changeLanguage(lang) {
             document.documentElement.lang = lang;
             updateContent();
             updateNavMenu(lang);
+            await updateSectionTitles(lang);
             if (document.getElementById('blog').classList.contains('active')) {
                 loadBlogPosts();
             }
@@ -475,6 +482,46 @@
             });
         }
 
+        async function updateSectionTitles(lang) {
+            const translations = {
+                'welcome': {
+                    'fa': 'خوش آمدید',
+                    'en': 'Welcome',
+                    'ar': 'مرحبًا',
+                    'zh': '欢迎',
+                    'ru': 'Добро пожаловать'
+                },
+                'telegram': {
+                    'fa': 'تلگرام',
+                    'en': 'Telegram',
+                    'ar': 'تيليغرام',
+                    'zh': 'Telegram',
+                    'ru': 'Telegram'
+                },
+                'rescue': {
+                    'fa': 'پکیج نجات',
+                    'en': 'Rescue Package',
+                    'ar': 'باقة الإنقاذ',
+                    'zh': '救援包',
+                    'ru': 'Пакет спасения'
+                }
+            };
+
+            const welcomeText = document.getElementById('welcome-text');
+            const telegramText = document.getElementById('telegram-text');
+            const rescueText = document.getElementById('rescue-text');
+
+            if (lang !== 'fa') {
+                welcomeText.textContent = await translateText(translations['welcome']['fa'], 'fa', lang) || translations['welcome'][lang];
+                telegramText.textContent = translations['telegram'][lang];
+                rescueText.textContent = await translateText(translations['rescue']['fa'], 'fa', lang) || translations['rescue'][lang];
+            } else {
+                welcomeText.textContent = translations['welcome']['fa'];
+                telegramText.textContent = translations['telegram']['fa'];
+                rescueText.textContent = translations['rescue']['fa'];
+            }
+        }
+
         function scrollToTop() {
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
@@ -484,9 +531,9 @@
             const contentWrapper = document.querySelector('.content-wrapper');
             navMenu.classList.toggle('hidden');
             if (window.innerWidth > 768) {
-                contentWrapper.classList.toggle('expanded'); // فقط توی دسکتاپ محتوا رو وسط می‌کنه
+                contentWrapper.classList.toggle('expanded');
             } else {
-                navMenu.classList.toggle('active'); // توی موبایل منو رو باز/بسته می‌کنه
+                navMenu.classList.toggle('active');
             }
         }
 
@@ -604,15 +651,19 @@
             }
         }
 
-        window.onscroll = function() {
-            const backToTop = document.getElementById('backToTop');
-            backToTop.style.display = window.scrollY > 100 ? 'block' : 'none';
-        };
+        // حذف یا غیرفعال کردن تابع onscroll برای همیشه نمایش دادن دکمه
+        // window.onscroll = function() {
+        //     const backToTop = document.getElementById('backToTop');
+        //     backToTop.style.display = window.scrollY > 100 ? 'block' : 'none';
+        // };
 
         window.onload = function() {
             updateContent();
             updateNavMenu('fa');
             loadSectionFromHash();
+            updateSectionTitles('fa');
+            // تنظیم اولیه برای اطمینان از نمایش دکمه
+            document.getElementById('backToTop').style.display = 'block';
         };
 
         window.onhashchange = loadSectionFromHash;
