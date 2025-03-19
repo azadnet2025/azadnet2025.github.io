@@ -354,11 +354,10 @@
 </head>
 <body>
     <div class="container">
-        <nav class="nav-menu">
+        <nav class=" invit-menu">
             <h1 class="site-title">آزادنت</h1>
             <ul>
                 <li><a href="#home" onclick="showSection('home'); return false;" data-lang-fa="خانه" data-lang-en="Home" data-lang-ar="الرئيسية" data-lang-zh="首页" data-lang-ru="Главная" data-lang-tr="Ana Sayfa">خانه</a></li>
-                <li><a href="#telegram" onclick="showSection('telegram'); return false;" data-lang-fa="تلگرام" data-lang-en="Telegram" data-lang-ar="تيليغرام" data-lang-zh="Telegram" data-lang-ru="Telegram" data-lang-tr="Telegram">تلگرام</a></li>
                 <li><a href="#rescue" onclick="showSection('rescue'); return false;" data-lang-fa="پکیج نجات" data-lang-en="Rescue Package" data-lang-ar="باقة الإنقاذ" data-lang-zh="救援包" data-lang-ru="Пакет спасения" data-lang-tr="Kurtarma Paketi">پکیج نجات</a></li>
                 <li><a href="#blog" onclick="showSection('blog'); loadBlogPosts(); return false;" data-lang-fa="وبلاگ" data-lang-en="Blog" data-lang-ar="مدونة" data-lang-zh="博客" data-lang-ru="Блог" data-lang-tr="Blog">وبلاگ</a></li>
             </ul>
@@ -394,19 +393,6 @@
                         <span lang="zh" style="display:none">我们是一群以“自由网”之名聚集在一起的人，旨在提供免费且无限制的信息访问服务。我们不遵循压迫性法律，致力于自由与尊严。</span>
                         <span lang="ru" style="display:none">Мы - группа, собравшаяся под названием "Азаднет", чтобы предоставить бесплатный и неограниченный доступ к информации. Мы не подчиняемся угнетающим законам и стремимся к свободе и достоинству.</span>
                         <span lang="tr" style="display:none">Biz, "Azadnet" adı altında toplanmış bir grup olarak, bilgiye ücretsiz ve kısıtlamasız erişim sağlamak amacıyla bir araya geldik. Baskıcı yasalara uymuyor, özgürlük ve onur için çabalıyoruz.</span>
-                    </p>
-                </div>
-            </div>
-            <div id="telegram" class="content">
-                <div class="text-section">
-                    <h1 id="telegram-text">تلگرام</h1>
-                    <p class="text-content">
-                        <span lang="fa"><strong>تلگرام</strong>: ما مفتخریم که برترین و امن‌ترین ابزارها و برنامه‌های رایگان برای عبور از محدودیت‌های اینترنتی را به شما معرفی می‌کنیم.</span>
-                        <span lang="en" style="display:none"><strong>Telegram</strong>: We are proud to introduce you to the best and most secure free tools for bypassing internet restrictions.</span>
-                        <span lang="ar" style="display:none"><strong>تيليغرام</strong>: نحن فخورون بتقديم أفضل وأأمن الأدوات المجانية لتجاوز القيود الإنترنتية.</span>
-                        <span lang="zh" style="display:none"><strong>Telegram</strong>: 我们很荣幸为您介绍最好、最安全的免费工具，以绕过互联网限制。</span>
-                        <span lang="ru" style="display:none"><strong>Telegram</strong>: Мы гордимся тем, что представляем вам лучшие и самые безопасные бесплатные инструменты для обхода интернет-ограничений.</span>
-                        <span lang="tr" style="display:none"><strong>Telegram</strong>: Size internet kısıtlamalarını aşmak için en iyi ve en güvenli ücretsiz araçları sunmaktan gurur duyuyoruz.</span>
                     </p>
                 </div>
             </div>
@@ -488,14 +474,6 @@
                     'ru': 'Добро пожаловать',
                     'tr': 'Hoş Geldiniz'
                 },
-                'telegram': {
-                    'fa': 'تلگرام',
-                    'en': 'Telegram',
-                    'ar': 'تيليغرام',
-                    'zh': 'Telegram',
-                    'ru': 'Telegram',
-                    'tr': 'Telegram'
-                },
                 'rescue': {
                     'fa': 'پکیج نجات',
                     'en': 'Rescue Package',
@@ -507,16 +485,13 @@
             };
 
             const welcomeText = document.getElementById('welcome-text');
-            const telegramText = document.getElementById('telegram-text');
             const rescueText = document.getElementById('rescue-text');
 
             if (lang !== 'fa') {
                 welcomeText.textContent = await translateText(translations['welcome']['fa'], 'fa', lang) || translations['welcome'][lang];
-                telegramText.textContent = translations['telegram'][lang];
                 rescueText.textContent = await translateText(translations['rescue']['fa'], 'fa', lang) || translations['rescue'][lang];
             } else {
                 welcomeText.textContent = translations['welcome']['fa'];
-                telegramText.textContent = translations['telegram']['fa'];
                 rescueText.textContent = translations['rescue']['fa'];
             }
         }
@@ -534,7 +509,7 @@
 
         function loadSectionFromHash() {
             const hash = window.location.hash.substring(1);
-            const validSections = ['home', 'telegram', 'rescue', 'blog'];
+            const validSections = ['home', 'rescue', 'blog'];
             if (hash && validSections.includes(hash)) {
                 showSection(hash);
                 if (hash === 'blog') {
