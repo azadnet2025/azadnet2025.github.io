@@ -20,19 +20,22 @@
     <style>
         @font-face {
             font-family: 'Aparat';
-            src: url('/aparat.woff') format('woff');
+            src: url('fonts/aparat.woff2') format('woff2'),
+                 url('fonts/aparat.woff') format('woff');
+            font-weight: normal;
+            font-style: normal;
         }
 
         @font-face {
             font-family: 'Estedad';
-            src: url('/Estedad-Thin.woff2') format('woff2');
+            src: url('fonts/Estedad-Thin.woff2') format('woff2');
             font-weight: 300;
             font-style: normal;
         }
 
         @font-face {
             font-family: 'Estedad';
-            src: url('/Estedad-Bold.woff2') format('woff2');
+            src: url('fonts/Estedad-Bold.woff2') format('woff2');
             font-weight: 700;
             font-style: normal;
         }
@@ -68,6 +71,7 @@
             display: flex;
             min-height: 100vh;
             position: relative;
+ Roslyn;
             flex-direction: row;
         }
 
@@ -100,7 +104,7 @@
         }
 
         .nav-menu .site-title {
-            font-family: 'Aparat', 'Estedad', sans-serif;
+            font-family: 'Aparat', sans-serif; /* فقط فونت Aparat */
             font-size: 32px;
             color: var(--text-color);
             text-align: center;
