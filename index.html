@@ -295,24 +295,37 @@
                 padding: 10px;
                 position: fixed;
                 top: 0;
-                right: -100%; /* منو به صورت پیش‌فرض مخفی است */
+                right: -100%; /* منو در همه زبان‌ها از راست باز و بسته می‌شود */
                 height: 100vh;
                 transition: right 0.3s ease; /* فقط right تغییر می‌کند */
+                justify-content: flex-start; /* محتوا از بالا شروع شود */
             }
 
-            /* حذف کلاس hidden در موبایل، چون فقط active استفاده می‌شود */
+            /* حذف تنظیمات LTR برای موبایل، چون همه از راست باز می‌شوند */
             .nav-menu.active {
-                right: 0; /* منو با کلیک روی همبرگر ظاهر می‌شود */
+                right: 0; /* منو در همه زبان‌ها از راست ظاهر می‌شود */
             }
 
             .nav-menu ul {
                 flex-direction: column;
                 justify-content: flex-start;
                 margin-top: 60px;
+                margin-bottom: 20px; /* فاصله بین ناوبری و گزینه‌های زبان/تم */
             }
 
             .nav-menu ul li {
                 margin: 10px 0;
+            }
+
+            /* تنظیم جایگاه و اندازه گزینه‌های زبان و تم */
+            .language-menu, .theme-menu {
+                margin-top: 5px; /* فاصله کمتر از بالا */
+                padding: 8px; /* کمی کوچکتر */
+            }
+
+            .language-menu select, .theme-menu select {
+                font-size: 14px; /* اندازه فونت کوچکتر از 16px فعلی */
+                padding: 6px; /* پدینگ کمتر */
             }
 
             .content-wrapper {
@@ -385,7 +398,7 @@
                         <span lang="ar" style="display:none">نحن مجموعة تجمعت تحت اسم "آزادنت" لتقديم خدمات مجانية وبلا قيود للوصول إلى المعلومات الحرة. لا نتبع القوانين الظالمة ونسعى للحرية والكرامة.</span>
                         <span lang="zh" style="display:none">我们是一群以“自由网”之名聚集在一起的人，旨在提供免费且无限制的信息访问服务。我们不遵循压迫性法律，致力于自由与尊严。</span>
                         <span lang="ru" style="display:none">Мы - группа, собравшаяся под названием "Азаднет", чтобы предоставить бесплатный и неограниченный доступ к информации. Мы не подчиняемся угнетающим законам и стремимся к свободе и достоинству.</span>
-                        <span lang="tr" style="display:none">Biz, "Azadnet" adı altında toplanmış bir grup olarak, bilgiye ücretsiz ve kısıtlamasız erişim sağlamak amacıyla bir araya geldik. Baskıcı yasalara uymuyor, özgürlük ve onur için çabalıyoruz.</span>
+                        <span lang="tr" style="display:none">Biz, "Azadnet" adı altında toplanmış bir grup olarak, bilgiye ücretsiz ve kısıtlamasız erişim sağlamak amacıyla bir araya geldik. Baskıcı yasalara uymuyor, özgürlük ve onur için чabalıyoruz.</span>
                     </p>
                 </div>
             </div>
@@ -431,6 +444,12 @@
             activeLink.setAttribute('aria-current', 'page');
             window.location.hash = id;
             updateContent();
+
+            // بستن منو در نسخه موبایل پس از انتخاب گزینه
+            if (window.innerWidth <= 768) {
+                const navMenu = document.querySelector('.nav-menu');
+                navMenu.classList.remove('active');
+            }
         }
 
         async function changeLanguage(lang) {
