@@ -276,7 +276,6 @@
             transition: all 0.3s ease;
         }
 
-        /* حذف تنظیمات همبرگر برای LTR، همیشه از راست باشد */
         @media (max-width: 768px) {
             .container {
                 flex-direction: column;
@@ -288,17 +287,16 @@
                 padding: 10px;
                 position: fixed;
                 top: 0;
-                right: -100%; /* منو همیشه از راست باز و بسته می‌شود */
+                right: -100%;
                 height: 100vh;
                 transition: right 0.3s ease;
                 justify-content: flex-start;
             }
 
             .nav-menu.active {
-                right: 0; /* منو همیشه از راست ظاهر می‌شود */
+                right: 0;
             }
 
-            /* اطمینان از اینکه منو در LTR از راست باشد */
             [lang="en"] .nav-menu, [lang="zh"] .nav-menu, [lang="ru"] .nav-menu, [lang="tr"] .nav-menu {
                 right: -100%;
                 left: auto;
@@ -357,7 +355,6 @@
                 padding: 10px;
             }
 
-            /* همبرگر همیشه در سمت راست */
             .hamburger {
                 right: 10px;
                 left: auto;
@@ -463,7 +460,6 @@
             window.location.hash = id;
             updateContent();
 
-            // بستن منو در نسخه موبایل پس از انتخاب گزینه
             if (window.innerWidth <= 768) {
                 const navMenu = document.querySelector('.nav-menu');
                 navMenu.classList.remove('active');
@@ -472,7 +468,7 @@
 
         async function changeLanguage(lang) {
             document.documentElement.lang = lang;
-            localStorage.setItem('selectedLanguage', lang); // ذخیره زبان در localStorage
+            localStorage.setItem('selectedLanguage', lang);
             updateContent();
             updateNavMenu(lang);
             await updateSectionTitles(lang);
@@ -666,7 +662,7 @@
 
         window.onload = function() {
             loadSavedTheme();
-            loadSavedLanguage(); // بارگذاری زبان ذخیره‌شده
+            loadSavedLanguage();
             loadSectionFromHash();
         };
 
