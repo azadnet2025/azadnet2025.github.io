@@ -276,56 +276,6 @@
             transition: all 0.3s ease;
         }
 
-        /* استایل‌های دکمه کشویی */
-        .accordion {
-            max-width: 600px;
-            margin-top: 20px;
-            background-color: var(--nav-bg);
-            border-radius: 10px;
-            overflow: hidden;
-        }
-
-        .accordion-header {
-            padding: 10px;
-            background-color: rgba(255, 255, 255, 0.2);
-            color: var(--text-color);
-            font-weight: 700;
-            cursor: pointer;
-            text-align: center;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.3);
-        }
-
-        .accordion-content {
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height 0.3s ease;
-            background-color: rgba(255, 255, 255, 0.1);
-        }
-
-        .accordion-content ul {
-            list-style: none;
-            padding: 10px;
-            margin: 0;
-        }
-
-        .accordion-content li {
-            padding: 5px 0;
-            font-size: 14px;
-        }
-
-        .accordion-content li a {
-            color: var(--link-color);
-            text-decoration: none;
-        }
-
-        .accordion-content li a:hover {
-            text-decoration: underline;
-        }
-
-        .accordion.active .accordion-content {
-            max-height: 200px; /* حداکثر ارتفاع باز شدن */
-        }
-
         @media (max-width: 768px) {
             .container {
                 flex-direction: column;
@@ -414,14 +364,6 @@
                 right: 10px;
                 left: auto;
             }
-
-            .accordion {
-                margin-top: 10px;
-            }
-
-            .accordion.active .accordion-content {
-                max-height: 150px; /* ارتفاع کمتر برای موبایل */
-            }
         }
 
         @media (min-width: 769px) {
@@ -486,19 +428,6 @@
                         <span lang="ru" style="display:none"><strong>Пакет спасения</strong>: Содержимое спасательного пакета находится в стадии подготовки. Пожалуйста, зайдите позже.</span>
                         <span lang="tr" style="display:none"><strong>Kurtarma Paketi</strong>: Kurtarma Paketi'nin içeriği hazırlanmaktadır. Lütfen daha sonra tekrar kontrol edin。</span>
                     </p>
-                    <!-- دکمه کشویی اندروید -->
-                    <div class="accordion">
-                        <div class="accordion-header" onclick="toggleAccordion(this)">اندروید</div>
-                        <div class="accordion-content">
-                            <ul>
-                                <li><a href="https://example.com/android1" target="_blank">گزینه ۱</a></li>
-                                <li><a href="https://example.com/android2" target="_blank">گزینه ۲</a></li>
-                                <li><a href="https://example.com/android3" target="_blank">گزینه ۳</a></li>
-                                <li><a href="https://example.com/android4" target="_blank">گزینه ۴</a></li>
-                                <li><a href="https://example.com/android5" target="_blank">گزینه ۵</a></li>
-                            </ul>
-                        </div>
-                    </div>
                 </div>
             </div>
             <div id="blog" class="content">
@@ -729,12 +658,6 @@
             document.documentElement.lang = savedLanguage;
             document.querySelector('.language-menu select').value = savedLanguage;
             changeLanguage(savedLanguage);
-        }
-
-        // تابع برای باز و بسته کردن دکمه کشویی
-        function toggleAccordion(header) {
-            const accordion = header.parentElement;
-            accordion.classList.toggle('active');
         }
 
         window.onload = function() {
