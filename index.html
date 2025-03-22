@@ -232,7 +232,7 @@
             z-index: 999;
         }
         .hamburger {
-            display: block;
+            display: none; /* به صورت پیش‌فرض مخفی در دسکتاپ */
             position: fixed;
             top: 10px;
             right: 10px;
@@ -343,7 +343,7 @@
             }
             .content-wrapper {
                 margin: 0;
-                width: 100%;
+                width: 100%; /* کل عرض صفحه در موبایل */
             }
             [lang="en"] .content-wrapper, [lang="zh"] .content-wrapper, [lang="ru"] .content-wrapper, [lang="tr"] .content-wrapper {
                 margin: 0;
@@ -368,6 +368,7 @@
                 padding: 10px;
             }
             .hamburger {
+                display: block; /* نمایش دکمه همبرگر در موبایل */
                 right: 10px;
                 left: auto;
             }
@@ -382,6 +383,9 @@
         @media (min-width: 769px) {
             .text-section {
                 height: 50vh;
+            }
+            .hamburger {
+                display: block; /* نمایش دکمه همبرگر در دسکتاپ */
             }
         }
     </style>
@@ -712,8 +716,13 @@
         // اطمینان از مخفی بودن نوار ناوبری در موبایل هنگام بارگذاری اولیه
         function initializeNavMenu() {
             const navMenu = document.querySelector('.nav-menu');
+            const contentWrapper = document.querySelector('.content-wrapper');
             if (window.innerWidth <= 768) {
                 navMenu.classList.remove('active'); // مطمئن می‌شیم که در موبایل به صورت پیش‌فرض مخفی باشه
+                contentWrapper.classList.add('expanded'); // کل عرض صفحه در دسترس محتوا باشه
+            } else {
+                navMenu.classList.remove('hidden'); // در دسکتاپ به صورت پیش‌فرض نمایش داده بشه
+                contentWrapper.classList.remove('expanded');
             }
         }
 
