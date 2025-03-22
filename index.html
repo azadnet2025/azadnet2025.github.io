@@ -1,9 +1,39 @@
 <!DOCTYPE html>
 <html lang="fa">
 <head>
-    <!-- متا تگ‌ها بدون تغییر -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="description" content="آزادنت - ابزارها و خدمات رایگان برای دسترسی به اطلاعات آزاد">
+    <meta name="keywords" content="آزادنت, ابزار رایگان, عبور از فیلتر, اطلاعات آزاد">
+    <meta name="author" content="تیم آزادنت">
+    <meta name="robots" content="index, follow">
+    <meta name="theme-color" content="#000">
+    <title>آزادنت</title>
+    <link rel="icon" href="ficon.png" type="image/x-icon">
+    <link rel="alternate" hreflang="fa" href="https://azadnet.com/fa/">
+    <link rel="alternate" hreflang="en" href="https://azadnet.com/en/">
+    <link rel="alternate" hreflang="ar" href="https://azadnet.com/ar/">
+    <link rel="alternate" hreflang="zh" href="https://azadnet.com/zh/">
+    <link rel="alternate" hreflang="ru" href="https://azadnet.com/ru/">
+    <link rel="alternate" hreflang="tr" href="https://azadnet.com/tr/">
     <style>
-        /* استایل‌های قبلی بدون تغییر تا اینجا */
+        @font-face {
+            font-family: 'Estedad';
+            src: url('/Estedad-FD-ExtraBold.woff2') format('woff2');
+        }
+        @font-face {
+            font-family: 'Estedad';
+            src: url('/Estedad-Thin.woff2') format('woff2');
+            font-weight: 300;
+            font-style: normal;
+        }
+        @font-face {
+            font-family: 'Estedad';
+            src: url('/Estedad-Bold.woff2') format('woff2');
+            font-weight: 700;
+            font-style: normal;
+        }
         body {
             margin: 0;
             padding: 0;
@@ -159,7 +189,108 @@
         .text-content strong {
             font-weight: 700;
         }
-        /* بقیه استایل‌ها بدون تغییر */
+        #blog-posts {
+            width: 100%;
+            max-width: 600px;
+            padding: 20px;
+        }
+        .blog-post {
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: 10px;
+            padding: 15px;
+            margin-bottom: 20px;
+            text-align: justify;
+        }
+        .blog-post h2 {
+            font-size: 20px;
+            margin-bottom: 10px;
+            color: var(--link-color);
+        }
+        .blog-post p {
+            font-size: 16px;
+            line-height: 1.6;
+        }
+        .blog-post a {
+            color: var(--link-color);
+            text-decoration: none;
+        }
+        .blog-post a:hover {
+            text-decoration: underline;
+        }
+        footer {
+            text-align: center;
+            padding: 10px;
+            background: var(--nav-bg);
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            z-index: 999;
+        }
+        .hamburger {
+            display: block;
+            position: fixed;
+            top: 10px;
+            right: 10px;
+            font-size: 24px;
+            background: none;
+            border: none;
+            color: var(--text-color);
+            cursor: pointer;
+            z-index: 1002;
+            transition: all 0.3s ease;
+        }
+        .accordion-container {
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+            max-width: 800px;
+            margin-top: 20px;
+            gap: 10px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .accordion {
+            background-color: var(--nav-bg);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        .accordion-header {
+            padding: 10px;
+            background-color: rgba(255, 255, 255, 0.2);
+            color: var(--text-color);
+            font-weight: 700;
+            cursor: pointer;
+            text-align: center;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+        }
+        .accordion-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+        .accordion-content ul {
+            list-style: none;
+            padding: 10px;
+            margin: 0;
+        }
+        .accordion-content li {
+            padding: 5px 0;
+            font-size: 14px;
+        }
+        .accordion-content li a {
+            color: var(--link-color);
+            text-decoration: none;
+        }
+        .accordion-content li a:hover {
+            text-decoration: underline;
+        }
+        .accordion.active .accordion-content {
+            max-height: 300px;
+            overflow-y: auto;
+        }
         @media (max-width: 768px) {
             .container {
                 flex-direction: column;
@@ -208,25 +339,25 @@
                 padding: 4px;
             }
             .content-wrapper {
-                margin: 0; /* حاشیه صفر برای همه جهت‌گیری‌ها */
+                margin: 0;
             }
             [lang="en"] .content-wrapper, [lang="zh"] .content-wrapper, [lang="ru"] .content-wrapper, [lang="tr"] .content-wrapper {
-                margin: 0; /* اطمینان از حذف حاشیه در LTR */
+                margin: 0;
             }
             .content {
                 padding: 10px;
                 max-height: none;
                 margin-top: 60px;
-                width: 100%; /* اطمینان از پر شدن عرض صفحه */
-                justify-content: center; /* مرکز کردن محتوا در همه حالت‌ها */
+                width: 100%;
+                justify-content: center;
             }
             #blog.content.active {
                 padding-top: 60px;
             }
             .text-section {
                 padding: 10px;
-                text-align: justify; /* حفظ توجیه متن */
-                margin: 0 auto; /* مرکز کردن در محور افقی */
+                text-align: justify;
+                margin: 0 auto;
             }
             #blog-posts {
                 padding: 10px;
@@ -237,7 +368,7 @@
             }
             [lang="en"] .hamburger, [lang="zh"] .hamburger, [lang="ru"] .hamburger, [lang="tr"] .hamburger {
                 right: auto;
-                left: 10px; /* تغییر موقعیت همبرگر در LTR */
+                left: 10px;
             }
             .accordion.active .accordion-content {
                 max-height: 200px;
@@ -251,9 +382,123 @@
     </style>
 </head>
 <body>
-    <!-- محتوای HTML بدون تغییر -->
+    <div class="container">
+        <nav class="nav-menu">
+            <img src="logo.png" alt="آزادنت لوگو" class="site-logo">
+            <ul>
+                <li><a href="#home" onclick="showSection('home'); return false;" data-lang-fa="خانه" data-lang-en="Home" data-lang-ar="الرئيسية" data-lang-zh="首页" data-lang-ru="Главная" data-lang-tr="Ana Sayfa"><span lang="fa">خانه</span><span lang="en" style="display:none">Home</span><span lang="ar" style="display:none">الرئيسية</span><span lang="zh" style="display:none">首页</span><span lang="ru" style="display:none">Главная</span><span lang="tr" style="display:none">Ana Sayfa</span></a></li>
+                <li><a href="#rescue" onclick="showSection('rescue'); return false;" data-lang-fa="پکیج نجات" data-lang-en="Rescue Package" data-lang-ar="باقة الإنقاذ" data-lang-zh="救援包" data-lang-ru="Пакет спасения" data-lang-tr="Kurtarma Paketi"><span lang="fa">پکیج نجات</span><span lang="en" style="display:none">Rescue Package</span><span lang="ar" style="display:none">باقة الإنقاذ</span><span lang="zh" style="display:none">救援包</span><span lang="ru" style="display:none">Пакет спасения</span><span lang="tr" style="display:none">Kurtarma Paketi</span></a></li>
+                <li><a href="#blog" onclick="showSection('blog'); loadBlogPosts(); return false;" data-lang-fa="وبلاگ" data-lang-en="Blog" data-lang-ar="مدونة" data-lang-zh="博客" data-lang-ru="Блог" data-lang-tr="Blog"><span lang="fa">وبلاگ</span><span lang="en" style="display:none">Blog</span><span lang="ar" style="display:none">مدونة</span><span lang="zh" style="display:none">博客</span><span lang="ru" style="display:none">Блог</span><span lang="tr" style="display:none">Blog</span></a></li>
+            </ul>
+            <div class="language-menu">
+                <select onchange="changeLanguage(this.value)" aria-label="انتخاب زبان">
+                    <option value="fa" selected><span lang="fa">فارسی</span></option>
+                    <option value="en"><span lang="en">English</span></option>
+                    <option value="ar"><span lang="ar">العربية</span></option>
+                    <option value="zh"><span lang="zh">中文</span></option>
+                    <option value="ru"><span lang="ru">Русский</span></option>
+                    <option value="tr"><span lang="tr">Turkish</span></option>
+                </select>
+            </div>
+            <div class="theme-menu">
+                <select id="theme-select" onchange="changeTheme(this.value)" aria-label="انتخاب تم">
+                    <option value="default">Default</option>
+                    <option value="theme1">Theme 1</option>
+                    <option value="theme2">Theme 2</option>
+                    <option value="theme3">Theme 3</option>
+                    <option value="theme4">Theme 4</option>
+                </select>
+            </div>
+        </nav>
+        <button class="hamburger" onclick="toggleMenu()" aria-label="باز کردن منو">☰</button>
+        <div class="content-wrapper">
+            <div id="home" class="content active">
+                <div class="text-section">
+                    <h1 id="welcome-text"><span lang="fa">خوش آمدید</span><span lang="en" style="display:none">Welcome</span><span lang="ar" style="display:none">مرحبًا</span><span lang="zh" style="display:none">欢迎</span><span lang="ru" style="display:none">Добро пожаловать</span><span lang="tr" style="display:none">Hoş Geldiniz</span></h1>
+                    <p class="text-content">
+                        <span lang="fa">ما جمعی هستیم که تحت نام "آزادنت" گرد هم آمده‌ایم، با هدف ارائه خدمات رایگان و بدون محدودیت برای دسترسی به اطلاعات آزاد. ما خود را تابع قوانین ستمگرانه نمی‌دانیم و در راستای آزادی و سربلندی گام برمی‌داریم.</span>
+                        <span lang="en" style="display:none">We are a group gathered under the name "Azadnet" to provide free and unrestricted access to information. We do not follow oppressive laws and strive for freedom and dignity.</span>
+                        <span lang="ar" style="display:none">نحن مجموعة تجمعت تحت اسم "آزادنت" لتقديم خدمات مجانية وبلا قيود للوصول إلى المعلومات الحرة. لا نتبع القوانين الظالمة ونسعى للحرية والكرامة.</span>
+                        <span lang="zh" style="display:none">我们是一群以“自由网”之名聚集在一起的人，旨在提供免费且无限制的信息访问服务。我们不遵循压迫性法律，致力于自由与尊严。</span>
+                        <span lang="ru" style="display:none">Мы - группа, собравшаяся под названием "Азаднет", чтобы предоставить бесплатный и неограниченный доступ к информации. Мы не подчиняемся угнетающим законам и стремимся к свободе и достоинству.</span>
+                        <span lang="tr" style="display:none">Biz, "Azadnet" adı altında toplanmış bir grup olarak, bilgiye ücretsiz ve kısıtlamasız erişim sağlamak amacıyla bir araya geldik. Baskıcı yasalara uymuyor, özgürlük ve onur için çabalıyoruz.</span>
+                    </p>
+                </div>
+            </div>
+            <div id="rescue" class="content">
+                <div class="text-section">
+                    <h1 id="rescue-text"><span lang="fa">پکیج نجات</span><span lang="en" style="display:none">Rescue Package</span><span lang="ar" style="display:none">باقة الإنقاذ</span><span lang="zh" style="display:none">救援包</span><span lang="ru" style="display:none">Пакет спасения</span><span lang="tr" style="display:none">Kurtarma Paketi</span></h1>
+                    <p class="text-content">
+                        <span lang="fa"><strong>پکیج نجات</strong>: محتوای پکیج نجات در حال آماده‌سازی است. لطفاً بعداً مراجعه کنید.</span>
+                        <span lang="en" style="display:none"><strong>Rescue Package</strong>: The content of the Rescue Package is under preparation. Please check back later.</span>
+                        <span lang="ar" style="display:none"><strong>باقة الإنقاذ</strong>: محتوى باقة الإنقاذ قيد التحضير. يرجى العودة لاحقًا.</span>
+                        <span lang="zh" style="display:none"><strong>救援包</strong>: 救援包内容正在准备中。请稍后再回来查看。</span>
+                        <span lang="ru" style="display:none"><strong>Пакет спасения</strong>: Содержимое спасательного пакета находится в стадии подготовки. Пожалуйста, зайдите позже.</span>
+                        <span lang="tr" style="display:none"><strong>Kurtarma Paketi</strong>: Kurtarma Paketi'nin içeriği hazırlanmaktadır. Lütfen daha sonra tekrar kontrol edin。</span>
+                    </p>
+                    <div class="accordion-container">
+                        <div class="accordion">
+                            <div class="accordion-header" onclick="toggleAccordion(this)"><span lang="fa">اندروید</span><span lang="en" style="display:none">Android</span><span lang="ar" style="display:none">أندرويد</span><span lang="zh" style="display:none">安卓</span><span lang="ru" style="display:none">Android</span><span lang="tr" style="display:none">Android</span></div>
+                            <div class="accordion-content">
+                                <ul>
+                                    <li><a href="https://github.com/ProtonVPN/android-app/releases/download/5.9.59.0/ProtonVPN-5.9.59.0.605095900.-production-vanilla-direct-release.apk" target="_blank"><span lang="fa">پروتون</span><span lang="en" style="display:none">Option 1</span><span lang="ar" style="display:none">الخيار 1</span><span lang="zh" style="display:none">选项 1</span><span lang="ru" style="display:none">Вариант 1</span><span lang="tr" style="display:none">Seçenek 1</span></a></li>
+                                    <li><a href="https://github.com/GFW-knocker/MahsaNG/releases/download/v12-(1403-11-7)/MahsaNG_12_universal.apk" target="_blank"><span lang="fa">مهساانجی</span><span lang="en" style="display:none">Option 2</span><span lang="ar" style="display:none">الخيار 2</span><span lang="zh" style="display:none">选项 2</span><span lang="ru" style="display:none">Вариант 2</span><span lang="tr" style="display:none">Seçenek 2</span></a></li>
+                                    <li><a href="https://github.com/Windscribe/Android-App/releases/download/3.81/mobile.apk" target="_blank"><span lang="fa">وینداسکرایب</span><span lang="en" style="display:none">Option 3</span><span lang="ar" style="display:none">الخيار 3</span><span lang="zh" style="display:none">选项 3</span><span lang="ru" style="display:none">Вариант 3</span><span lang="tr" style="display:none">Seçenek 3</span></a></li>
+                                    <li><a href="https://github.com/freegate-release/website/raw/refs/heads/gh-pages/files/fgvpn15.apk" target="_blank"><span lang="fa">فری گیت</span><span lang="en" style="display:none">Option 4</span><span lang="ar" style="display:none">الخيار 4</span><span lang="zh" style="display:none">选项 4</span><span lang="ru" style="display:none">Вариант 4</span><span lang="tr" style="display:none">Seçenek 4</span></a></li>
+                                    <li><a href="https://github.com/hiddify/hiddify-next/releases/download/v2.0.5/Hiddify-Android-universal.apk" target="_blank"><span lang="fa">هیدیفای</span><span lang="en" style="display:none">Option 5</span><span lang="ar" style="display:none">الخيار 5</span><span lang="zh" style="display:none">选项 5</span><span lang="ru" style="display:none">Вариант 5</span><span lang="tr" style="display:none">Seçenek 5</span></a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="accordion">
+                            <div class="accordion-header" onclick="toggleAccordion(this)"><span lang="fa">ویندوز</span><span lang="en" style="display:none">Windows</span><span lang="ar" style="display:none">ويندوز</span><span lang="zh" style="display:none">Windows</span><span lang="ru" style="display:none">Windows</span><span lang="tr" style="display:none">Windows</span></div>
+                            <div class="accordion-content">
+                                <ul>
+                                    <li><a href="https://example.com/windows1" target="_blank"><span lang="fa">گزینه ۱</span><span lang="en" style="display:none">Option 1</span><span lang="ar" style="display:none">الخيار 1</span><span lang="zh" style="display:none">选项 1</span><span lang="ru" style="display:none">Вариант 1</span><span lang="tr" style="display:none">Seçenek 1</span></a></li>
+                                    <li><a href="https://example.com/windows2" target="_blank"><span lang="fa">گزینه ۲</span><span lang="en" style="display:none">Option 2</span><span lang="ar" style="display:none">الخيار 2</span><span lang="zh" style="display:none">选项 2</span><span lang="ru" style="display:none">Вариант 2</span><span lang="tr" style="display:none">Seçenek 2</span></a></li>
+                                    <li><a href="https://example.com/windows3" target="_blank"><span lang="fa">گزینه ۳</span><span lang="en" style="display:none">Option 3</span><span lang="ar" style="display:none">الخيار 3</span><span lang="zh" style="display:none">选项 3</span><span lang="ru" style="display:none">Вариант 3</span><span lang="tr" style="display:none">Seçenek 3</span></a></li>
+                                    <li><a href="https://example.com/windows4" target="_blank"><span lang="fa">گزینه ۴</span><span lang="en" style="display:none">Option 4</span><span lang="ar" style="display:none">الخيار 4</span><span lang="zh" style="display:none">选项 4</span><span lang="ru" style="display:none">Вариант 4</span><span lang="tr" style="display:none">Seçenek 4</span></a></li>
+                                    <li><a href="https://example.com/windows5" target="_blank"><span lang="fa">گزینه ۵</span><span lang="en" style="display:none">Option 5</span><span lang="ar" style="display:none">الخيار 5</span><span lang="zh" style="display:none">选项 5</span><span lang="ru" style="display:none">Вариант 5</span><span lang="tr" style="display:none">Seçenek 5</span></a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="accordion">
+                            <div class="accordion-header" onclick="toggleAccordion(this)"><span lang="fa">آیفون</span><span lang="en" style="display:none">iPhone</span><span lang="ar" style="display:none">آيفون</span><span lang="zh" style="display:none">iPhone</span><span lang="ru" style="display:none">iPhone</span><span lang="tr" style="display:none">iPhone</span></div>
+                            <div class="accordion-content">
+                                <ul>
+                                    <li><a href="https://example.com/iphone1" target="_blank"><span lang="fa">گزینه ۱</span><span lang="en" style="display:none">Option 1</span><span lang="ar" style="display:none">الخيار 1</span><span lang="zh" style="display:none">选项 1</span><span lang="ru" style="display:none">Вариант 1</span><span lang="tr" style="display:none">Seçenek 1</span></a></li>
+                                    <li><a href="https://example.com/iphone2" target="_blank"><span lang="fa">گزینه ۲</span><span lang="en" style="display:none">Option 2</span><span lang="ar" style="display:none">الخيار 2</span><span lang="zh" style="display:none">选项 2</span><span lang="ru" style="display:none">Вариант 2</span><span lang="tr" style="display:none">Seçenek 2</span></a></li>
+                                    <li><a href="https://example.com/iphone3" target="_blank"><span lang="fa">گزینه ۳</span><span lang="en" style="display:none">Option 3</span><span lang="ar" style="display:none">الخيار 3</span><span lang="zh" style="display:none">选项 3</span><span lang="ru" style="display:none">Вариант 3</span><span lang="tr" style="display:none">Seçenek 3</span></a></li>
+                                    <li><a href="https://example.com/iphone4" target="_blank"><span lang="fa">گزینه ۴</span><span lang="en" style="display:none">Option 4</span><span lang="ar" style="display:none">الخيار 4</span><span lang="zh" style="display:none">选项 4</span><span lang="ru" style="display:none">Вариант 4</span><span lang="tr" style="display:none">Seçenek 4</span></a></li>
+                                    <li><a href="https://example.com/iphone5" target="_blank"><span lang="fa">گزینه ۵</span><span lang="en" style="display:none">Option 5</span><span lang="ar" style="display:none">الخيار 5</span><span lang="zh" style="display:none">选项 5</span><span lang="ru" style="display:none">Вариант 5</span><span lang="tr" style="display:none">Seçenek 5</span></a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="accordion">
+                            <div class="accordion-header" onclick="toggleAccordion(this)"><span lang="fa">اکستنشن‌های مرورگر</span><span lang="en" style="display:none">Browser Extensions</span><span lang="ar" style="display:none">إضافات المتصفح</span><span lang="zh" style="display:none">浏览器扩展</span><span lang="ru" style="display:none">Расширения браузера</span><span lang="tr" style="display:none">Tarayıcı Uzantıları</span></div>
+                            <div class="accordion-content">
+                                <ul>
+                                    <li><a href="https://example.com/extension1" target="_blank"><span lang="fa">گزینه ۱</span><span lang="en" style="display:none">Option 1</span><span lang="ar" style="display:none">الخيار 1</span><span lang="zh" style="display:none">选项 1</span><span lang="ru" style="display:none">Вариант 1</span><span lang="tr" style="display:none">Seçenek 1</span></a></li>
+                                    <li><a href="https://example.com/extension2" target="_blank"><span lang="fa">گزینه ۲</span><span lang="en" style="display:none">Option 2</span><span lang="ar" style="display:none">الخيار 2</span><span lang="zh" style="display:none">选项 2</span><span lang="ru" style="display:none">Вариант 2</span><span lang="tr" style="display:none">Seçenek 2</span></a></li>
+                                    <li><a href="https://example.com/extension3" target="_blank"><span lang="fa">گزینه ۳</span><span lang="en" style="display:none">Option 3</span><span lang="ar" style="display:none">الخيار 3</span><span lang="zh" style="display:none">选项 3</span><span lang="ru" style="display:none">Вариант 3</span><span lang="tr" style="display:none">Seçenek 3</span></a></li>
+                                    <li><a href="https://example.com/extension4" target="_blank"><span lang="fa">گزینه ۴</span><span lang="en" style="display:none">Option 4</span><span lang="ar" style="display:none">الخيار 4</span><span lang="zh" style="display:none">选项 4</span><span lang="ru" style="display:none">Вариант 4</span><span lang="tr" style="display:none">Seçenek 4</span></a></li>
+                                    <li><a href="https://example.com/extension5" target="_blank"><span lang="fa">گزینه ۵</span><span lang="en" style="display:none">Option 5</span><span lang="ar" style="display:none">الخيار 5</span><span lang="zh" style="display:none">选项 5</span><span lang="ru" style="display:none">Вариант 5</span><span lang="tr" style="display:none">Seçenek 5</span></a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="blog" class="content">
+                <div id="blog-posts">
+                    <p><span lang="fa">در حال بارگذاری پست‌ها...</span><span lang="en" style="display:none">Loading posts...</span><span lang="ar" style="display:none">جارٍ تحميل المنشورات...</span><span lang="zh" style="display:none">正在加载帖子...</span><span lang="ru" style="display:none">Загрузка постов...</span><span lang="tr" style="display:none">Gönderiler yükleniyor...</span></p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <footer>
+        <p><span lang="fa">تماس با ما: t.me/azadnet | © 1404</span><span lang="en" style="display:none">Contact us: t.me/azadnet | © 2025</span><span lang="ar" style="display:none">اتصل بنا: t.me/azadnet | © 1404</span><span lang="zh" style="display:none">联系我们: t.me/azadnet | © 1404</span><span lang="ru" style="display:none">Свяжитесь с нами: t.me/azadnet | © 1404</span><span lang="tr" style="display:none">Bize ulaşın: t.me/azadnet | © 1404</span></p>
+    </footer>
     <script>
-        // اسکریپت بدون تغییر
         const contents = document.querySelectorAll('.content'),
               spans = document.querySelectorAll('span[lang]'),
               links = document.querySelectorAll('.nav-menu a');
