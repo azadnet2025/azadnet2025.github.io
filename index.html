@@ -578,7 +578,7 @@
                 blogPostsContainer.innerHTML = blogPostsCache;
                 return;
             }
-            const feedUrl = 'https://api.allorigins.win/raw?url=' + encodeURIComponent('https://hpip.blogspot.com/feeds/posts/default');
+            const feedUrl = 'https://api.allorigins.win/raw?url=' + encodeURIComponent('https://tigo.freeamoozesh63.workers.dev');
             try {
                 const controller = new AbortController();
                 const timeoutId = setTimeout(() => controller.abort(), 5000);
@@ -599,7 +599,7 @@
                     const content = entry.getElementsByTagName('content')[0].textContent.replace(/<[^>]+>/g, '');
                     const link = Array.from(entry.getElementsByTagName('link'))
                         .find(link => link.getAttribute('rel') === 'alternate')
-                        ?.getAttribute('href') || 'https://tigo.freeamoozesh63.workers.dev';
+                        ?.getAttribute('href') || 'https://sprin.freeamoozesh63.workers.dev';
                     let translatedTitle = title;
                     let translatedContent = content;
                     let continueText = 'ادامه مطلب';
