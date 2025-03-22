@@ -147,7 +147,7 @@
             flex-grow: 1;
             margin-right: 200px;
             transition: margin 0.3s ease;
-            width: calc(100% - 200px); /* تنظیم عرض برای پر کردن فضای باقی‌مانده */
+            width: calc(100% - 200px);
         }
         [lang="en"] .content-wrapper, [lang="zh"] .content-wrapper, [lang="ru"] .content-wrapper, [lang="tr"] .content-wrapper {
             margin-right: 0;
@@ -157,7 +157,7 @@
         .content-wrapper.expanded {
             margin-right: 0;
             margin-left: 0;
-            width: 100%; /* در حالت مخفی شدن نوار ناوبری، کل عرض را پر کند */
+            width: 100%;
         }
         .content {
             flex-grow: 1;
@@ -304,13 +304,13 @@
                 padding: 10px;
                 position: fixed;
                 top: 0;
-                right: -100%;
+                right: -100%; /* به صورت پیش‌فرض مخفی */
                 height: 100vh;
                 transition: right 0.3s ease;
                 justify-content: flex-start;
             }
             .nav-menu.active {
-                right: 0;
+                right: 0; /* فقط با کلاس active نمایش داده شود */
             }
             [lang="en"] .nav-menu, [lang="zh"] .nav-menu, [lang="ru"] .nav-menu, [lang="tr"] .nav-menu {
                 right: -100%;
@@ -343,7 +343,7 @@
             }
             .content-wrapper {
                 margin: 0;
-                width: 100%; /* کل عرض صفحه را پر کند */
+                width: 100%;
             }
             [lang="en"] .content-wrapper, [lang="zh"] .content-wrapper, [lang="ru"] .content-wrapper, [lang="tr"] .content-wrapper {
                 margin: 0;
@@ -709,13 +709,27 @@
             }
         }
 
+        // اطمینان از مخفی بودن نوار ناوبری در موبایل هنگام بارگذاری اولیه
+        function initializeNavMenu() {
+            const navMenu = document.querySelector('.nav-menu');
+            if (window.innerWidth <= 768) {
+                navMenu.classList.remove('active'); // مطمئن می‌شیم که در موبایل به صورت پیش‌فرض مخفی باشه
+            }
+        }
+
         window.onload = function() {
             loadSavedTheme();
             loadSavedLanguage();
             loadSavedSection();
+            initializeNavMenu(); // فراخوانی تابع برای تنظیم اولیه نوار ناوبری
         };
 
         window.onhashchange = loadSectionFromHash;
+
+        // تنظیم مجدد نوار ناوبری هنگام تغییر اندازه صفحه
+        window.onresize = function() {
+            initializeNavMenu();
+        };
     </script>
 </body>
 </html>
