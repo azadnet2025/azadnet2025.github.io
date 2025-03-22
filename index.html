@@ -599,7 +599,7 @@
                     const content = entry.getElementsByTagName('content')[0].textContent.replace(/<[^>]+>/g, '');
                     const link = Array.from(entry.getElementsByTagName('link'))
                         .find(link => link.getAttribute('rel') === 'alternate')
-                        ?.getAttribute('href') || 'https://hpip.blogspot.com/';
+                        ?.getAttribute('href') || 'https://hpip.blogspot.com/feeds/posts/default/';
                     let translatedTitle = title;
                     let translatedContent = content;
                     let continueText = 'ادامه مطلب';
