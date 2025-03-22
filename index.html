@@ -147,14 +147,17 @@
             flex-grow: 1;
             margin-right: 200px;
             transition: margin 0.3s ease;
+            width: calc(100% - 200px); /* تنظیم عرض برای پر کردن فضای باقی‌مانده */
         }
         [lang="en"] .content-wrapper, [lang="zh"] .content-wrapper, [lang="ru"] .content-wrapper, [lang="tr"] .content-wrapper {
             margin-right: 0;
             margin-left: 200px;
+            width: calc(100% - 200px);
         }
         .content-wrapper.expanded {
             margin-right: 0;
             margin-left: 0;
+            width: 100%; /* در حالت مخفی شدن نوار ناوبری، کل عرض را پر کند */
         }
         .content {
             flex-grow: 1;
@@ -340,9 +343,11 @@
             }
             .content-wrapper {
                 margin: 0;
+                width: 100%; /* کل عرض صفحه را پر کند */
             }
             [lang="en"] .content-wrapper, [lang="zh"] .content-wrapper, [lang="ru"] .content-wrapper, [lang="tr"] .content-wrapper {
                 margin: 0;
+                width: 100%;
             }
             .content {
                 padding: 10px;
