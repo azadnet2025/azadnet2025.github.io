@@ -665,8 +665,8 @@
             }
 
             const rssFeeds = [
-                'https://api.allorigins.win/raw?url=' + encodeURIComponent('https://techcrunch.com/feed/'),
-                'https://api.allorigins.win/raw?url=' + encodeURIComponent('https://www.wired.com/feed/rss'),
+                'https://api.allorigins.win/raw?url=' + encodeURIComponent('https://www.zoomit.ir/feed/'),
+                'https://api.allorigins.win/raw?url=' + encodeURIComponent('https://digiato.com/feed'),
             ];
 
             let allEntries = [];
@@ -680,19 +680,25 @@
                     const parser = new DOMParser();
                     const xmlDoc = parser.parseFromString(data, 'text/xml');
                     const items = xmlDoc.getElementsByTagName('item');
-                    allEntries = allEntries.concat(Array.from(items).slice(0, 5));
+                    allEntries = allEntries.concat(Array.from(items));
                 } catch (error) {
                     console.error('خطا در دریافت فید تکنولوژی:', error);
                 }
             }
 
             if (allEntries.length === 0) {
-                techNewsContainer.innerHTML = '<p><span lang="fa">خبری برای نمایش وجود ندارد。</span><span lang="en" style="display:none">No news to display.</span><span lang="ar" style="display:none">لا توجد أخبار للعرض。</span><span lang="zh" style="display:none">没有新闻可显示。</span><span lang="ru" style="display:none">Нет новостей для отображения。</span><span lang="tr" style="display:none">Gösterilecek haber yok。</span></p>';
+                techNewsContainer.innerHTML = '<p><span lang="fa">خبری برای نمایش وجود ندارد.</span><span lang="en" style="display:none">No news to display.</span><span lang="ar" style="display:none">لا توجد أخبار للعرض.</span><span lang="zh" style="display:none">没有新闻可显示。</span><span lang="ru" style="display:none">Нет новостей для отображения.</span><span lang="tr" style="display:none">Gösterilecek haber yok。</span></p>';
                 return;
             }
 
+            allEntries.sort((a, b) => {
+                const dateA = new Date(a.getElementsByTagName('pubDate')[0]?.textContent || 0);
+                const dateB = new Date(b.getElementsByTagName('pubDate')[0]?.textContent || 0);
+                return dateB - dateA;
+            });
+
             techNewsContainer.innerHTML = '';
-            for (let i = 0; i < Math.min(allEntries.length, 10); i++) {
+            for (let i = 0; i < Math.min(allEntries.length, 5); i++) {
                 const entry = allEntries[i];
                 const title = entry.getElementsByTagName('title')[0].textContent;
                 const description = entry.getElementsByTagName('description')[0]?.textContent.replace(/<[^>]+>/g, '') || 'توضیحات موجود نیست';
@@ -702,8 +708,8 @@
                 let translatedDescription = description;
                 let continueText = 'ادامه مطلب';
                 if (currentLang !== 'fa') {
-                    translatedTitle = await translateText(title, 'en', currentLang);
-                    translatedDescription = await translateText(description, 'en', currentLang);
+                    translatedTitle = await translateText(title, 'fa', currentLang);
+                    translatedDescription = await translateText(description, 'fa', currentLang);
                     continueText = await translateText('ادامه مطلب', 'fa', currentLang);
                 }
 
