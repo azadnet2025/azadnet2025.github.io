@@ -632,7 +632,7 @@
                 }
 
                 blogPostsContainer.innerHTML = '';
-                for (let i = 0; i < Math.min(entries.length, 5); i++) {
+                for (let i = 0; i < Math.min(entries.length, 3); i++) { // تغییر از 5 به 3
                     const entry = entries[i];
                     const title = entry.getElementsByTagName('title')[0].textContent;
                     const content = entry.getElementsByTagName('content')[0]?.textContent.replace(/<[^>]+>/g, '') || 'توضیحات موجود نیست';
@@ -701,7 +701,7 @@
                     const data = await response.text();
                     const parser = new DOMParser();
                     const xmlDoc = parser.parseFromString(data, 'text/xml');
-                     const items = xmlDoc.getElementsByTagName('item');
+                    const items = xmlDoc.getElementsByTagName('item');
                     allEntries = allEntries.concat(Array.from(items));
                 } catch (error) {
                     console.error('خطا در دریافت فید تکنولوژی از ' + feedUrl + ':', error.message, error.stack);
@@ -729,7 +729,7 @@
             });
 
             techNewsContainer.innerHTML = '';
-            for (let i = 0; i < Math.min(allEntries.length, 5); i++) {
+            for (let i = 0; i < Math.min(allEntries.length, 3); i++) { // تغییر از 5 به 3
                 const entry = allEntries[i];
                 const title = entry.getElementsByTagName('title')[0].textContent;
                 const description = entry.getElementsByTagName('description')[0]?.textContent.replace(/<[^>]+>/g, '') || 'توضیحات موجود نیست';
