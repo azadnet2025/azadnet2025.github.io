@@ -232,7 +232,7 @@
             z-index: 999;
         }
         .hamburger {
-            display: none; /* به صورت پیش‌فرض مخفی در دسکتاپ */
+            display: none;
             position: fixed;
             top: 10px;
             right: 10px;
@@ -294,6 +294,39 @@
             max-height: 300px;
             overflow-y: auto;
         }
+        /* استایل‌های چت */
+        #chat {
+            border: 1px solid #ccc;
+            padding: 10px;
+            height: 300px;
+            overflow-y: scroll;
+            background-color: white;
+            width: 100%;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        .user-message {
+            color: blue;
+        }
+        .ai-message {
+            color: green;
+        }
+        #userInput {
+            width: 70%;
+            padding: 8px;
+            margin-top: 10px;
+        }
+        button {
+            padding: 8px 16px;
+            margin-top: 10px;
+            background-color: var(--link-color);
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
         @media (max-width: 768px) {
             .container {
                 flex-direction: column;
@@ -304,13 +337,13 @@
                 padding: 10px;
                 position: fixed;
                 top: 0;
-                right: -100%; /* به صورت پیش‌فرض مخفی */
+                right: -100%;
                 height: 100vh;
                 transition: right 0.3s ease;
                 justify-content: flex-start;
             }
             .nav-menu.active {
-                right: 0; /* فقط با کلاس active نمایش داده شود */
+                right: 0;
             }
             [lang="en"] .nav-menu, [lang="zh"] .nav-menu, [lang="ru"] .nav-menu, [lang="tr"] .nav-menu {
                 right: -100%;
@@ -343,7 +376,7 @@
             }
             .content-wrapper {
                 margin: 0;
-                width: 100%; /* کل عرض صفحه در موبایل */
+                width: 100%;
             }
             [lang="en"] .content-wrapper, [lang="zh"] .content-wrapper, [lang="ru"] .content-wrapper, [lang="tr"] .content-wrapper {
                 margin: 0;
@@ -368,7 +401,7 @@
                 padding: 10px;
             }
             .hamburger {
-                display: block; /* نمایش دکمه همبرگر در موبایل */
+                display: block;
                 right: 10px;
                 left: auto;
             }
@@ -379,13 +412,16 @@
             .accordion.active .accordion-content {
                 max-height: 200px;
             }
+            #userInput {
+                width: 60%;
+            }
         }
         @media (min-width: 769px) {
             .text-section {
                 height: 50vh;
             }
             .hamburger {
-                display: block; /* نمایش دکمه همبرگر در دسکتاپ */
+                display: block;
             }
         }
     </style>
@@ -398,6 +434,7 @@
                 <li><a href="#home" onclick="showSection('home'); return false;" data-lang-fa="خانه" data-lang-en="Home" data-lang-ar="الرئيسية" data-lang-zh="首页" data-lang-ru="Главная" data-lang-tr="Ana Sayfa"><span lang="fa">خانه</span><span lang="en" style="display:none">Home</span><span lang="ar" style="display:none">الرئيسية</span><span lang="zh" style="display:none">首页</span><span lang="ru" style="display:none">Главная</span><span lang="tr" style="display:none">Ana Sayfa</span></a></li>
                 <li><a href="#rescue" onclick="showSection('rescue'); return false;" data-lang-fa="پکیج نجات" data-lang-en="Rescue Package" data-lang-ar="باقة الإنقاذ" data-lang-zh="救援包" data-lang-ru="Пакет спасения" data-lang-tr="Kurtarma Paketi"><span lang="fa">پکیج نجات</span><span lang="en" style="display:none">Rescue Package</span><span lang="ar" style="display:none">باقة الإنقاذ</span><span lang="zh" style="display:none">救援包</span><span lang="ru" style="display:none">Пакет спасения</span><span lang="tr" style="display:none">Kurtarma Paketi</span></a></li>
                 <li><a href="#blog" onclick="showSection('blog'); loadBlogPosts(); return false;" data-lang-fa="وبلاگ" data-lang-en="Blog" data-lang-ar="مدونة" data-lang-zh="博客" data-lang-ru="Блог" data-lang-tr="Blog"><span lang="fa">وبلاگ</span><span lang="en" style="display:none">Blog</span><span lang="ar" style="display:none">مدونة</span><span lang="zh" style="display:none">博客</span><span lang="ru" style="display:none">Блог</span><span lang="tr" style="display:none">Blog</span></a></li>
+                <li><a href="#chat-ai" onclick="showSection('chat-ai'); return false;" data-lang-fa="چت با AI" data-lang-en="Chat with AI" data-lang-ar="الدردشة مع الذكاء الاصطناعي" data-lang-zh="与AI聊天" data-lang-ru="Чат с ИИ" data-lang-tr="AI ile Sohbet"><span lang="fa">چت با AI</span><span lang="en" style="display:none">Chat with AI</span><span lang="ar" style="display:none">الدردشة مع الذكاء الاصطناعي</span><span lang="zh" style="display:none">与AI聊天</span><span lang="ru" style="display:none">Чат с ИИ</span><span lang="tr" style="display:none">AI ile Sohbet</span></a></li>
             </ul>
             <div class="language-menu">
                 <select onchange="changeLanguage(this.value)" aria-label="انتخاب زبان">
@@ -502,6 +539,14 @@
                     <p><span lang="fa">در حال بارگذاری پست‌ها...</span><span lang="en" style="display:none">Loading posts...</span><span lang="ar" style="display:none">جارٍ تحميل المنشورات...</span><span lang="zh" style="display:none">正在加载帖子...</span><span lang="ru" style="display:none">Загрузка постов...</span><span lang="tr" style="display:none">Gönderiler yükleniyor...</span></p>
                 </div>
             </div>
+            <div id="chat-ai" class="content">
+                <div class="text-section">
+                    <h2><span lang="fa">چت با هوش مصنوعی</span><span lang="en" style="display:none">Chat with AI</span><span lang="ar" style="display:none">الدردشة مع الذكاء الاصطناعي</span><span lang="zh" style="display:none">与AI聊天</span><span lang="ru" style="display:none">Чат с ИИ</span><span lang="tr" style="display:none">AI ile Sohbet</span></h2>
+                    <div id="chat"></div>
+                    <input type="text" id="userInput" placeholder="پیام خود را وارد کنید...">
+                    <button onclick="sendMessage()">ارسال</button>
+                </div>
+            </div>
         </div>
     </div>
     <footer>
@@ -568,7 +613,7 @@
 
         function loadSectionFromHash() {
             const hash = window.location.hash.substring(1);
-            const validSections = ['home', 'rescue', 'blog'];
+            const validSections = ['home', 'rescue', 'blog', 'chat-ai'];
             if (hash && validSections.includes(hash)) {
                 showSection(hash);
                 if (hash === 'blog') loadBlogPosts();
@@ -577,7 +622,7 @@
 
         function loadSavedSection() {
             const savedSection = localStorage.getItem('activeSection') || 'home';
-            const validSections = ['home', 'rescue', 'blog'];
+            const validSections = ['home', 'rescue', 'blog', 'chat-ai'];
             if (validSections.includes(savedSection)) {
                 showSection(savedSection);
                 if (savedSection === 'blog') loadBlogPosts();
@@ -713,29 +758,55 @@
             }
         }
 
-        // اطمینان از مخفی بودن نوار ناوبری در موبایل هنگام بارگذاری اولیه
         function initializeNavMenu() {
             const navMenu = document.querySelector('.nav-menu');
             const contentWrapper = document.querySelector('.content-wrapper');
             if (window.innerWidth <= 768) {
-                navMenu.classList.remove('active'); // مطمئن می‌شیم که در موبایل به صورت پیش‌فرض مخفی باشه
-                contentWrapper.classList.add('expanded'); // کل عرض صفحه در دسترس محتوا باشه
+                navMenu.classList.remove('active');
+                contentWrapper.classList.add('expanded');
             } else {
-                navMenu.classList.remove('hidden'); // در دسکتاپ به صورت پیش‌فرض نمایش داده بشه
+                navMenu.classList.remove('hidden');
                 contentWrapper.classList.remove('expanded');
             }
+        }
+
+        /* کد چت با هوش مصنوعی */
+        async function getAIResponse(message) {
+            const apiKey = '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'; // کلید API خود را اینجا قرار دهید
+            const response = await fetch('https://api.openai.com/v1/chat/completions', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${apiKey}`
+                },
+                body: JSON.stringify({
+                    model: "gpt-3.5-turbo",
+                    messages: [{ role: "user", content: message }]
+                })
+            });
+            const data = await response.json();
+            return data.choices[0].message.content;
+        }
+
+        async function sendMessage() {
+            const userInput = document.getElementById('userInput');
+            const userMessage = userInput.value;
+            const chat = document.getElementById('chat');
+            chat.innerHTML += `<div class="user-message">شما: ${userMessage}</div>`;
+            userInput.value = '';
+            const aiResponse = await getAIResponse(userMessage);
+            chat.innerHTML += `<div class="ai-message">هوش مصنوعی: ${aiResponse}</div>`;
+            chat.scrollTop = chat.scrollHeight;
         }
 
         window.onload = function() {
             loadSavedTheme();
             loadSavedLanguage();
             loadSavedSection();
-            initializeNavMenu(); // فراخوانی تابع برای تنظیم اولیه نوار ناوبری
+            initializeNavMenu();
         };
 
         window.onhashchange = loadSectionFromHash;
-
-        // تنظیم مجدد نوار ناوبری هنگام تغییر اندازه صفحه
         window.onresize = function() {
             initializeNavMenu();
         };
