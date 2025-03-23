@@ -61,7 +61,7 @@
             display: flex;
             min-height: 100vh;
             position: relative;
-            flex-direction: row;
+            flex-direction: column;
         }
         .nav-menu {
             width: 200px;
@@ -74,19 +74,18 @@
             box-sizing: border-box;
             position: fixed;
             top: 0;
-            right: 0;
+            right: -200px;
             z-index: 1000;
+        }
+        .nav-menu.active {
+            right: 0;
         }
         [lang="en"] .nav-menu, [lang="zh"] .nav-menu, [lang="ru"] .nav-menu, [lang="tr"] .nav-menu {
             right: auto;
-            left: 0;
-            direction: ltr;
-        }
-        .nav-menu.hidden {
-            right: -200px;
-        }
-        [lang="en"] .nav-menu.hidden, [lang="zh"] .nav-menu.hidden, [lang="ru"] .nav-menu.hidden, [lang="tr"] .nav-menu.hidden {
             left: -200px;
+        }
+        [lang="en"] .nav-menu.active, [lang="zh"] .nav-menu.active, [lang="ru"] .nav-menu.active, [lang="tr"] .nav-menu.active {
+            left: 0;
         }
         .nav-menu .site-logo {
             display: block;
@@ -145,19 +144,8 @@
         }
         .content-wrapper {
             flex-grow: 1;
-            margin-right: 200px;
-            transition: margin 0.3s ease;
-            width: calc(100% - 200px);
-        }
-        [lang="en"] .content-wrapper, [lang="zh"] .content-wrapper, [lang="ru"] .content-wrapper, [lang="tr"] .content-wrapper {
-            margin-right: 0;
-            margin-left: 200px;
-            width: calc(100% - 200px);
-        }
-        .content-wrapper.expanded {
-            margin-right: 0;
-            margin-left: 0;
             width: 100%;
+            transition: margin 0.3s ease;
         }
         .content {
             flex-grow: 1;
@@ -232,7 +220,7 @@
             z-index: 999;
         }
         .hamburger {
-            display: none;
+            display: block;
             position: fixed;
             top: 10px;
             right: 10px;
@@ -243,6 +231,10 @@
             cursor: pointer;
             z-index: 1002;
             transition: all 0.3s ease;
+        }
+        [lang="en"] .hamburger, [lang="zh"] .hamburger, [lang="ru"] .hamburger, [lang="tr"] .hamburger {
+            right: auto;
+            left: 10px;
         }
         .accordion-container {
             display: flex;
@@ -294,11 +286,37 @@
             max-height: 300px;
             overflow-y: auto;
         }
-        @media (max-width: 768px) {
+        @media (min-width: 769px) {
             .container {
-                flex-direction: column;
-                min-height: auto;
+                flex-direction: row;
             }
+            .nav-menu {
+                width: 200px;
+                position: fixed;
+                right: 0;
+                top: 0;
+            }
+            [lang="en"] .nav-menu, [lang="zh"] .nav-menu, [lang="ru"] .nav-menu, [lang="tr"] .nav-menu {
+                right: auto;
+                left: 0;
+            }
+            .content-wrapper {
+                margin-right: 200px;
+                width: calc(100% - 200px);
+            }
+            [lang="en"] .content-wrapper, [lang="zh"] .content-wrapper, [lang="ru"] .content-wrapper, [lang="tr"] .content-wrapper {
+                margin-right: 0;
+                margin-left: 200px;
+                width: calc(100% - 200px);
+            }
+            .text-section {
+                height: 50vh;
+            }
+            .hamburger {
+                display: block;
+            }
+        }
+        @media (max-width: 768px) {
             .nav-menu {
                 width: 100%;
                 padding: 10px;
@@ -345,10 +363,6 @@
                 margin: 0;
                 width: 100%;
             }
-            [lang="en"] .content-wrapper, [lang="zh"] .content-wrapper, [lang="ru"] .content-wrapper, [lang="tr"] .content-wrapper {
-                margin: 0;
-                width: 100%;
-            }
             .content {
                 padding: 10px;
                 max-height: none;
@@ -367,25 +381,8 @@
             #blog-posts, #tech-news {
                 padding: 10px;
             }
-            .hamburger {
-                display: block;
-                right: 10px;
-                left: auto;
-            }
-            [lang="en"] .hamburger, [lang="zh"] .hamburger, [lang="ru"] .hamburger, [lang="tr"] .hamburger {
-                right: auto;
-                left: 10px;
-            }
             .accordion.active .accordion-content {
                 max-height: 200px;
-            }
-        }
-        @media (min-width: 769px) {
-            .text-section {
-                height: 50vh;
-            }
-            .hamburger {
-                display: block;
             }
         }
     </style>
@@ -536,6 +533,7 @@
             updateContent();
             if (id === 'blog') loadBlogPosts();
             if (id === 'technology') loadTechNews();
+            toggleMenu(); // بستن منو بعد از انتخاب بخش
         }
 
         async function changeLanguage(lang) {
@@ -569,13 +567,7 @@
 
         function toggleMenu() {
             const navMenu = document.querySelector('.nav-menu');
-            const contentWrapper = document.querySelector('.content-wrapper');
-            if (window.innerWidth > 768) {
-                navMenu.classList.toggle('hidden');
-                contentWrapper.classList.toggle('expanded');
-            } else {
-                navMenu.classList.toggle('active');
-            }
+            navMenu.classList.toggle('active');
         }
 
         function loadSectionFromHash() {
@@ -798,29 +790,13 @@
             }
         }
 
-        function initializeNavMenu() {
-            const navMenu = document.querySelector('.nav-menu');
-            const contentWrapper = document.querySelector('.content-wrapper');
-            if (window.innerWidth <= 768) {
-                navMenu.classList.remove('active');
-                contentWrapper.classList.add('expanded');
-            } else {
-                navMenu.classList.remove('hidden');
-                contentWrapper.classList.remove('expanded');
-            }
-        }
-
         window.onload = function() {
             loadSavedTheme();
             loadSavedLanguage();
             loadSavedSection();
-            initializeNavMenu();
         };
 
         window.onhashchange = loadSectionFromHash;
-        window.onresize = function() {
-            initializeNavMenu();
-        };
     </script>
 </body>
 </html>
