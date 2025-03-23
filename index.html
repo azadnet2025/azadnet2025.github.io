@@ -610,11 +610,10 @@
                 return;
             }
 
-            // استفاده از یک فید RSS قابل دسترس برای تست
-            const feedUrl = 'https://api.allorigins.win/raw?url=' + encodeURIComponent('https://www.nasa.gov/rss/dyn/breaking_news.rss');
+            const feedUrl = 'https://api.allorigins.win/raw?url=' + encodeURIComponent('https://hpip.blogspot.com/feeds/posts/default');
             try {
                 const controller = new AbortController();
-                const timeoutId = setTimeout(() => controller.abort(), 10000); // افزایش تایم‌اوت به 10 ثانیه
+                const timeoutId = setTimeout(() => controller.abort(), 10000);
                 const response = await fetch(feedUrl, { signal: controller.signal });
                 clearTimeout(timeoutId);
                 
@@ -625,7 +624,7 @@
                 const data = await response.text();
                 const parser = new DOMParser();
                 const xmlDoc = parser.parseFromString(data, 'text/xml');
-                const entries = xmlDoc.getElementsByTagName('item'); // برای فیدهای RSS از 'item' استفاده می‌کنیم
+                const entries = xmlDoc.getElementsByTagName('entry');
                 
                 if (entries.length === 0) {
                     blogPostsContainer.innerHTML = '<p><span lang="fa">پستی برای نمایش وجود ندارد.</span><span lang="en" style="display:none">No posts to display.</span><span lang="ar" style="display:none">لا توجد منشورات للعرض.</span><span lang="zh" style="display:none">没有帖子可显示。</span><span lang="ru" style="display:none">Нет постов для отображения.</span><span lang="tr" style="display:none">Gösterilecek gönderi yok。</span></p>';
@@ -636,15 +635,15 @@
                 for (let i = 0; i < Math.min(entries.length, 5); i++) {
                     const entry = entries[i];
                     const title = entry.getElementsByTagName('title')[0].textContent;
-                    const description = entry.getElementsByTagName('description')[0]?.textContent.replace(/<[^>]+>/g, '') || 'توضیحات موجود نیست';
-                    const link = entry.getElementsByTagName('link')[0].textContent;
+                    const content = entry.getElementsByTagName('content')[0]?.textContent.replace(/<[^>]+>/g, '') || 'توضیحات موجود نیست';
+                    const link = entry.getElementsByTagName('link')[0].getAttribute('href');
 
                     let translatedTitle = title;
-                    let translatedDescription = description;
+                    let translatedContent = content;
                     let continueText = 'ادامه مطلب';
                     if (currentLang !== 'fa') {
-                        translatedTitle = await translateText(title, 'en', currentLang);
-                        translatedDescription = await translateText(description, 'en', currentLang);
+                        translatedTitle = await translateText(title, 'fa', currentLang);
+                        translatedContent = await translateText(content, 'fa', currentLang);
                         continueText = await translateText('ادامه مطلب', 'fa', currentLang);
                     }
 
@@ -652,7 +651,7 @@
                     postDiv.className = 'blog-post';
                     postDiv.innerHTML = `
                         <h2><a href="${link}" target="_blank">${translatedTitle}</a></h2>
-                        <p>${translatedDescription.substring(0, 200)}... <a href="${link}" target="_blank">${continueText}</a></p>
+                        <p>${translatedContent.substring(0, 200)}... <a href="${link}" target="_blank">${continueText}</a></p>
                     `;
                     blogPostsContainer.appendChild(postDiv);
                 }
@@ -682,17 +681,16 @@
                 return;
             }
 
-            // استفاده از یک فید RSS قابل دسترس برای تست
             const rssFeeds = [
-                'https://api.allorigins.win/raw?url=' + encodeURIComponent('https://www.techradar.com/rss'),
-                'https://api.allorigins.win/raw?url=' + encodeURIComponent('https://www.wired.com/feed/rss')
+                'https://api.allorigins.win/raw?url=' + encodeURIComponent('https://www.zoomit.ir/feed/'),
+                'https://api.allorigins.win/raw?url=' + encodeURIComponent('https://digiato.com/feed')
             ];
 
             let allEntries = [];
             for (const feedUrl of rssFeeds) {
                 try {
                     const controller = new AbortController();
-                    const timeoutId = setTimeout(() => controller.abort(), 10000); // افزایش تایم‌اوت به 10 ثانیه
+                    const timeoutId = setTimeout(() => controller.abort(), 10000);
                     const response = await fetch(feedUrl, { signal: controller.signal });
                     clearTimeout(timeoutId);
 
@@ -703,7 +701,7 @@
                     const data = await response.text();
                     const parser = new DOMParser();
                     const xmlDoc = parser.parseFromString(data, 'text/xml');
-                    const items = xmlDoc.getElementsByTagName('item');
+                     const items = xmlDoc.getElementsByTagName('item');
                     allEntries = allEntries.concat(Array.from(items));
                 } catch (error) {
                     console.error('خطا در دریافت فید تکنولوژی از ' + feedUrl + ':', error.message, error.stack);
@@ -741,8 +739,8 @@
                 let translatedDescription = description;
                 let continueText = 'ادامه مطلب';
                 if (currentLang !== 'fa') {
-                    translatedTitle = await translateText(title, 'en', currentLang);
-                    translatedDescription = await translateText(description, 'en', currentLang);
+                    translatedTitle = await translateText(title, 'fa', currentLang);
+                    translatedDescription = await translateText(description, 'fa', currentLang);
                     continueText = await translateText('ادامه مطلب', 'fa', currentLang);
                 }
 
