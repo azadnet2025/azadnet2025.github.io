@@ -74,7 +74,7 @@
             box-sizing: border-box;
             position: fixed;
             top: 0;
-            right: -200px;
+            right: -200px; /* منو کاملاً از صفحه خارج می‌شه */
             z-index: 1000;
         }
         .nav-menu.active {
@@ -146,6 +146,7 @@
             flex-grow: 1;
             width: 100%;
             transition: margin 0.3s ease;
+            margin-right: 0; /* مارجین سمت راست حذف شده */
         }
         .content {
             flex-grow: 1;
@@ -156,6 +157,8 @@
             min-height: auto;
             overflow-y: auto;
             max-height: 100vh;
+            width: 100%; /* کل عرض صفحه رو می‌گیره */
+            box-sizing: border-box;
         }
         .content.active {
             display: flex;
@@ -218,6 +221,8 @@
             left: 0;
             right: 0;
             z-index: 999;
+            width: 100%;
+            box-sizing: border-box;
         }
         .hamburger {
             display: block;
@@ -322,7 +327,7 @@
                 padding: 10px;
                 position: fixed;
                 top: 0;
-                right: -100%;
+                right: -100%; /* منو کاملاً از صفحه خارج می‌شه */
                 height: 100vh;
                 transition: right 0.3s ease;
                 justify-content: flex-start;
@@ -360,15 +365,16 @@
                 padding: 4px;
             }
             .content-wrapper {
-                margin: 0;
-                width: 100%;
+                margin: 0; /* مارجین حذف شده */
+                width: 100%; /* کل عرض صفحه رو می‌گیره */
             }
             .content {
                 padding: 10px;
                 max-height: none;
                 margin-top: 60px;
-                width: 100%;
+                width: 100%; /* کل عرض صفحه رو می‌گیره */
                 justify-content: center;
+                box-sizing: border-box;
             }
             #blog.content.active, #technology.content.active {
                 padding-top: 60px;
@@ -377,9 +383,11 @@
                 padding: 10px;
                 text-align: justify;
                 margin: 0 auto;
+                width: 100%; /* کل عرض صفحه رو می‌گیره */
             }
             #blog-posts, #tech-news {
                 padding: 10px;
+                width: 100%; /* کل عرض صفحه رو می‌گیره */
             }
             .accordion.active .accordion-content {
                 max-height: 200px;
