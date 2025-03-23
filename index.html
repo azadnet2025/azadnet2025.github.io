@@ -172,7 +172,7 @@
         .content.active {
             display: flex;
         }
-        #blog.content.active {
+        #blog.content.active, #technology.content.active {
             padding-top: 80px;
         }
         .text-section {
@@ -192,12 +192,12 @@
         .text-content strong {
             font-weight: 700;
         }
-        #blog-posts {
+        #blog-posts, #tech-news {
             width: 100%;
             max-width: 600px;
             padding: 20px;
         }
-        .blog-post {
+        .blog-post, .tech-post {
             background: rgba(255, 255, 255, 0.1);
             border: 1px solid rgba(255, 255, 255, 0.3);
             border-radius: 10px;
@@ -205,20 +205,20 @@
             margin-bottom: 20px;
             text-align: justify;
         }
-        .blog-post h2 {
+        .blog-post h2, .tech-post h2 {
             font-size: 20px;
             margin-bottom: 10px;
             color: var(--link-color);
         }
-        .blog-post p {
+        .blog-post p, .tech-post p {
             font-size: 16px;
             line-height: 1.6;
         }
-        .blog-post a {
+        .blog-post a, .tech-post a {
             color: var(--link-color);
             text-decoration: none;
         }
-        .blog-post a:hover {
+        .blog-post a:hover, .tech-post a:hover {
             text-decoration: underline;
         }
         footer {
@@ -294,39 +294,6 @@
             max-height: 300px;
             overflow-y: auto;
         }
-        /* استایل‌های چت */
-        #chat {
-            border: 1px solid #ccc;
-            padding: 10px;
-            height: 300px;
-            overflow-y: scroll;
-            background-color: white;
-            width: 100%;
-            max-width: 600px;
-            margin: 0 auto;
-        }
-        .user-message {
-            color: blue;
-        }
-        .ai-message {
-            color: green;
-        }
-        #userInput {
-            width: 70%;
-            padding: 8px;
-            margin-top: 10px;
-        }
-        button {
-            padding: 8px 16px;
-            margin-top: 10px;
-            background-color: var(--link-color);
-            color: white;
-            border: none;
-            cursor: pointer;
-        }
-        button:hover {
-            background-color: #0056b3;
-        }
         @media (max-width: 768px) {
             .container {
                 flex-direction: column;
@@ -389,7 +356,7 @@
                 width: 100%;
                 justify-content: center;
             }
-            #blog.content.active {
+            #blog.content.active, #technology.content.active {
                 padding-top: 60px;
             }
             .text-section {
@@ -397,7 +364,7 @@
                 text-align: justify;
                 margin: 0 auto;
             }
-            #blog-posts {
+            #blog-posts, #tech-news {
                 padding: 10px;
             }
             .hamburger {
@@ -411,9 +378,6 @@
             }
             .accordion.active .accordion-content {
                 max-height: 200px;
-            }
-            #userInput {
-                width: 60%;
             }
         }
         @media (min-width: 769px) {
@@ -434,7 +398,7 @@
                 <li><a href="#home" onclick="showSection('home'); return false;" data-lang-fa="خانه" data-lang-en="Home" data-lang-ar="الرئيسية" data-lang-zh="首页" data-lang-ru="Главная" data-lang-tr="Ana Sayfa"><span lang="fa">خانه</span><span lang="en" style="display:none">Home</span><span lang="ar" style="display:none">الرئيسية</span><span lang="zh" style="display:none">首页</span><span lang="ru" style="display:none">Главная</span><span lang="tr" style="display:none">Ana Sayfa</span></a></li>
                 <li><a href="#rescue" onclick="showSection('rescue'); return false;" data-lang-fa="پکیج نجات" data-lang-en="Rescue Package" data-lang-ar="باقة الإنقاذ" data-lang-zh="救援包" data-lang-ru="Пакет спасения" data-lang-tr="Kurtarma Paketi"><span lang="fa">پکیج نجات</span><span lang="en" style="display:none">Rescue Package</span><span lang="ar" style="display:none">باقة الإنقاذ</span><span lang="zh" style="display:none">救援包</span><span lang="ru" style="display:none">Пакет спасения</span><span lang="tr" style="display:none">Kurtarma Paketi</span></a></li>
                 <li><a href="#blog" onclick="showSection('blog'); loadBlogPosts(); return false;" data-lang-fa="وبلاگ" data-lang-en="Blog" data-lang-ar="مدونة" data-lang-zh="博客" data-lang-ru="Блог" data-lang-tr="Blog"><span lang="fa">وبلاگ</span><span lang="en" style="display:none">Blog</span><span lang="ar" style="display:none">مدونة</span><span lang="zh" style="display:none">博客</span><span lang="ru" style="display:none">Блог</span><span lang="tr" style="display:none">Blog</span></a></li>
-                <li><a href="#chat-ai" onclick="showSection('chat-ai'); return false;" data-lang-fa="چت با AI" data-lang-en="Chat with AI" data-lang-ar="الدردشة مع الذكاء الاصطناعي" data-lang-zh="与AI聊天" data-lang-ru="Чат с ИИ" data-lang-tr="AI ile Sohbet"><span lang="fa">چت با AI</span><span lang="en" style="display:none">Chat with AI</span><span lang="ar" style="display:none">الدردشة مع الذكاء الاصطناعي</span><span lang="zh" style="display:none">与AI聊天</span><span lang="ru" style="display:none">Чат с ИИ</span><span lang="tr" style="display:none">AI ile Sohbet</span></a></li>
+                <li><a href="#technology" onclick="showSection('technology'); loadTechNews(); return false;" data-lang-fa="تکنولوژی" data-lang-en="Technology" data-lang-ar="تكنولوجيا" data-lang-zh="技术" data-lang-ru="Технологии" data-lang-tr="Teknoloji"><span lang="fa">تکنولوژی</span><span lang="en" style="display:none">Technology</span><span lang="ar" style="display:none">تكنولوجيا</span><span lang="zh" style="display:none">技术</span><span lang="ru" style="display:none">Технологии</span><span lang="tr" style="display:none">Teknoloji</span></a></li>
             </ul>
             <div class="language-menu">
                 <select onchange="changeLanguage(this.value)" aria-label="انتخاب زبان">
@@ -539,12 +503,9 @@
                     <p><span lang="fa">در حال بارگذاری پست‌ها...</span><span lang="en" style="display:none">Loading posts...</span><span lang="ar" style="display:none">جارٍ تحميل المنشورات...</span><span lang="zh" style="display:none">正在加载帖子...</span><span lang="ru" style="display:none">Загрузка постов...</span><span lang="tr" style="display:none">Gönderiler yükleniyor...</span></p>
                 </div>
             </div>
-            <div id="chat-ai" class="content">
-                <div class="text-section">
-                    <h2><span lang="fa">چت با هوش مصنوعی</span><span lang="en" style="display:none">Chat with AI</span><span lang="ar" style="display:none">الدردشة مع الذكاء الاصطناعي</span><span lang="zh" style="display:none">与AI聊天</span><span lang="ru" style="display:none">Чат с ИИ</span><span lang="tr" style="display:none">AI ile Sohbet</span></h2>
-                    <div id="chat"></div>
-                    <input type="text" id="userInput" placeholder="پیام خود را وارد کنید...">
-                    <button onclick="sendMessage()">ارسال</button>
+            <div id="technology" class="content">
+                <div id="tech-news">
+                    <p><span lang="fa">در حال بارگذاری اخبار تکنولوژی...</span><span lang="en" style="display:none">Loading technology news...</span><span lang="ar" style="display:none">جارٍ تحميل أخبار التكنولوجيا...</span><span lang="zh" style="display:none">正在加载科技新闻...</span><span lang="ru" style="display:none">Загрузка новостей технологий...</span><span lang="tr" style="display:none">Teknoloji haberleri yükleniyor...</span></p>
                 </div>
             </div>
         </div>
@@ -557,6 +518,7 @@
               spans = document.querySelectorAll('span[lang]'),
               links = document.querySelectorAll('.nav-menu a');
         let blogPostsCache = null;
+        let techNewsCache = null;
 
         function showSection(id) {
             const section = document.getElementById(id);
@@ -572,6 +534,8 @@
             window.location.hash = id;
             localStorage.setItem('activeSection', id);
             updateContent();
+            if (id === 'blog') loadBlogPosts();
+            if (id === 'technology') loadTechNews();
         }
 
         async function changeLanguage(lang) {
@@ -581,6 +545,9 @@
             updateNavMenu(lang);
             if (document.getElementById('blog').classList.contains('active')) {
                 loadBlogPosts();
+            }
+            if (document.getElementById('technology').classList.contains('active')) {
+                loadTechNews();
             }
         }
 
@@ -613,19 +580,21 @@
 
         function loadSectionFromHash() {
             const hash = window.location.hash.substring(1);
-            const validSections = ['home', 'rescue', 'blog', 'chat-ai'];
+            const validSections = ['home', 'rescue', 'blog', 'technology'];
             if (hash && validSections.includes(hash)) {
                 showSection(hash);
                 if (hash === 'blog') loadBlogPosts();
+                if (hash === 'technology') loadTechNews();
             }
         }
 
         function loadSavedSection() {
             const savedSection = localStorage.getItem('activeSection') || 'home';
-            const validSections = ['home', 'rescue', 'blog', 'chat-ai'];
+            const validSections = ['home', 'rescue', 'blog', 'technology'];
             if (validSections.includes(savedSection)) {
                 showSection(savedSection);
                 if (savedSection === 'blog') loadBlogPosts();
+                if (savedSection === 'technology') loadTechNews();
             } else {
                 showSection('home');
             }
@@ -650,7 +619,7 @@
                 const xmlDoc = parser.parseFromString(data, 'text/xml');
                 const entries = xmlDoc.getElementsByTagName('entry');
                 if (entries.length === 0) {
-                    blogPostsContainer.innerHTML = '<p><span lang="fa">پستی برای نمایش وجود ندارد.</span><span lang="en" style="display:none">No posts to display.</span><span lang="ar" style="display:none">لا توجد منشورات للعرض.</span><span lang="zh" style="display:none">没有帖子可显示。</span><span lang="ru" style="display:none">Нет постов для отображения.</span><span lang="tr" style="display:none">Gösterilecek gönderi yok.</span></p>';
+                    blogPostsContainer.innerHTML = '<p><span lang="fa">پستی برای نمایش وجود ندارد.</span><span lang="en" style="display:none">No posts to display.</span><span lang="ar" style="display:none">لا توجد منشورات للعرض.</span><span lang="zh" style="display:none">没有帖子可显示。</span><span lang="ru" style="display:none">Нет постов для отображения.</span><span lang="tr" style="display:none">Gösterilecek gönderi yok。</span></p>';
                     return;
                 }
                 blogPostsContainer.innerHTML = '';
@@ -683,6 +652,71 @@
                 const errorMsg = await translateText('فکر کنم اینترنتت اختلال داره نتونست محتوا رو بارگیری کنه، صفحه رو رفرش کن', 'fa', currentLang);
                 blogPostsContainer.innerHTML = `<p>${errorMsg}</p>`;
             }
+        }
+
+        async function loadTechNews() {
+            const techNewsContainer = document.getElementById('tech-news');
+            const currentLang = document.documentElement.lang || 'fa';
+            techNewsContainer.innerHTML = `<p><span lang="fa">در حال بارگذاری اخبار تکنولوژی...</span><span lang="en" style="display:none">Loading technology news...</span><span lang="ar" style="display:none">جارٍ تحميل أخبار التكنولوجيا...</span><span lang="zh" style="display:none">正在加载科技新闻...</span><span lang="ru" style="display:none">Загрузка новостей технологий...</span><span lang="tr" style="display:none">Teknoloji haberleri yükleniyor...</span></p>`;
+
+            if (techNewsCache && currentLang === 'fa') {
+                techNewsContainer.innerHTML = techNewsCache;
+                return;
+            }
+
+            const rssFeeds = [
+                'https://api.allorigins.win/raw?url=' + encodeURIComponent('https://techcrunch.com/feed/'),
+                'https://api.allorigins.win/raw?url=' + encodeURIComponent('https://www.wired.com/feed/rss'),
+            ];
+
+            let allEntries = [];
+            for (const feedUrl of rssFeeds) {
+                try {
+                    const controller = new AbortController();
+                    const timeoutId = setTimeout(() => controller.abort(), 5000);
+                    const response = await fetch(feedUrl, { signal: controller.signal });
+                    clearTimeout(timeoutId);
+                    const data = await response.text();
+                    const parser = new DOMParser();
+                    const xmlDoc = parser.parseFromString(data, 'text/xml');
+                    const items = xmlDoc.getElementsByTagName('item');
+                    allEntries = allEntries.concat(Array.from(items).slice(0, 5));
+                } catch (error) {
+                    console.error('خطا در دریافت فید تکنولوژی:', error);
+                }
+            }
+
+            if (allEntries.length === 0) {
+                techNewsContainer.innerHTML = '<p><span lang="fa">خبری برای نمایش وجود ندارد。</span><span lang="en" style="display:none">No news to display.</span><span lang="ar" style="display:none">لا توجد أخبار للعرض。</span><span lang="zh" style="display:none">没有新闻可显示。</span><span lang="ru" style="display:none">Нет новостей для отображения。</span><span lang="tr" style="display:none">Gösterilecek haber yok。</span></p>';
+                return;
+            }
+
+            techNewsContainer.innerHTML = '';
+            for (let i = 0; i < Math.min(allEntries.length, 10); i++) {
+                const entry = allEntries[i];
+                const title = entry.getElementsByTagName('title')[0].textContent;
+                const description = entry.getElementsByTagName('description')[0]?.textContent.replace(/<[^>]+>/g, '') || 'توضیحات موجود نیست';
+                const link = entry.getElementsByTagName('link')[0].textContent;
+
+                let translatedTitle = title;
+                let translatedDescription = description;
+                let continueText = 'ادامه مطلب';
+                if (currentLang !== 'fa') {
+                    translatedTitle = await translateText(title, 'en', currentLang);
+                    translatedDescription = await translateText(description, 'en', currentLang);
+                    continueText = await translateText('ادامه مطلب', 'fa', currentLang);
+                }
+
+                const newsDiv = document.createElement('div');
+                newsDiv.className = 'tech-post';
+                newsDiv.innerHTML = `
+                    <h2><a href="${link}" target="_blank">${translatedTitle}</a></h2>
+                    <p>${translatedDescription.substring(0, 200)}... <a href="${link}" target="_blank">${continueText}</a></p>
+                `;
+                techNewsContainer.appendChild(newsDiv);
+            }
+
+            if (currentLang === 'fa') techNewsCache = techNewsContainer.innerHTML;
         }
 
         async function translateText(text, fromLang, toLang) {
@@ -768,35 +802,6 @@
                 navMenu.classList.remove('hidden');
                 contentWrapper.classList.remove('expanded');
             }
-        }
-
-        /* کد چت با هوش مصنوعی */
-        async function getAIResponse(message) {
-            const apiKey = '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'; // کلید API خود را اینجا قرار دهید
-            const response = await fetch('https://api.openai.com/v1/chat/completions', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Authorization': `Bearer ${apiKey}`
-                },
-                body: JSON.stringify({
-                    model: "gpt-3.5-turbo",
-                    messages: [{ role: "user", content: message }]
-                })
-            });
-            const data = await response.json();
-            return data.choices[0].message.content;
-        }
-
-        async function sendMessage() {
-            const userInput = document.getElementById('userInput');
-            const userMessage = userInput.value;
-            const chat = document.getElementById('chat');
-            chat.innerHTML += `<div class="user-message">شما: ${userMessage}</div>`;
-            userInput.value = '';
-            const aiResponse = await getAIResponse(userMessage);
-            chat.innerHTML += `<div class="ai-message">هوش مصنوعی: ${aiResponse}</div>`;
-            chat.scrollTop = chat.scrollHeight;
         }
 
         window.onload = function() {
