@@ -1,51 +1,392 @@
-<!DOCTYPE html><html lang="fa"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta http-equiv="X-UA-Compatible" content="ie=edge"><meta name="description" content="آزادنت - ابزارها و خدمات رایگان برای دسترسی به اطلاعات آزاد"><meta name="keywords" content="آزادنت, ابزار رایگان, عبور از فیلتر, اطلاعات آزاد"><meta name="author" content="تیم آزادنت"><meta name="robots" content="index, follow"><meta name="theme-color" content="#000"><title>آزادنت</title><link rel="icon" href="ficon.png" type="image/x-icon"><link rel="alternate" hreflang="fa" href="https://azadnet.com/fa/"><link rel="alternate" hreflang="en" href="https://azadnet.com/en/"><link rel="alternate" hreflang="ar" href="https://azadnet.com/ar/"><link rel="alternate" hreflang="zh" href="https://azadnet.com/zh/"><link rel="alternate" hreflang="ru" href="https://azadnet.com/ru/"><link rel="alternate" hreflang="tr" href="https://azadnet.com/tr/"><style>@font-face{font-family:'Estedad';src:url(/Estedad-FD-ExtraBold.woff2) format('woff2')}@font-face{font-family:'Estedad';src:url(/Estedad-Thin.woff2) format('woff2');font-weight:300;font-style:normal}@font-face{font-family:'Estedad';src:url(/Estedad-Bold.woff2) format('woff2');font-weight:700;font-style:normal}body{margin:0;padding:0;font-family:'Estedad',Arial,sans-serif;font-weight:300;direction:rtl;height:100vh;overflow-x:hidden;background-color:var(--bg-color,#ffffff);color:var(--text-color,#333)}[lang="en"] body,[lang="zh"] body,[lang="ru"] body,[lang="tr"] body{direction:ltr}[lang="ar"] body{direction:rtl}:root{--bg-color:#ffffff;--text-color:#333;--nav-bg:#d3d3d3;--link-color:#007bff}.container{display:flex;min-height:100vh;position:relative;flex-direction:column}.nav-menu{width:200px;padding:20px;background-color:var(--nav-bg);transition:all 0.3s ease;display:flex;flex-direction:column;height:100vh;box-sizing:border-box;position:fixed;top:0;right:-200px;z-index:1000}.nav-menu.active{right:0}[lang="en"] .nav-menu,[lang="zh"] .nav-menu,[lang="ru"] .nav-menu,[lang="tr"] .nav-menu{right:auto;left:-200px}[lang="en"] .nav-menu.active,[lang="zh"] .nav-menu.active,[lang="ru"] .nav-menu.active,[lang="tr"] .nav-menu.active{left:0}.nav-menu .site-logo{display:block;width:100px;height:auto;margin:20px auto;user-select:none;will-change:transform}.nav-menu .site-logo:hover{animation:dizzyAnimation 1.67s linear 1}@keyframes dizzyAnimation{0%{transform:rotateY(0deg)}100%{transform:rotateY(360deg)}}.nav-menu ul{list-style:none;padding:0;margin:0;display:flex;flex-direction:column}.nav-menu ul li{margin:15px 0}.nav-menu ul li a{text-decoration:none;color:var(--text-color);font-size:18px;font-family:'Estedad',Arial,sans-serif;font-weight:700;cursor:pointer}.nav-menu ul li a:hover{color:var(--link-color)}.language-menu,.theme-menu{background:rgb(255 255 255 / .2);border-radius:10px;padding:10px;border:1px solid rgb(255 255 255 / .3);margin-top:10px;backdrop-filter:blur(10px)}.language-menu select,.theme-menu select{width:100%;padding:8px;background:#fff0;border:none;font-size:16px;font-family:'Estedad',Arial,sans-serif;font-weight:300;color:var(--text-color);cursor:pointer}.content-wrapper{flex-grow:1;width:100%;transition:margin 0.3s ease;margin-right:0}.content{flex-grow:1;padding:20px;display:none;justify-content:center;align-items:center;min-height:auto;overflow-y:auto;max-height:100vh;width:100%;box-sizing:border-box}.content.active{display:flex}#blog.content.active,#technology.content.active{padding-top:80px}.text-section{padding:20px;max-width:600px;text-align:justify;width:100%;display:flex;justify-content:center;align-items:center;flex-direction:column}.text-content span{font-family:'Estedad',Arial,sans-serif;font-weight:300}.text-content strong{font-weight:700}#blog-posts,#tech-news{width:100%;max-width:600px;padding:20px}.blog-post,.tech-post{background:rgb(255 255 255 / .1);border:1px solid rgb(255 255 255 / .3);border-radius:10px;padding:15px;margin-bottom:20px;text-align:justify}.blog-post h2,.tech-post h2{font-size:20px;margin-bottom:10px;color:var(--link-color)}.blog-post p,.tech-post p{font-size:16px;line-height:1.6}.blog-post a,.tech-post a{color:var(--link-color);text-decoration:none}.blog-post a:hover,.tech-post a:hover{text-decoration:underline}footer{text-align:center;padding:10px;background:var(--nav-bg);position:fixed;bottom:0;left:0;right:0;z-index:999;width:100%;box-sizing:border-box}.hamburger{display:block;position:fixed;top:10px;right:10px;font-size:24px;background:none;border:none;color:var(--text-color);cursor:pointer;z-index:1002;transition:all 0.3s ease}[lang="en"] .hamburger,[lang="zh"] .hamburger,[lang="ru"] .hamburger,[lang="tr"] .hamburger{right:auto;left:10px}.accordion-container{display:flex;flex-direction:column;width:100%;max-width:800px;margin-top:20px;gap:10px;margin-left:auto;margin-right:auto}.accordion{background-color:var(--nav-bg);border-radius:10px;overflow:hidden}.accordion-header{padding:10px;background-color:rgb(255 255 255 / .2);color:var(--text-color);font-weight:700;cursor:pointer;text-align:center;border-bottom:1px solid rgb(255 255 255 / .3)}.accordion-content{max-height:0;overflow:hidden;transition:max-height 0.3s ease;background-color:rgb(255 255 255 / .1)}.accordion-content ul{list-style:none;padding:10px;margin:0}.accordion-content li{padding:5px 0;font-size:14px}.accordion-content li a{color:var(--link-color);text-decoration:none}.accordion-content li a:hover{text-decoration:underline}.accordion.active .accordion-content{max-height:300px;overflow-y:auto}@media (min-width:769px){.container{flex-direction:row}.nav-menu{width:200px;position:fixed;right:0;top:0}[lang="en"] .nav-menu,[lang="zh"] .nav-menu,[lang="ru"] .nav-menu,[lang="tr"] .nav-menu{right:auto;left:0}.content-wrapper{margin-right:200px;width:calc(100% - 200px)}[lang="en"] .content-wrapper,[lang="zh"] .content-wrapper,[lang="ru"] .content-wrapper,[lang="tr"] .content-wrapper{margin-right:0;margin-left:200px;width:calc(100% - 200px)}.text-section{height:50vh}.hamburger{display:block}}@media (max-width:768px){.nav-menu{width:100%;padding:10px;position:fixed;top:0;right:-100%;height:100vh;transition:right 0.3s ease;justify-content:flex-start}.nav-menu.active{right:0}[lang="en"] .nav-menu,[lang="zh"] .nav-menu,[lang="ru"] .nav-menu,[lang="tr"] .nav-menu{right:-100%;left:auto}[lang="en"] .nav-menu.active,[lang="zh"] .nav-menu.active,[lang="ru"] .nav-menu.active,[lang="tr"] .nav-menu.active{right:0;left:auto}.nav-menu .site-logo{width:80px;margin:20px auto}.nav-menu ul{flex-direction:column;justify-content:flex-start;margin-top:60px;margin-bottom:0}.nav-menu ul li{margin:10px 0}.language-menu,.theme-menu{margin-top:10px;padding:6px}.language-menu select,.theme-menu select{font-size:12px;padding:4px}.content-wrapper{margin:0;width:100%}.content{padding:10px;max-height:none;margin-top:60px;width:100%;justify-content:center;box-sizing:border-box}#blog.content.active,#technology.content.active{padding-top:60px}.text-section{padding:10px;text-align:justify;margin:0 auto;width:100%}#blog-posts,#tech-news{padding:10px;width:100%}.accordion.active .accordion-content{max-height:200px}}</style></head><body><div class="container"><nav class="nav-menu"><img src="logo.png" alt="آزادنت لوگو" class="site-logo"><ul><li><a href="#home" onclick="showSection('home'); return false;" data-lang-fa="خانه" data-lang-en="Home" data-lang-ar="الرئيسية" data-lang-zh="首页" data-lang-ru="Главная" data-lang-tr="Ana Sayfa"><span lang="fa">خانه</span><span lang="en" style="display:none">Home</span><span lang="ar" style="display:none">الرئيسية</span><span lang="zh" style="display:none">首页</span><span lang="ru" style="display:none">Главная</span><span lang="tr" style="display:none">Ana Sayfa</span></a></li><li><a href="#rescue" onclick="showSection('rescue'); return false;" data-lang-fa="پکیج نجات" data-lang-en="Rescue Package" data-lang-ar="باقة الإنقاذ" data-lang-zh="救援包" data-lang-ru="Пакет спасения" data-lang-tr="Kurtarma Paketi"><span lang="fa">پکیج نجات</span><span lang="en" style="display:none">Rescue Package</span><span lang="ar" style="display:none">باقة الإنقاذ</span><span lang="zh" style="display:none">救援包</span><span lang="ru" style="display:none">Пакет спасения</span><span lang="tr" style="display:none">Kurtarma Paketi</span></a></li><li><a href="#blog" onclick="showSection('blog'); loadBlogPosts(); return false;" data-lang-fa="وبلاگ" data-lang-en="Blog" data-lang-ar="مدونة" data-lang-zh="博客" data-lang-ru="Блог" data-lang-tr="Blog"><span lang="fa">وبلاگ</span><span lang="en" style="display:none">Blog</span><span lang="ar" style="display:none">مدونة</span><span lang="zh" style="display:none">博客</span><span lang="ru" style="display:none">Блог</span><span lang="tr" style="display:none">Blog</span></a></li><li><a href="#technology" onclick="showSection('technology'); loadTechNews(); return false;" data-lang-fa="تکنولوژی" data-lang-en="Technology" data-lang-ar="تكنولوجيا" data-lang-zh="技术" data-lang-ru="Технологии" data-lang-tr="Teknoloji"><span lang="fa">تکنولوژی</span><span lang="en" style="display:none">Technology</span><span lang="ar" style="display:none">تكنولوجيا</span><span lang="zh" style="display:none">技术</span><span lang="ru" style="display:none">Технологии</span><span lang="tr" style="display:none">Teknoloji</span></a></li></ul><div class="language-menu"><select onchange="changeLanguage(this.value)" aria-label="انتخاب زبان"><option value="fa" selected><span lang="fa">فارسی</span></option><option value="en"><span lang="en">English</span></option><option value="ar"><span lang="ar">العربية</span></option><option value="zh"><span lang="zh">中文</span></option><option value="ru"><span lang="ru">Русский</span></option><option value="tr"><span lang="tr">Turkish</span></option></select></div><div class="theme-menu"><select id="theme-select" onchange="changeTheme(this.value)" aria-label="انتخاب تم"><option value="default">Default</option><option value="theme1">Theme 1</option><option value="theme2">Theme 2</option><option value="theme3">Theme 3</option><option value="theme4">Theme 4</option></select></div></nav><button class="hamburger" onclick="toggleMenu()" aria-label="باز کردن منو">☰</button><div class="content-wrapper"><div id="home" class="content active"><div class="text-section"><h1 id="welcome-text"><span lang="fa">خوش آمدید</span><span lang="en" style="display:none">Welcome</span><span lang="ar" style="display:none">مرحبًا</span><span lang="zh" style="display:none">欢迎</span><span lang="ru" style="display:none">Добро пожаловать</span><span lang="tr" style="display:none">Hoş Geldiniz</span></h1><p class="text-content"><span lang="fa">ما جمعی هستیم که تحت نام "آزادنت" گرد هم آمده‌ایم، با هدف ارائه خدمات رایگان و بدون محدودیت برای دسترسی به اطلاعات آزاد. ما خود را تابع قوانین ستمگرانه نمی‌دانیم و در راستای آزادی و سربلندی گام برمی‌داریم.</span><span lang="en" style="display:none">We are a group gathered under the name "Azadnet" to provide free and unrestricted access to information. We do not follow oppressive laws and strive for freedom and dignity.</span><span lang="ar" style="display:none">نحن مجموعة تجمعت تحت اسم "آزادنت" لتقديم خدمات مجانية وبلا قيود للوصول إلى المعلومات الحرة. لا نتبع القوانين الظالمة ونسعى للحرية والكرامة.</span><span lang="zh" style="display:none">我们是一群以“自由网”之名聚集在一起的人，旨在提供免费且无限制的信息访问服务。我们不遵循压迫性法律，致力于自由与尊严。</span><span lang="ru" style="display:none">Мы - группа,собравшаяся под названием "Азаднет",чтобы предоставить бесплатный и неограниченный доступ к информации. Мы не подчиняемся угнетающим законам и стремимся к свободе и достоинству.</span><span lang="tr" style="display:none">Biz,"Azadnet" adı altında toplanmış bir grup olarak,bilgiye ücretsiz ve kısıtlamasız erişim sağlamak amacıyla bir araya geldik. Baskıcı yasalara uymuyor,özgürlük ve onur için çabalıyoruz.</span></p></div></div><div id="rescue" class="content"><div class="text-section"><h1 id="rescue-text"><span lang="fa">پکیج نجات</span><span lang="en" style="display:none">Rescue Package</span><span lang="ar" style="display:none">باقة الإنقاذ</span><span lang="zh" style="display:none">救援包</span><span lang="ru" style="display:none">Пакет спасения</span><span lang="tr" style="display:none">Kurtarma Paketi</span></h1><p class="text-content"><span lang="fa"><strong>پکیج نجات</strong>:محتوای پکیج نجات در حال آماده‌سازی است. لطفاً بعداً مراجعه کنید.</span><span lang="en" style="display:none"><strong>Rescue Package</strong>:The content of the Rescue Package is under preparation. Please check back later.</span><span lang="ar" style="display:none"><strong>باقة الإنقاذ</strong>:محتوى باقة الإنقاذ قيد التحضير. يرجى العودة لاحقًا.</span><span lang="zh" style="display:none"><strong>救援包</strong>:救援包内容正在准备中。请稍后再回来查看。</span><span lang="ru" style="display:none"><strong>Пакет спасения</strong>:Содержимое спасательного пакета находится в стадии подготовки. Пожалуйста,зайдите позже.</span><span lang="tr" style="display:none"><strong>Kurtarma Paketi</strong>:Kurtarma Paketi'nin içeriği hazırlanmaktadır. Lütfen daha sonra tekrar kontrol edin。</span>
+<!DOCTYPE html>
+<html lang="fa">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="description" content="آزادنت - ابزارها و خدمات رایگان برای دسترسی به اطلاعات آزاد">
+    <meta name="keywords" content="آزادنت, ابزار رایگان, عبور از فیلتر, اطلاعات آزاد">
+    <meta name="author" content="تیم آزادنت">
+    <meta name="robots" content="index, follow">
+    <meta name="theme-color" content="#000">
+    <title>
+        <span lang="fa">آزادنت</span>
+        <span lang="en" style="display:none">Azadnet</span>
+        <span lang="ar" style="display:none">آزادنت</span>
+        <span lang="zh" style="display:none">自由网</span>
+        <span lang="ru" style="display:none">Азаднет</span>
+        <span lang="tr" style="display:none">Azadnet</span>
+    </title>
+    <link rel="icon" href="ficon.png" type="image/x-icon">
+    <link rel="alternate" hreflang="fa" href="https://azadnet.com/fa/">
+    <link rel="alternate" hreflang="en" href="https://azadnet.com/en/">
+    <link rel="alternate" hreflang="ar" href="https://azadnet.com/ar/">
+    <link rel="alternate" hreflang="zh" href="https://azadnet.com/zh/">
+    <link rel="alternate" hreflang="ru" href="https://azadnet.com/ru/">
+    <link rel="alternate" hreflang="tr" href="https://azadnet.com/tr/">
+    <style>
+        @font-face{font-family:'Estedad';src:url(/Estedad-FD-ExtraBold.woff2) format('woff2')}
+        @font-face{font-family:'Estedad';src:url(/Estedad-Thin.woff2) format('woff2');font-weight:300;font-style:normal}
+        @font-face{font-family:'Estedad';src:url(/Estedad-Bold.woff2) format('woff2');font-weight:700;font-style:normal}
+        body{margin:0;padding:0;font-family:'Estedad',Arial,sans-serif;font-weight:300;direction:rtl;height:100vh;overflow-x:hidden;background-color:var(--bg-color,#ffffff);color:var(--text-color,#333)}
+        [lang="en"] body,[lang="zh"] body,[lang="ru"] body,[lang="tr"] body{direction:ltr}
+        [lang="ar"] body{direction:rtl}
+        :root{--bg-color:#ffffff;--text-color:#333;--nav-bg:#d3d3d3;--link-color:#007bff}
+        .container{display:flex;min-height:100vh;position:relative;flex-direction:column}
+        .nav-menu{width:200px;padding:20px;background-color:var(--nav-bg);transition:all 0.3s ease;display:flex;flex-direction:column;height:100vh;box-sizing:border-box;position:fixed;top:0;right:-200px;z-index:1000}
+        .nav-menu.active{right:0}
+        [lang="en"] .nav-menu,[lang="zh"] .nav-menu,[lang="ru"] .nav-menu,[lang="tr"] .nav-menu{right:auto;left:-200px}
+        [lang="en"] .nav-menu.active,[lang="zh"] .nav-menu.active,[lang="ru"] .nav-menu.active,[lang="tr"] .nav-menu.active{left:0}
+        .nav-menu .site-logo{display:block;width:100px;height:auto;margin:20px auto;user-select:none;will-change:transform}
+        .nav-menu .site-logo:hover{animation:dizzyAnimation 1.67s linear 1}
+        @keyframes dizzyAnimation{0%{transform:rotateY(0deg)}100%{transform:rotateY(360deg)}}
+        .nav-menu ul{list-style:none;padding:0;margin:0;display:flex;flex-direction:column}
+        .nav-menu ul li{margin:15px 0}
+        .nav-menu ul li a{text-decoration:none;color:var(--text-color);font-size:18px;font-family:'Estedad',Arial,sans-serif;font-weight:700;cursor:pointer}
+        .nav-menu ul li a:hover{color:var(--link-color)}
+        .language-menu,.theme-menu{background:rgb(255 255 255 / .2);border-radius:10px;padding:10px;border:1px solid rgb(255 255 255 / .3);margin-top:10px;backdrop-filter:blur(10px)}
+        .language-menu select,.theme-menu select{width:100%;padding:8px;background:#fff0;border:none;font-size:16px;font-family:'Estedad',Arial,sans-serif;font-weight:300;color:var(--text-color);cursor:pointer}
+        .content-wrapper{flex-grow:1;width:100%;transition:margin 0.3s ease;margin-right:0}
+        .content{flex-grow:1;padding:20px;display:none;justify-content:center;align-items:center;min-height:auto;overflow-y:auto;max-height:100vh;width:100%;box-sizing:border-box}
+        .content.active{display:flex}
+        #blog.content.active,#technology.content.active{padding-top:80px}
+        .text-section{padding:20px;max-width:600px;text-align:justify;width:100%;display:flex;justify-content:center;align-items:center;flex-direction:column}
+        .text-content span{font-family:'Estedad',Arial,sans-serif;font-weight:300}
+        .text-content strong{font-weight:700}
+        #blog-posts,#tech-news{width:100%;max-width:600px;padding:20px}
+        .blog-post,.tech-post{background:rgb(255 255 255 / .1);border:1px solid rgb(255 255 255 / .3);border-radius:10px;padding:15px;margin-bottom:20px;text-align:justify}
+        .blog-post h2,.tech-post h2{font-size:20px;margin-bottom:10px;color:var(--link-color)}
+        .blog-post p,.tech-post p{font-size:16px;line-height:1.6}
+        .blog-post a,.tech-post a{color:var(--link-color);text-decoration:none}
+        .blog-post a:hover,.tech-post a:hover{text-decoration:underline}
+        footer{text-align:center;padding:10px;background:var(--nav-bg);position:fixed;bottom:0;left:0;right:0;z-index:999;width:100%;box-sizing:border-box}
+        .hamburger{display:block;position:fixed;top:10px;right:10px;font-size:24px;background:none;border:none;color:var(--text-color);cursor:pointer;z-index:1002;transition:all 0.3s ease}
+        [lang="en"] .hamburger,[lang="zh"] .hamburger,[lang="ru"] .hamburger,[lang="tr"] .hamburger{right:auto;left:10px}
+        .accordion-container{display:flex;flex-direction:column;width:100%;max-width:800px;margin-top:20px;gap:10px;margin-left:auto;margin-right:auto}
+        .accordion{background-color:var(--nav-bg);border-radius:10px;overflow:hidden}
+        .accordion-header{padding:10px;background-color:rgb(255 255 255 / .2);color:var(--text-color);font-weight:700;cursor:pointer;text-align:center;border-bottom:1px solid rgb(255 255 255 / .3)}
+        .accordion-content{max-height:0;overflow:hidden;transition:max-height 0.3s ease;background-color:rgb(255 255 255 / .1)}
+        .accordion-content ul{list-style:none;padding:10px;margin:0}
+        .accordion-content li{padding:5px 0;font-size:14px}
+        .accordion-content li a{color:var(--link-color);text-decoration:none}
+        .accordion-content li a:hover{text-decoration:underline}
+        .accordion.active .accordion-content{max-height:300px;overflow-y:auto}
+        @media (min-width:769px){.container{flex-direction:row}.nav-menu{width:200px;position:fixed;right:0;top:0}[lang="en"] .nav-menu,[lang="zh"] .nav-menu,[lang="ru"] .nav-menu,[lang="tr"] .nav-menu{right:auto;left:0}.content-wrapper{margin-right:200px;width:calc(100% - 200px)}[lang="en"] .content-wrapper,[lang="zh"] .content-wrapper,[lang="ru"] .content-wrapper,[lang="tr"] .content-wrapper{margin-right:0;margin-left:200px;width:calc(100% - 200px)}.text-section{height:50vh}.hamburger{display:block}}
+        @media (max-width:768px){.nav-menu{width:100%;padding:10px;position:fixed;top:0;right:-100%;height:100vh;transition:right 0.3s ease;justify-content:flex-start}.nav-menu.active{right:0}[lang="en"] .nav-menu,[lang="zh"] .nav-menu,[lang="ru"] .nav-menu,[lang="tr"] .nav-menu{right:-100%;left:auto}[lang="en"] .nav-menu.active,[lang="zh"] .nav-menu.active,[lang="ru"] .nav-menu.active,[lang="tr"] .nav-menu.active{right:0;left:auto}.nav-menu .site-logo{width:80px;margin:20px auto}.nav-menu ul{flex-direction:column;justify-content:flex-start;margin-top:60px;margin-bottom:0}.nav-menu ul li{margin:10px 0}.language-menu,.theme-menu{margin-top:10px;padding:6px}.language-menu select,.theme-menu select{font-size:12px;padding:4px}.content-wrapper{margin:0;width:100%}.content{padding:10px;max-height:none;margin-top:60px;width:100%;justify-content:center;box-sizing:border-box}#blog.content.active,#technology.content.active{padding-top:60px}.text-section{padding:10px;text-align:justify;margin:0 auto;width:100%}#blog-posts,#tech-news{padding:10px;width:100%}.accordion.active .accordion-content{max-height:200px}}
+    </style>
+</head>
+<body>
+    <div class="container">
+        <nav class="nav-menu">
+            <img src="logo.png" alt="آزادنت لوگو" class="site-logo">
+            <ul>
+                <li><a href="#home" onclick="showSection('home'); return false;" data-lang-fa="خانه" data-lang-en="Home" data-lang-ar="الرئيسية" data-lang-zh="首页" data-lang-ru="Главная" data-lang-tr="Ana Sayfa">
+                    <span lang="fa">خانه</span>
+                    <span lang="en" style="display:none">Home</span>
+                    <span lang="ar" style="display:none">الرئيسية</span>
+                    <span lang="zh" style="display:none">首页</span>
+                    <span lang="ru" style="display:none">Главная</span>
+                    <span lang="tr" style="display:none">Ana Sayfa</span>
+                </a></li>
+                <li><a href="#rescue" onclick="showSection('rescue'); return false;" data-lang-fa="پکیج نجات" data-lang-en="Rescue Package" data-lang-ar="باقة الإنقاذ" data-lang-zh="救援包" data-lang-ru="Пакет спасения" data-lang-tr="Kurtarma Paketi">
+                    <span lang="fa">پکیج نجات</span>
+                    <span lang="en" style="display:none">Rescue Package</span>
+                    <span lang="ar" style="display:none">باقة الإنقاذ</span>
+                    <span lang="zh" style="display:none">救援包</span>
+                    <span lang="ru" style="display:none">Пакет спасения</span>
+                    <span lang="tr" style="display:none">Kurtarma Paketi</span>
+                </a></li>
+                <li><a href="#blog" onclick="showSection('blog'); loadBlogPosts(); return false;" data-lang-fa="وبلاگ" data-lang-en="Blog" data-lang-ar="مدونة" data-lang-zh="博客" data-lang-ru="Блог" data-lang-tr="Blog">
+                    <span lang="fa">وبلاگ</span>
+                    <span lang="en" style="display:none">Blog</span>
+                    <span lang="ar" style="display:none">مدونة</span>
+                    <span lang="zh" style="display:none">博客</span>
+                    <span lang="ru" style="display:none">Блог</span>
+                    <span lang="tr" style="display:none">Blog</span>
+                </a></li>
+                <li><a href="#technology" onclick="showSection('technology'); loadTechNews(); return false;" data-lang-fa="تکنولوژی" data-lang-en="Technology" data-lang-ar="تكنولوجيا" data-lang-zh="技术" data-lang-ru="Технологии" data-lang-tr="Teknoloji">
+                    <span lang="fa">تکنولوژی</span>
+                    <span lang="en" style="display:none">Technology</span>
+                    <span lang="ar" style="display:none">تكنولوجيا</span>
+                    <span lang="zh" style="display:none">技术</span>
+                    <span lang="ru" style="display:none">Технологии</span>
+                    <span lang="tr" style="display:none">Teknoloji</span>
+                </a></li>
+            </ul>
+            <div class="language-menu">
+                <select onchange="changeLanguage(this.value)" aria-label="انتخاب زبان">
+                    <option value="fa" selected><span lang="fa">فارسی</span></option>
+                    <option value="en"><span lang="en">English</span></option>
+                    <option value="ar"><span lang="ar">العربية</span></option>
+                    <option value="zh"><span lang="zh">中文</span></option>
+                    <option value="ru"><span lang="ru">Русский</span></option>
+                    <option value="tr"><span lang="tr">Turkish</span></option>
+                </select>
+            </div>
+            <div class="theme-menu">
+                <select id="theme-select" onchange="changeTheme(this.value)" aria-label="انتخاب تم">
+                    <option value="default">Default</option>
+                    <option value="theme1">Theme 1</option>
+                    <option value="theme2">Theme 2</option>
+                    <option value="theme3">Theme 3</option>
+                    <option value="theme4">Theme 4</option>
+                </select>
+            </div>
+        </nav>
+        <button class="hamburger" onclick="toggleMenu()" aria-label="باز کردن منو">☰</button>
+        <div class="content-wrapper">
+            <div id="home" class="content active">
+                <div class="text-section">
+                    <h1 id="welcome-text">
+                        <span lang="fa">خوش آمدید</span>
+                        <span lang="en" style="display:none">Hey, welcome!</span>
+                        <span lang="ar" style="display:none">أهلاً وسهلاً</span>
+                        <span lang="zh" style="display:none">欢迎啊！</span>
+                        <span lang="ru" style="display:none">Добро пожаловать, ребята!</span>
+                        <span lang="tr" style="display:none">Hoş geldin ya!</span>
+                    </h1>
+                    <p class="text-content">
+                        <span lang="fa">ما جمعی هستیم که تحت نام "آزادنت" گرد هم آمده‌ایم، با هدف ارائه خدمات رایگان و بدون محدودیت برای دسترسی به اطلاعات آزاد. ما خود را تابع قوانین ستمگرانه نمی‌دانیم و در راستای آزادی و سربلندی گام برمی‌داریم.</span>
+                        <span lang="en" style="display:none">We’re a bunch of folks who teamed up as "Azadnet" to hook you up with free, no-limits access to info. We don’t play by oppressive rules and are all about freedom and pride.</span>
+                        <span lang="ar" style="display:none">إحنا مجموعة اتجمعت تحت اسم "آزادنت" عشان نقدم خدمات مجانية بدون قيود للوصول للمعلومات الحرة. ما بنتبعش القوانين الظالمة و بنمشي في طريق الحرية و العزة.</span>
+                        <span lang="zh" style="display:none">我们是一帮人，凑在一起叫“自由网”，想给你免费又没限制的信息通道。我们才不管那些压迫的规矩，就为自由和尊严干活。</span>
+                        <span lang="ru" style="display:none">Мы - команда, что собралась под именем "Азаднет", чтобы дать вам бесплатный доступ к инфе без всяких барьеров. Мы не пляшем под дудку угнетающих законов, идем за свободой и гордостью.</span>
+                        <span lang="tr" style="display:none">Biz "Azadnet" diye bir araya gelen bir ekibiz, sana ücretsiz ve sınırsız bilgi erişimi sunmak için. Baskıcı kurallara uymuyor, özgürlük ve onur için yürüyoruz.</span>
+                    </p>
+                </div>
+            </div>
+            <div id="rescue" class="content">
+                <div class="text-section">
+                    <h1 id="rescue-text">
+                        <span lang="fa">پکیج نجات</span>
+                        <span lang="en" style="display:none">Rescue Package</span>
+                        <span lang="ar" style="display:none">باقة الإنقاذ</span>
+                        <span lang="zh" style="display:none">救援包</span>
+                        <span lang="ru" style="display:none">Пакет спасения</span>
+                        <span lang="tr" style="display:none">Kurtarma Paketi</span>
+                    </h1>
+                    <p class="text-content">
+                        <span lang="fa"><strong>پکیج نجات</strong> ما در اینجا مجموعه‌ای از بهترین و مطمئن‌ترین برنامه‌ها را برای دسترسی به اینترنت بدون محدودیت گردآوری کرده‌ایم. این برنامه‌ها بر اساس سیستم‌عامل دستگاه شما دسته‌بندی شده‌اند تا به‌راحتی بتوانید گزینه مناسب خود را پیدا کنید.<br><br>ویندوز: ابزارهایی قدرتمند برای تجربه اینترنت آزاد روی کامپیوتر شخصی شما.<br>اندروید: برنامه‌های سبک و سریع برای گوشی‌ها و تبلت‌های اندرویدی.<br>iOS: راه‌حل‌هایی امن و ساده برای کاربران آیفون و آیپد.<br>Extension Browser: افزونه ای برای مرورگر های کامپیوتر و موبایل<br>هدف ما این است که با ارائه این ابزارها، تجربه‌ای امن، سریع و بدون فیلتر از اینترنت را برای شما فراهم کنیم. هر برنامه با دقت انتخاب شده و توضیحات لازم برای نصب و استفاده در اختیارتان قرار گرفته است.</span>
+                        <span lang="en" style="display:none"><strong>Rescue Package</strong> Here, we’ve put together a dope collection of the best and most reliable apps to get you unrestricted internet access. They’re sorted by your device’s system so you can easily find what works for you.<br><br>Windows: Sick tools for free internet on your PC.<br>Android: Light and fast apps for your Android phones and tablets.<br>iOS: Safe and simple fixes for iPhone and iPad users.<br>Browser Extensions: Add-ons for browsers on your computer and phone.<br>Our goal? Hook you up with a secure, speedy, and filter-free internet vibe. Every app’s been hand-picked, and we’ve got the install and use details ready for you.</span>
+                        <span lang="ar" style="display:none"><strong>باقة الإنقاذ</strong> هنا جمعنا لكم مجموعة من أحسن وأأمن البرامج عشان توصلكم للإنترنت بدون حدود. البرامج دي مقسمة حسب نظام جهازكم عشان تلاقوا اللي يناسبكم بسهولة.<br><br>ويندوز: أدوات قوية لتجربة إنترنت حر على الكمبيوتر بتاعك.<br>أندرويد: برامج خفيفة وسريعة للموبايلات والتابلت الأندرويد.<br>آي أو إس: حلول آمنة وسهلة لمستخدمي الآيفون والآيباد.<br>إضافات المتصفح: إضافة للمتصفحات على الكمبيوتر والموبايل.<br>هدفنا إننا نجيبلكم إنترنت آمن وسريع وبدون فلاتر. كل برنامج مختار بعناية ومعاه التفاصيل اللازمة للتنصيب والاستخدام.</span>
+                        <span lang="zh" style="display:none"><strong>救援包</strong> 我们在这儿给你整了一堆最牛最靠谱的程序，让你上网没限制。这些程序按你设备的系统分好类，找起来贼方便。<br><br>Windows: 超给力的工具，让你电脑上随便上网。<br>安卓: 轻便又快的应用，给安卓手机和平板用。<br>iOS: 安全又简单的法子，给iPhone和iPad用户。<br>浏览器扩展: 电脑和手机浏览器的小插件。<br>我们就是要给你整一个安全、快、不被过滤的网络体验。每个程序都是精挑细选的，还有安装和使用的说明给你备好了。</span>
+                        <span lang="ru" style="display:none"><strong>Пакет спасения</strong> Мы тут собрали для вас шмотку самых лучших и надежных приложух, чтобы вы могли лазить в инете без всяких преград. Они разбиты по системам ваших девайсов, чтоб вы быстро нашли, что вам надо.<br><br>Windows: Крутые шмотки для свободного инета на вашем компе.<br>Android: Легкие и шустрые проги для андроидных телефонов и планшетов.<br>iOS: Безопасные и простые штуки для тех, кто с айфонами и айпадами.<br>Расширения для браузеров: Плагины для браузеров на компе и мобиле.<br>Наша цель - дать вам безопасный, быстрый и безфильтровый интернет. Каждую прогу мы выбирали с умом, и инструкции по установке и использованию тоже прилагаются.</span>
+                        <span lang="tr" style="display:none"><strong>Kurtarma Paketi</strong> Burada sana internete sınırsız girmen için en iyi ve güvenilir uygulamaları topladık. Bunlar cihazının sistemine göre ayrıldı, böylece kendine uygun olanı çabuk bulursun.<br><br>Windows: Bilgisayarın için özgür internete açılan güçlü araçlar.<br>Android: Android telefonlar ve tabletler için hafif ve hızlı uygulamalar.<br>iOS: iPhone ve iPad kullanıcıları için güvenli ve basit çözümler.<br>Tarayıcı Eklentileri: Bilgisayar ve telefon tarayıcıları için eklentiler.<br>Amacımız sana güvenli, hızlı ve filtresiz bir internet deneyimi sunmak. Her uygulama özenle seçildi, kurulum ve kullanım açıklamaları da yanında.</span>
                     </p>
                     <div class="accordion-container">
                         <div class="accordion">
-                            <div class="accordion-header" onclick="toggleAccordion(this)"><span lang="fa">اندروید</span><span lang="en" style="display:none">Android</span><span lang="ar" style="display:none">أندرويد</span><span lang="zh" style="display:none">安卓</span><span lang="ru" style="display:none">Android</span><span lang="tr" style="display:none">Android</span></div>
+                            <div class="accordion-header" onclick="toggleAccordion(this)">
+                                <span lang="fa">اندروید</span>
+                                <span lang="en" style="display:none">Android</span>
+                                <span lang="ar" style="display:none">أندرويد</span>
+                                <span lang="zh" style="display:none">安卓</span>
+                                <span lang="ru" style="display:none">Андроид</span>
+                                <span lang="tr" style="display:none">Android</span>
+                            </div>
                             <div class="accordion-content">
                                 <ul>
-                                    <li><a href="https://github.com/ProtonVPN/android-app/releases/download/5.9.59.0/ProtonVPN-5.9.59.0.605095900.-production-vanilla-direct-release.apk" target="_blank"><span lang="fa">پروتون</span><span lang="en" style="display:none">Option 1</span><span lang="ar" style="display:none">الخيار 1</span><span lang="zh" style="display:none">选项 1</span><span lang="ru" style="display:none">Вариант 1</span><span lang="tr" style="display:none">Seçenek 1</span></a></li>
-                                    <li><a href="https://github.com/GFW-knocker/MahsaNG/releases/download/v12-(1403-11-7)/MahsaNG_12_universal.apk" target="_blank"><span lang="fa">مهساانجی</span><span lang="en" style="display:none">Option 2</span><span lang="ar" style="display:none">الخيار 2</span><span lang="zh" style="display:none">选项 2</span><span lang="ru" style="display:none">Вариант 2</span><span lang="tr" style="display:none">Seçenek 2</span></a></li>
-                                    <li><a href="https://github.com/Windscribe/Android-App/releases/download/3.81/mobile.apk" target="_blank"><span lang="fa">وینداسکرایب</span><span lang="en" style="display:none">Option 3</span><span lang="ar" style="display:none">الخيار 3</span><span lang="zh" style="display:none">选项 3</span><span lang="ru" style="display:none">Вариант 3</span><span lang="tr" style="display:none">Seçenek 3</span></a></li>
-                                    <li><a href="https://github.com/freegate-release/website/raw/refs/heads/gh-pages/files/fgvpn15.apk" target="_blank"><span lang="fa">فری گیت</span><span lang="en" style="display:none">Option 4</span><span lang="ar" style="display:none">الخيار 4</span><span lang="zh" style="display:none">选项 4</span><span lang="ru" style="display:none">Вариант 4</span><span lang="tr" style="display:none">Seçenek 4</span></a></li>
-                                    <li><a href="https://github.com/hiddify/hiddify-next/releases/download/v2.0.5/Hiddify-Android-universal.apk" target="_blank"><span lang="fa">هیدیفای</span><span lang="en" style="display:none">Option 5</span><span lang="ar" style="display:none">الخيار 5</span><span lang="zh" style="display:none">选项 5</span><span lang="ru" style="display:none">Вариант 5</span><span lang="tr" style="display:none">Seçenek 5</span></a></li>
+                                    <li><a href="https://github.com/ProtonVPN/android-app/releases/download/5.9.59.0/ProtonVPN-5.9.59.0.605095900.-production-vanilla-direct-release.apk" target="_blank">
+                                        <span lang="fa">پروتون</span>
+                                        <span lang="en" style="display:none">Proton</span>
+                                        <span lang="ar" style="display:none">بروتون</span>
+                                        <span lang="zh" style="display:none">普顿</span>
+                                        <span lang="ru" style="display:none">Протон</span>
+                                        <span lang="tr" style="display:none">Proton</span>
+                                    </a></li>
+                                    <li><a href="https://github.com/GFW-knocker/MahsaNG/releases/download/v12-(1403-11-7)/MahsaNG_12_universal.apk" target="_blank">
+                                        <span lang="fa">مهساانجی</span>
+                                        <span lang="en" style="display:none">MahsaNG</span>
+                                        <span lang="ar" style="display:none">مهسا إن جي</span>
+                                        <span lang="zh" style="display:none">马赫萨NG</span>
+                                        <span lang="ru" style="display:none">МахсаНГ</span>
+                                        <span lang="tr" style="display:none">MahsaNG</span>
+                                    </a></li>
+                                    <li><a href="https://github.com/Windscribe/Android-App/releases/download/3.81/mobile.apk" target="_blank">
+                                        <span lang="fa">وینداسکرایب</span>
+                                        <span lang="en" style="display:none">Windscribe</span>
+                                        <span lang="ar" style="display:none">ويندسكرايب</span>
+                                        <span lang="zh" style="display:none">风 scribe</span>
+                                        <span lang="ru" style="display:none">Виндскрайб</span>
+                                        <span lang="tr" style="display:none">Windscribe</span>
+                                    </a></li>
+                                    <li><a href="https://github.com/freegate-release/website/raw/refs/heads/gh-pages/files/fgvpn15.apk" target="_blank">
+                                        <span lang="fa">فری گیت</span>
+                                        <span lang="en" style="display:none">Freegate</span>
+                                        <span lang="ar" style="display:none">فري جيت</span>
+                                        <span lang="zh" style="display:none">自由门</span>
+                                        <span lang="ru" style="display:none">Фригейт</span>
+                                        <span lang="tr" style="display:none">Freegate</span>
+                                    </a></li>
+                                    <li><a href Commod://github.com/hiddify/hiddify-next/releases/download/v2.0.5/Hiddify-Android-universal.apk" target="_blank">
+                                        <span lang="fa">هیدیفای</span>
+                                        <span lang="en" style="display:none">Hiddify</span>
+                                        <span lang="ar" style="display:none">هيديفاي</span>
+                                        <span lang="zh" style="display:none">隐藏</span>
+                                        <span lang="ru" style="display:none">Хиддифай</span>
+                                        <span lang="tr" style="display:none">Hiddify</span>
+                                    </a></li>
                                 </ul>
                             </div>
                         </div>
                         <div class="accordion">
-                            <div class="accordion-header" onclick="toggleAccordion(this)"><span lang="fa">ویندوز</span><span lang="en" style="display:none">Windows</span><span lang="ar" style="display:none">ويندوز</span><span lang="zh" style="display:none">Windows</span><span lang="ru" style="display:none">Windows</span><span lang="tr" style="display:none">Windows</span></div>
+                            <div class="accordion-header" onclick="toggleAccordion(this)">
+                                <span lang="fa">ویندوز</span>
+                                <span lang="en" style="display:none">Windows</span>
+                                <span lang="ar" style="display:none">ويندوز</span>
+                                <span lang="zh" style="display:none">窗户</span>
+                                <span lang="ru" style="display:none">Виндовс</span>
+                                <span lang="tr" style="display:none">Windows</span>
+                            </div>
                             <div class="accordion-content">
                                 <ul>
-                                    <li><a href="https://github.com/bepass-org/oblivion-desktop/releases/latest/download/oblivion-desktop-win-ia32.exe" target="_blank"><span lang="fa">اوبلیویون</span><span lang="en" style="display:none">Option 1</span><span lang="ar" style="display:none">الخيار 1</span><span lang="zh" style="display:none">选项 1</span><span lang="ru" style="display:none">Вариант 1</span><span lang="tr" style="display:none">Seçenek 1</span></a></li>
-                                    <li><a href="https://github.com/hiddify/hiddify-next/releases/latest/download/Hiddify-Windows-Portable-x64.zip" target="_blank"><span lang="fa">هیدیفای</span><span lang="en" style="display:none">Option 2</span><span lang="ar" style="display:none">الخيار 2</span><span lang="zh" style="display:none">选项 2</span><span lang="ru" style="display:none">Вариант 2</span><span lang="tr" style="display:none">Seçenek 2</span></a></li>
-                                    <li><a href="https://xvpn.io/download/vpn-win?isAutoDownload=true&os=win" target="_blank"><span lang="fa">x-vpn</span><span lang="en" style="display:none">Option 3</span><span lang="ar" style="display:none">الخيار 3</span><span lang="zh" style="display:none">选项 3</span><span lang="ru" style="display:none">Вариант 3</span><span lang="tr" style="display:none">Seçenek 3</span></a></li>
-                                    <li><a href="https://dl.geph.io/geph-releases/windows-stable/4.99.32/geph-windows-setup.exe" target="_blank"><span lang="fa">geph</span><span lang="en" style="display:none">Option 4</span><span lang="ar" style="display:none">الخيار 4</span><span lang="zh" style="display:none">选项 4</span><span lang="ru" style="display:none">Вариант 4</span><span lang="tr" style="display:none">Seçenek 4</span></a></li>
-                                    <li><a href="https://s3.amazonaws.com/static.vpnly.com/win/vpnly.exe" target="_blank"><span lang="fa">vpnly</span><span lang="en" style="display:none">Option 5</span><span lang="ar" style="display:none">الخيار 5</span><span lang="zh" style="display:none">选项 5</span><span lang="ru" style="display:none">Вариант 5</span><span lang="tr" style="display:none">Seçenek 5</span></a></li>
+                                    <li><a href="https://github.com/bepass-org/oblivion-desktop/releases/latest/download/oblivion-desktop-win-ia32.exe" target="_blank">
+                                        <span lang="fa">اوبلیویون</span>
+                                        <span lang="en" style="display:none">Oblivion</span>
+                                        <span lang="ar" style="display:none">أوبليفيون</span>
+                                        <span lang="zh" style="display:none">遗忘</span>
+                                        <span lang="ru" style="display:none">Обливион</span>
+                                        <span lang="tr" style="display:none">Oblivion</span>
+                                    </a></li>
+                                    <li><a href="https://github.com/hiddify/hiddify-next/releases/latest/download/Hiddify-Windows-Portable-x64.zip" target="_blank">
+                                        <span lang="fa">هیدیفای</span>
+                                        <span lang="en" style="display:none">Hiddify</span>
+                                        <span lang="ar" style="display:none">هيديفاي</span>
+                                        <span lang="zh" style="display:none">隐藏</span>
+                                        <span lang="ru" style="display:none">Хиддифай</span>
+                                        <span lang="tr" style="display:none">Hiddify</span>
+                                    </a></li>
+                                    <li><a href="https://xvpn.io/download/vpn-win?isAutoDownload=true&os=win" target="_blank">
+                                        <span lang="fa">x-vpn</span>
+                                        <span lang="en" style="display:none">X-VPN</span>
+                                        <span lang="ar" style="display:none">إكس-في بي إن</span>
+                                        <span lang="zh" style="display:none">X-VPN</span>
+                                        <span lang="ru" style="display:none">X-VPN</span>
+                                        <span lang="tr" style="display:none">X-VPN</span>
+                                    </a></li>
+                                    <li><a href="https://dl.geph.io/geph-releases/windows-stable/4.99.32/geph-windows-setup.exe" target="_blank">
+                                        <span lang="fa">geph</span>
+                                        <span lang="en" style="display:none">Geph</span>
+                                        <span lang="ar" style="display:none">جيف</span>
+                                        <span lang="zh" style="display:none">盖夫</span>
+                                        <span lang="ru" style="display:none">Геф</span>
+                                        <span lang="tr" style="display:none">Geph</span>
+                                    </a></li>
+                                    <li><a href="https://s3.amazonaws.com/static.vpnly.com/win/vpnly.exe" target="_blank">
+                                        <span lang="fa">vpnly</span>
+                                        <span lang="en" style="display:none">VPNly</span>
+                                        <span lang="ar" style="display:none">في بي إن لي</span>
+                                        <span lang="zh" style="display:none">VPNly</span>
+                                        <span lang="ru" style="display:none">ВПНли</span>
+                                        <span lang="tr" style="display:none">VPNly</span>
+                                    </a></li>
                                 </ul>
                             </div>
                         </div>
                         <div class="accordion">
-                            <div class="accordion-header" onclick="toggleAccordion(this)"><span lang="fa">آیفون</span><span lang="en" style="display:none">iPhone</span><span lang="ar" style="display:none">آيفون</span><span lang="zh" style="display:none">iPhone</span><span lang="ru" style="display:none">iPhone</span><span lang="tr" style="display:none">iPhone</span></div>
+                            <div class="accordion-header" onclick="toggleAccordion(this)">
+                                <span lang="fa">آیفون</span>
+                                <span lang="en" style="display:none">iPhone</span>
+                                <span lang="ar" style="display:none">آيفون</span>
+                                <span lang="zh" style="display:none">苹果手机</span>
+                                <span lang="ru" style="display:none">Айфон</span>
+                                <span lang="tr" style="display:none">iPhone</span>
+                            </div>
                             <div class="accordion-content">
                                 <ul>
-                                    <li><a href="https://apps.apple.com/us/app/ostrich-vpn-proxy-master/id1532634346" target="_blank"><span lang="fa">ostrich</span><span lang="en" style="display:none">Option 1</span><span lang="ar" style="display:none">الخيار 1</span><span lang="zh" style="display:none">选项 1</span><span lang="ru" style="display:none">Вариант 1</span><span lang="tr" style="display:none">Seçenek 1</span></a></li>
-                                    <li><a href="https://apps.apple.com/us/app/proton-vpn-fast-secure/id1437005085" target="_blank"><span lang="fa">proton</span><span lang="en" style="display:none">Option 2</span><span lang="ar" style="display:none">الخيار 2</span><span lang="zh" style="display:none">选项 2</span><span lang="ru" style="display:none">Вариант 2</span><span lang="tr" style="display:none">Seçenek 2</span></a></li>
-                                    <li><a href="https://apps.apple.com/us/app/hiddify-proxy-vpn/id6596777532" target="_blank"><span lang="fa">hiddify</span><span lang="en" style="display:none">Option 3</span><span lang="ar" style="display:none">الخيار 3</span><span lang="zh" style="display:none">选项 3</span><span lang="ru" style="display:none">Вариант 3</span><span lang="tr" style="display:none">Seçenek 3</span></a></li>
-                                    <li><a href="https://apps.apple.com/us/app/vpn-turbo-private-by-vpnly/id6739255199" target="_blank"><span lang="fa">vpnly</span><span lang="en" style="display:none">Option 4</span><span lang="ar" style="display:none">الخيار 4</span><span lang="zh" style="display:none">选项 4</span><span lang="ru" style="display:none">Вариант 4</span><span lang="tr" style="display:none">Seçenek 4</span></a></li>
-                                    <li><a href="https://apps.apple.com/us/app/windscribe-vpn/id1129435228" target="_blank"><span lang="fa">windscribe</span><span lang="en" style="display:none">Option 5</span><span lang="ar" style="display:none">الخيار 5</span><span lang="zh" style="display:none">选项 5</span><span lang="ru" style="display:none">Вариант 5</span><span lang="tr" style="display:none">Seçenek 5</span></a></li>
+                                    <li><a href="https://apps.apple.com/us/app/ostrich-vpn-proxy-master/id1532634346" target="_blank">
+                                        <span lang="fa">ostrich</span>
+                                        <span lang="en" style="display:none">Ostrich</span>
+                                        <span lang="ar" style="display:none">أوستريش</span>
+                                        <span lang="zh" style="display:none">鸵鸟</span>
+                                        <span lang="ru" style="display:none">Острич</span>
+                                        <span lang="tr" style="display:none">Ostrich</span>
+                                    </a></li>
+                                    <li><a href="https://apps.apple.com/us/app/proton-vpn-fast-secure/id1437005085" target="_blank">
+                                        <span lang="fa">proton</span>
+                                        <span lang="en" style="display:none">Proton</span>
+                                        <span lang="ar" style="display:none">بروتون</span>
+                                        <span lang="zh" style="display:none">普顿</span>
+                                        <span lang="ru" style="display:none">Протон</span>
+                                        <span lang="tr" style="display:none">Proton</span>
+                                    </a></li>
+                                    <li><a href="https://apps.apple.com/us/app/hiddify-proxy-vpn/id6596777532" target="_blank">
+                                        <span lang="fa">hiddify</span>
+                                        <span lang="en" style="display:none">Hiddify</span>
+                                        <span lang="ar" style="display:none">هيديفاي</span>
+                                        <span lang="zh" style="display:none">隐藏</span>
+                                        <span lang="ru" style="display:none">Хиддифай</span>
+                                        <span lang="tr" style="display:none">Hiddify</span>
+                                    </a></li>
+                                    <li><a href="https://apps.apple.com/us/app/vpn-turbo-private-by-vpnly/id6739255199" target="_blank">
+                                        <span lang="fa">vpnly</span>
+                                        <span lang="en" style="display:none">VPNly</span>
+                                        <span lang="ar" style="display:none">في بي إن لي</span>
+                                        <span lang="zh" style="display:none">VPNly</span>
+                                        <span lang="ru" style="display:none">ВПНли</span>
+                                        <span lang="tr" style="display:none">VPNly</span>
+                                    </a></li>
+                                    <li><a href="https://apps.apple.com/us/app/windscribe-vpn/id1129435228" target="_blank">
+                                        <span lang="fa">windscribe</span>
+                                        <span lang="en" style="display:none">Windscribe</span>
+                                        <span lang="ar" style="display:none">ويندسكرايب</span>
+                                        <span lang="zh" style="display:none">风 scribe</span>
+                                        <span lang="ru" style="display:none">Виндскрайб</span>
+                                        <span lang="tr" style="display:none">Windscribe</span>
+                                    </a></li>
                                 </ul>
                             </div>
                         </div>
                         <div class="accordion">
-                            <div class="accordion-header" onclick="toggleAccordion(this)"><span lang="fa">اکستنشن‌های مرورگر</span><span lang="en" style="display:none">Browser Extensions</span><span lang="ar" style="display:none">إضافات المتصفح</span><span lang="zh" style="display:none">浏览器扩展</span><span lang="ru" style="display:none">Расширения браузера</span><span lang="tr" style="display:none">Tarayıcı Uzantıları</span></div>
+                            <div class="accordion-header" onclick="toggleAccordion(this)">
+                                <span lang="fa">اکستنشن‌های مرورگر</span>
+                                <span lang="en" style="display:none">Browser Extensions</span>
+                                <span lang="ar" style="display:none">إضافات المتصفح</span>
+                                <span lang="zh" style="display:none">浏览器扩展</span>
+                                <span lang="ru" style="display:none">Расширения браузера</span>
+                                <span lang="tr" style="display:none">Tarayıcı Uzantıları</span>
+                            </div>
                             <div class="accordion-content">
                                 <ul>
-                                    <li><a href="https://windscribe.com/install/extension/chrome" target="_blank"><span lang="fa">windscribe</span><span lang="en" style="display:none">Option 1</span><span lang="ar" style="display:none">الخيار 1</span><span lang="zh" style="display:none">选项 1</span><span lang="ru" style="display:none">Вариант 1</span><span lang="tr" style="display:none">Seçenek 1</span></a></li>
-                                    <li><a href="https://chromewebstore.google.com/detail/lneaocagcijjdpkcabeanfpdbmapcjjg?utm_source=item-share-cb" target="_blank"><span lang="fa">vpnly</span><span lang="en" style="display:none">Option 2</span><span lang="ar" style="display:none">الخيار 2</span><span lang="zh" style="display:none">选项 2</span><span lang="ru" style="display:none">Вариант 2</span><span lang="tr" style="display:none">Seçenek 2</span></a></li>
-                                    <li><a href="https://chromewebstore.google.com/detail/majdfhpaihoncoakbjgbdhglocklcgno?utm_source=item-share-cb" target="_blank"><span lang="fa">veepn</span><span lang="en" style="display:none">Option 3</span><span lang="ar" style="display:none">الخيار 3</span><span lang="zh" style="display:none">选项 3</span><span lang="ru" style="display:none">Вариант 3</span><span lang="tr" style="display:none">Seçenek 3</span></a></li>
-                                    <li><a href="https://chromewebstore.google.com/detail/fdcgdnkidjaadafnichfpabhfomcebme?utm_source=item-share-cb" target="_blank"><span lang="fa">zen mate</span><span lang="en" style="display:none">Option 4</span><span lang="ar" style="display:none">الخيار 4</span><span lang="zh" style="display:none">选项 4</span><span lang="ru" style="display:none">Вариант 4</span><span lang="tr" style="display:none">Seçenek 4</span></a></li>
-                                    <li><a href="https://chromewebstore.google.com/detail/jaoafpkngncfpfggjefnekilbkcpjdgp?utm_source=item-share-cb" target="_blank"><span lang="fa">uvpn</span><span lang="en" style="display:none">Option 5</span><span lang="ar" style="display:none">الخيار 5</span><span lang="zh" style="display:none">选项 5</span><span lang="ru" style="display:none">Вариант 5</span><span lang="tr" style="display:none">Seçenek 5</span></a></li>
+                                    <li><a href="https://windscribe.com/install/extension/chrome" target="_blank">
+                                        <span lang="fa">windscribe</span>
+                                        <span lang="en" style="display:none">Windscribe</span>
+                                        <span lang="ar" style="display:none">ويندسكرايب</span>
+                                        <span lang="zh" style="display:none">风 scribe</span>
+                                        <span lang="ru" style="display:none">Виндскрайб</span>
+                                        <span lang="tr" style="display:none">Windscribe</span>
+                                    </a></li>
+                                    <li><a href="https://chromewebstore.google.com/detail/lneaocagcijjdpkcabeanfpdbmapcjjg?utm_source=item-share-cb" target="_blank">
+                                        <span lang="fa">vpnly</span>
+                                        <span lang="en" style="display:none">VPNly</span>
+                                        <span lang="ar" style="display:none">في بي إن لي</span>
+                                        <span lang="zh" style="display:none">VPNly</span>
+                                        <span lang="ru" style="display:none">ВПНли</span>
+                                        <span lang="tr" style="display:none">VPNly</span>
+                                    </a></li>
+                                    <li><a href="https://chromewebstore.google.com/detail/majdfhpaihoncoakbjgbdhglocklcgno?utm_source=item-share-cb" target="_blank">
+                                        <span lang="fa">veepn</span>
+                                        <span lang="en" style="display:none">VeePN</span>
+                                        <span lang="ar" style="display:none">في بي إن</span>
+                                        <span lang="zh" style="display:none">VeePN</span>
+                                        <span lang="ru" style="display:none">ВииПН</span>
+                                        <span lang="tr" style="display:none">VeePN</span>
+                                    </a></li>
+                                    <li><a href="https://chromewebstore.google.com/detail/fdcgdnkidjaadafnichfpabhfomcebme?utm_source=item-share-cb" target="_blank">
+                                        <span lang="fa">zen mate</span>
+                                        <span lang="en" style="display:none">ZenMate</span>
+                                        <span lang="ar" style="display:none">زين ميت</span>
+                                        <span lang="zh" style="display:none">禅友</span>
+                                        <span lang="ru" style="display:none">ЗенМейт</span>
+                                        <span lang="tr" style="display:none">ZenMate</span>
+                                    </a></li>
+                                    <li><a href="https://chromewebstore.google.com/detail/jaoafpkngncfpfggjefnekilbkcpjdgp?utm_source=item-share-cb" target="_blank">
+                                        <span lang="fa">uvpn</span>
+                                        <span lang="en" style="display:none">uVPN</span>
+                                        <span lang="ar" style="display:none">يو في بي إن</span>
+                                        <span lang="zh" style="display:none">uVPN</span>
+                                        <span lang="ru" style="display:none">уВПН</span>
+                                        <span lang="tr" style="display:none">uVPN</span>
+                                    </a></li>
                                 </ul>
                             </div>
                         </div>
@@ -54,18 +395,39 @@
             </div>
             <div id="blog" class="content">
                 <div id="blog-posts">
-                    <p><span lang="fa">در حال بارگذاری پست‌ها...</span><span lang="en" style="display:none">Loading posts...</span><span lang="ar" style="display:none">جارٍ تحميل المنشورات...</span><span lang="zh" style="display:none">正在加载帖子...</span><span lang="ru" style="display:none">Загрузка постов...</span><span lang="tr" style="display:none">Gönderiler yükleniyor...</span></p>
+                    <p>
+                        <span lang="fa">در حال بارگذاری پست‌ها...</span>
+                        <span lang="en" style="display:none">Loading posts, hang on...</span>
+                        <span lang="ar" style="display:none">جاري تحميل البوستات...</span>
+                        <span lang="zh" style="display:none">帖子加载中，等一下...</span>
+                        <span lang="ru" style="display:none">Грузим посты, подожди...</span>
+                        <span lang="tr" style="display:none">Gönderiler yükleniyor, bekle...</span>
+                    </p>
                 </div>
             </div>
             <div id="technology" class="content">
                 <div id="tech-news">
-                    <p><span lang="fa">در حال بارگذاری اخبار تکنولوژی...</span><span lang="en" style="display:none">Loading technology news...</span><span lang="ar" style="display:none">جارٍ تحميل أخبار التكنولوجيا...</span><span lang="zh" style="display:none">正在加载科技新闻...</span><span lang="ru" style="display:none">Загрузка новостей технологий...</span><span lang="tr" style="display:none">Teknoloji haberleri yükleniyor...</span></p>
+                    <p>
+                        <span lang="fa">در حال بارگذاری اخبار تکنولوژی...</span>
+                        <span lang="en" style="display:none">Loading tech news, give it a sec...</span>
+                        <span lang="ar" style="display:none">جاري تحميل أخبار التقنية...</span>
+                        <span lang="zh" style="display:none">科技新闻加载中，稍等...</span>
+                        <span lang="ru" style="display:none">Грузим техно-новости, секунду...</span>
+                        <span lang="tr" style="display:none">Teknoloji haberleri yükleniyor, bir saniye...</span>
+                    </p>
                 </div>
             </div>
         </div>
     </div>
     <footer>
-        <p><span lang="fa">تماس با ما: t.me/azadnet | © 1404</span><span lang="en" style="display:none">Contact us: t.me/azadnet | © 2025</span><span lang="ar" style="display:none">اتصل بنا: t.me/azadnet | © 1404</span><span lang="zh" style="display:none">联系我们: t.me/azadnet | © 1404</span><span lang="ru" style="display:none">Свяжитесь с нами: t.me/azadnet | © 1404</span><span lang="tr" style="display:none">Bize ulaşın: t.me/azadnet | © 1404</span></p>
+        <p>
+            <span lang="fa">تماس با ما: t.me/azadnet | © 1404</span>
+            <span lang="en" style="display:none">Hit us up: t.me/azadnet | © 2025</span>
+            <span lang="ar" style="display:none">كلمنا: t.me/azadnet | © 1404</span>
+            <span lang="zh" style="display:none">联系我们: t.me/azadnet | © 1404</span>
+            <span lang="ru" style="display:none">Пиши нам: t.me/azadnet | © 1404</span>
+            <span lang="tr" style="display:none">Bize ulaş: t.me/azadnet | © 1404</span>
+        </p>
     </footer>
     <script>
         const contents = document.querySelectorAll('.content'),
@@ -152,7 +514,7 @@
         async function loadBlogPosts() {
             const blogPostsContainer = document.getElementById('blog-posts');
             const currentLang = document.documentElement.lang || 'fa';
-            blogPostsContainer.innerHTML = `<p><span lang="fa">در حال بارگذاری پست‌ها...</span><span lang="en" style="display:none">Loading posts...</span><span lang="ar" style="display:none">جارٍ تحميل المنشورات...</span><span lang="zh" style="display:none">正在加载帖子...</span><span lang="ru" style="display:none">Загрузка постов...</span><span lang="tr" style="display:none">Gönderiler yükleniyor...</span></p>`;
+            blogPostsContainer.innerHTML = `<p><span lang="fa">در حال بارگذاری پست‌ها...</span><span lang="en" style="display:none">Loading posts, hang on...</span><span lang="ar" style="display:none">جاري تحميل البوستات...</span><span lang="zh" style="display:none">帖子加载中，等一下...</span><span lang="ru" style="display:none">Грузим посты, подожди...</span><span lang="tr" style="display:none">Gönderiler yükleniyor, bekle...</span></p>`;
             
             if (blogPostsCache && currentLang === 'fa') {
                 blogPostsContainer.innerHTML = blogPostsCache;
@@ -176,12 +538,12 @@
                 const entries = xmlDoc.getElementsByTagName('entry');
                 
                 if (entries.length === 0) {
-                    blogPostsContainer.innerHTML = '<p><span lang="fa">پستی برای نمایش وجود ندارد.</span><span lang="en" style="display:none">No posts to display.</span><span lang="ar" style="display:none">لا توجد منشورات للعرض.</span><span lang="zh" style="display:none">没有帖子可显示。</span><span lang="ru" style="display:none">Нет постов для отображения.</span><span lang="tr" style="display:none">Gösterilecek gönderi yok。</span></p>';
+                    blogPostsContainer.innerHTML = '<p><span lang="fa">پستی برای نمایش وجود ندارد.</span><span lang="en" style="display:none">No posts to show, dude.</span><span lang="ar" style="display:none">ما في بوستات للعرض.</span><span lang="zh" style="display:none">没帖子给你看哦。</span><span lang="ru" style="display:none">Постов для показа нет, сорян.</span><span lang="tr" style="display:none">Gösterilecek gönderi yok, üzgünüm.</span></p>';
                     return;
                 }
 
                 blogPostsContainer.innerHTML = '';
-                for (let i = 0; i < Math.min(entries.length, 3); i++) { // تغییر از 5 به 3
+                for (let i = 0; i < Math.min(entries.length, 3); i++) {
                     const entry = entries[i];
                     const title = entry.getElementsByTagName('title')[0].textContent;
                     const content = entry.getElementsByTagName('content')[0]?.textContent.replace(/<[^>]+>/g, '') || 'توضیحات موجود نیست';
@@ -209,11 +571,11 @@
                 console.error('خطا در دریافت فید وبلاگ:', error.message, error.stack);
                 const errorMessages = {
                     fa: 'خطا در بارگذاری پست‌ها. لطفاً اینترنت خود را بررسی کرده و صفحه را رفرش کنید.',
-                    en: 'Error loading posts. Please check your internet connection and refresh the page.',
-                    ar: 'خطأ في تحميل المنشورات. يرجى التحقق من اتصالك بالإنترنت وتحديث الصفحة.',
-                    zh: '加载帖子时出错。请检查您的网络连接并刷新页面。',
-                    ru: 'Ошибка при загрузке постов. Пожалуйста,проверьте интернет-соединение и обновите страницу.',
-                    tr: 'Gönderiler yüklenirken hata oluştu. Lütfen internet bağlantınızı kontrol edin ve sayfayı yenileyin.'
+                    en: 'Oops, posts didn’t load. Check your net and refresh.',
+                    ar: 'فيه مشكلة في تحميل البوستات. اتأكد من النت واعمل ريفرش.',
+                    zh: '加载帖子出错了，检查下网络再刷新吧。',
+                    ru: 'Ошибка с загрузкой постов. Проверь инет и обнови страницу.',
+                    tr: 'Gönderiler yüklenirken hata çıktı. İnterneti kontrol et ve yenile.'
                 };
                 const errorMsg = errorMessages[currentLang] || errorMessages['fa'];
                 blogPostsContainer.innerHTML = `<p>${errorMsg}</p>`;
@@ -223,7 +585,7 @@
         async function loadTechNews() {
             const techNewsContainer = document.getElementById('tech-news');
             const currentLang = document.documentElement.lang || 'fa';
-            techNewsContainer.innerHTML = `<p><span lang="fa">در حال بارگذاری اخبار تکنولوژی...</span><span lang="en" style="display:none">Loading technology news...</span><span lang="ar" style="display:none">جارٍ تحميل أخبار التكنولوجيا...</span><span lang="zh" style="display:none">正在加载科技新闻...</span><span lang="ru" style="display:none">Загрузка новостей технологий...</span><span lang="tr" style="display:none">Teknoloji haberleri yükleniyor...</span></p>`;
+            techNewsContainer.innerHTML = `<p><span lang="fa">در حال بارگذاری اخبار تکنولوژی...</span><span lang="en" style="display:none">Loading tech news, give it a sec...</span><span lang="ar" style="display:none">جاري تحميل أخبار التقنية...</span><span lang="zh" style="display:none">科技新闻加载中，稍等...</span><span lang="ru" style="display:none">Грузим техно-новости, секунду...</span><span lang="tr" style="display:none">Teknoloji haberleri yükleniyor, bir saniye...</span></p>`;
 
             if (techNewsCache && currentLang === 'fa') {
                 techNewsContainer.innerHTML = techNewsCache;
@@ -260,11 +622,11 @@
             if (allEntries.length === 0) {
                 const errorMessages = {
                     fa: 'خبری برای نمایش وجود ندارد. لطفاً اینترنت خود را بررسی کرده و صفحه را رفرش کنید.',
-                    en: 'No news to display. Please check your internet connection and refresh the page.',
-                    ar: 'لا توجد أخبار للعرض. يرجى التحقق من اتصالك بالإنترنت وتحديث الصفحة.',
-                    zh: '没有新闻可显示。请检查您的网络连接并刷新页面。',
-                    ru: 'Нет новостей для отображения. Пожалуйста,проверьте интернет-соединение и обновите страницу.',
-                    tr: 'Gösterilecek haber yok. Lütfen internet bağlantınızı kontrol edin ve sayfayı yenileyin.'
+                    en: 'No tech news to show. Check your connection and hit refresh.',
+                    ar: 'ما في أخبار للعرض. شوف النت واعمل ريفرش.',
+                    zh: '没科技新闻可看，检查网络再刷新吧。',
+                    ru: 'Новостей нету. Проверь инет и обнови страницу.',
+                    tr: 'Gösterilecek teknoloji haberi yok. Bağlantını kontrol et ve yenile.'
                 };
                 const errorMsg = errorMessages[currentLang] || errorMessages['fa'];
                 techNewsContainer.innerHTML = `<p>${errorMsg}</p>`;
@@ -278,7 +640,7 @@
             });
 
             techNewsContainer.innerHTML = '';
-            for (let i = 0; i < Math.min(allEntries.length, 3); i++) { // تغییر از 5 به 3
+            for (let i = 0; i < Math.min(allEntries.length, 3); i++) {
                 const entry = allEntries[i];
                 const title = entry.getElementsByTagName('title')[0].textContent;
                 const description = entry.getElementsByTagName('description')[0]?.textContent.replace(/<[^>]+>/g, '') || 'توضیحات موجود نیست';
@@ -377,4 +739,16 @@
                 acc.classList.remove('active');
             });
             if (!isActive) {
-                accordion.classList.add('active')}}window.onload=function(){loadSavedTheme();loadSavedLanguage();loadSavedSection()};window.onhashchange=loadSectionFromHash;</script></body></html>
+                accordion.classList.add('active')
+            }
+        }
+
+        window.onload = function() {
+            loadSavedTheme();
+            loadSavedLanguage();
+            loadSavedSection();
+        };
+        window.onhashchange = loadSectionFromHash;
+    </script>
+</body>
+</html>
