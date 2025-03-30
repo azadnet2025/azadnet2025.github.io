@@ -315,33 +315,28 @@
         .icons-container a img:hover {
             transform: scale(1.1);
         }
-        .wheel-container {
+        .slot-machine-container {
             margin-top: 30px;
             text-align: center;
         }
-        .wheel {
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-        }
-        .wheel-row {
+        .slot-machine {
             display: flex;
             justify-content: center;
             gap: 10px;
+            margin-bottom: 20px;
         }
-        .wheel-item {
-            width: 60px;
-            height: 60px;
+        .slot-column {
+            width: 80px;
+            height: 80px;
             background: rgb(255 255 255 / .1);
             border: 1px solid rgb(255 255 255 / .3);
             border-radius: 5px;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 30px;
+            font-size: 40px;
         }
         .spin-button {
-            margin-top: 20px;
             padding: 10px 20px;
             background-color: var(--link-color);
             color: white;
@@ -354,6 +349,10 @@
         .spin-button:hover {
             background-color: #0056b3;
         }
+        .spin-button:disabled {
+            background-color: #ccc;
+            cursor: not-allowed;
+        }
         .reward-message {
             margin-top: 20px;
             padding: 10px;
@@ -361,6 +360,26 @@
             border: 1px solid rgb(255 255 255 / .3);
             border-radius: 5px;
             display: none;
+        }
+        .biometric-container {
+            margin-top: 20px;
+        }
+        .biometric-container button {
+            padding: 8px 16px;
+            background-color: var(--link-color);
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-family: 'Estedad', Arial, sans-serif;
+        }
+        .biometric-container button:hover {
+            background-color: #0056b3;
+        }
+        .about-image {
+            margin-top: 20px;
+            max-width: 100%;
+            height: auto;
         }
         @media (min-width: 769px) {
             .container {
@@ -504,19 +523,23 @@
                 <div class="text-section">
                     <h1 id="welcome-text"><span lang="fa">خوش آمدید</span><span lang="en" style="display:none">Welcome</span><span lang="ar" style="display:none">مرحبًا</span><span lang="zh" style="display:none">欢迎</span><span lang="ru" style="display:none">Добро пожаловать</span><span lang="tr" style="display:none">Hoş Geldiniz</span></h1>
                     <div class="icons-container">
-                        <a href="https://telegram.org" target="_blank"><img src="telegram-icon.png" alt="تلگرام"></a>
-                        <a href="https://twitter.com" target="_blank"><img src="twitter-icon.png" alt="توییتر"></a>
-                        <a href="https://github.com" target="_blank"><img src="github-icon.png" alt="گیت‌هاب"></a>
-                        <a href="https://proton.me" target="_blank"><img src="proton-icon.png" alt="پروتون"></a>
+                        <a href="#rescue" onclick="showSection('rescue'); return false;"><img src="rescue-icon.png" alt="پکیج نجات"></a>
+                        <a href="#blog" onclick="showSection('blog'); loadBlogPosts(); return false;"><img src="blog-icon.png" alt="وبلاگ"></a>
+                        <a href="#technology" onclick="showSection('technology'); loadTechNews(); return false;"><img src="tech-icon.png" alt="تکنولوژی"></a>
+                        <a href="#about" onclick="showSection('about'); return false;"><img src="about-icon.png" alt="درباره ما"></a>
                     </div>
-                    <div class="wheel-container">
-                        <h2><span lang="fa">گردونه شانس</span><span lang="en" style="display:none">Wheel of Luck</span><span lang="ar" style="display:none">عجلة الحظ</span><span lang="zh" style="display:none">幸运轮</span><span lang="ru" style="display:none">Колесо удачи</span><span lang="tr" style="display:none">Şans Çarkı</span></h2>
-                        <div class="wheel">
-                            <div class="wheel-row" id="row1"></div>
-                            <div class="wheel-row" id="row2"></div>
-                            <div class="wheel-row" id="row3"></div>
+                    <div class="slot-machine-container">
+                        <h2><span lang="fa">ماشین اسلات</span><span lang="en" style="display:none">Slot Machine</span><span lang="ar" style="display:none">آلة القمار</span><span lang="zh" style="display:none">老虎机</span><span lang="ru" style="display:none">Игровой автомат</span><span lang="tr" style="display:none">Slot Makinesi</span></h2>
+                        <div id="biometric-container" class="biometric-container">
+                            <button onclick="authenticateWithBiometrics()">ورود با بیومتریک</button>
                         </div>
-                        <button class="spin-button" onclick="spinWheel()">چرخاندن</button>
+                        <div class="slot-machine" id="slot-machine" style="display: none;">
+                            <div class="slot-column" id="slot1"></div>
+                            <div class="slot-column" id="slot2"></div>
+                            <div class="slot-column" id="slot3"></div>
+                        </div>
+                        <button class="spin-button" id="spin-button" onclick="spinSlot()" disabled>چرخاندن</button>
+                        <p id="spin-count-text"><span lang="fa">شانس باقی‌مانده امروز: 3</span><span lang="en" style="display:none">Remaining spins today: 3</span><span lang="ar" style="display:none">الفرص المتبقية اليوم: 3</span><span lang="zh" style="display:none">今天剩余次数：3</span><span lang="ru" style="display:none">Оставшиеся попытки сегодня: 3</span><span lang="tr" style="display:none">Bugün kalan şans: 3</span></p>
                         <div class="reward-message" id="reward-message">
                             <p><span lang="fa">تبریک! جایزه شما: </span><span lang="en" style="display:none">Congratulations! Your reward: </span><span lang="ar" style="display:none">تهانينا! جائزتك: </span><span lang="zh" style="display:none">恭喜！您的奖励： </span><span lang="ru" style="display:none">Поздравляем! Ваш приз: </span><span lang="tr" style="display:none">Tebrikler! Ödülünüz: </span><a href="https://example.com/reward" target="_blank">لینک جایزه</a></p>
                         </div>
@@ -593,6 +616,7 @@
                 <div class="text-section">
                     <h1 id="about-text"><span lang="fa">درباره ما</span><span lang="en" style="display:none">About Us</span><span lang="ar" style="display:none">معلومات عنا</span><span lang="zh" style="display:none">关于我们</span><span lang="ru" style="display:none">О нас</span><span lang="tr" style="display:none">Hakkımızda</span></h1>
                     <p class="text-content"><span lang="fa">ما جمعی هستیم که تحت نام "آزادنت" گرد هم آمده‌ایم، با هدف ارائه خدمات رایگان و بدون محدودیت برای دسترسی به اطلاعات آزاد. ما خود را تابع قوانین ستمگرانه نمی‌دانیم و در راستای آزادی و سربلندی گام برمی‌داریم. تنها راه ارتباط با تیم آزادنت عضویت در کانال آزادنت است.</span><span lang="en" style="display:none">We are a group gathered under the name "Azadnet" to provide free and unrestricted access to information. We do not follow oppressive laws and strive for freedom and dignity. The only way to contact the Azadnet team is by joining the Azadnet channel.</span><span lang="ar" style="display:none">نحن مجموعة تجمعت تحت اسم "آزادنت" لتقديم خدمات مجانية وبلا قيود للوصول إلى المعلومات الحرة. لا نتبع القوانين الظالمة ونسعى للحرية والكرامة. الطريقة الوحيدة للتواصل مع فريق آزادنت هي الانضمام إلى قناة آزادنت.</span><span lang="zh" style="display:none">我们是一群以“自由网”之名聚集在一起的人，旨在提供免费且无限制的信息访问服务。我们不遵循压迫性法律，致力于自由与尊严。联系自由网团队的唯一方式是加入自由网频道。</span><span lang="ru" style="display:none">Мы - группа, собравшаяся под названием "Азаднет", чтобы предоставить бесплатный и неограниченный доступ к информации. Мы не подчиняемся угнетающим законам и стремимся к свободе и достоинству. Единственный способ связаться с командой Азаднет - это加入频道 Азаднет.</span><span lang="tr" style="display:none">Biz, "Azadnet" adı altında toplanmış bir grup olarak, bilgiye ücretsiz ve kısıtlamasız erişim sağlamak amacıyla bir araya geldik. Baskıcı yasalara uymuyor, özgürlük ve onur için çabalıyoruz. Azadnet ekibiyle iletişime geçmenin tek yolu Azadnet kanalına katılmaktır.</span></p>
+                    <img src="about-image.jpg" alt="درباره ما" class="about-image">
                 </div>
             </div>
         </div>
@@ -609,7 +633,8 @@
         let blogPostsCache = null;
         let techNewsCache = null;
 
-        const wheelItems = ['🍎', '🍌', '🍒', '🍇', '🍉', '🍍', '🥝'];
+        // گزینه‌های قابل شخصی‌سازی ماشین اسلات
+        const slotItems = ['⭐', '💎', '🎁', '🍀', '🔔', '🍒', '⚡']; // اینجا می‌توانید گزینه‌ها را تغییر دهید
 
         function toggleMenu() {
             navMenu.classList.toggle('active');
@@ -649,6 +674,7 @@
             if (document.getElementById('technology').classList.contains('active')) {
                 loadTechNews();
             }
+            updateSpinCountText();
         }
 
         function updateNavMenu(lang) {
@@ -921,34 +947,166 @@
             }
         }
 
-        function spinWheel() {
-            const rows = [document.getElementById('row1'), document.getElementById('row2'), document.getElementById('row3')];
+        async function authenticateWithBiometrics() {
+            if (!window.PublicKeyCredential) {
+                alert('مرورگر شما از احراز هویت بیومتریک پشتیبانی نمی‌کند.');
+                return;
+            }
+
+            try {
+                // ثبت کاربر (اگر هنوز ثبت نشده باشد)
+                const publicKeyCredentialCreationOptions = {
+                    challenge: Uint8Array.from("random-challenge", c => c.charCodeAt(0)),
+                    rp: { name: "Azadnet" },
+                    user: {
+                        id: Uint8Array.from("unique-user-id", c => c.charCodeAt(0)),
+                        name: "user@azadnet.com",
+                        displayName: "User"
+                    },
+                    pubKeyCredParams: [{ alg: -7, type: "public-key" }],
+                    authenticatorSelection: { authenticatorAttachment: "platform" },
+                    timeout: 60000
+                };
+
+                const credential = await navigator.credentials.create({
+                    publicKey: publicKeyCredentialCreationOptions
+                });
+
+                if (credential) {
+                    localStorage.setItem('biometricAuth', 'true');
+                    localStorage.setItem('biometricUserId', btoa(credential.id));
+                    document.getElementById('biometric-container').style.display = 'none';
+                    document.getElementById('slot-machine').style.display = 'flex';
+                    updateSpinCount();
+                }
+            } catch (error) {
+                console.error('خطا در ثبت بیومتریک:', error);
+                alert('خطا در احراز هویت بیومتریک. لطفاً دوباره تلاش کنید.');
+            }
+        }
+
+        async function verifyBiometric() {
+            const userId = localStorage.getItem('biometricUserId');
+            if (!userId) return false;
+
+            try {
+                const publicKeyCredentialRequestOptions = {
+                    challenge: Uint8Array.from("random-challenge", c => c.charCodeAt(0)),
+                    allowCredentials: [{
+                        id: Uint8Array.from(atob(userId), c => c.charCodeAt(0)),
+                        type: "public-key"
+                    }],
+                    timeout: 60000
+                };
+
+                const assertion = await navigator.credentials.get({
+                    publicKey: publicKeyCredentialRequestOptions
+                });
+
+                return !!assertion;
+            } catch (error) {
+                console.error('خطا در تأیید بیومتریک:', error);
+                return false;
+            }
+        }
+
+        function getTodayTimestamp() {
+            const today = new Date();
+            today.setHours(0, 0, 0, 0);
+            return today.getTime();
+        }
+
+        function updateSpinCount() {
+            const isAuthenticated = localStorage.getItem('biometricAuth') === 'true';
+            if (!isAuthenticated) return;
+
+            const today = getTodayTimestamp();
+            const spinData = JSON.parse(localStorage.getItem('spinData')) || { timestamp: null, count: 0 };
+
+            if (spinData.timestamp !== today) {
+                spinData.timestamp = today;
+                spinData.count = 0;
+            }
+
+            const remainingSpins = 3 - spinData.count;
+            const spinButton = document.getElementById('spin-button');
+            const spinCountText = document.getElementById('spin-count-text');
+            const currentLang = document.documentElement.lang || 'fa';
+
+            const messages = {
+                fa: `شانس باقی‌مانده امروز: ${remainingSpins}`,
+                en: `Remaining spins today: ${remainingSpins}`,
+                ar: `الفرص المتبقية اليوم: ${remainingSpins}`,
+                zh: `今天剩余次数：${remainingSpins}`,
+                ru: `Оставшиеся попытки сегодня: ${remainingSpins}`,
+                tr: `Bugün kalan şans: ${remainingSpins}`
+            };
+
+            spinCountText.innerHTML = `<span lang="fa">${messages.fa}</span><span lang="en" style="display:none">${messages.en}</span><span lang="ar" style="display:none">${messages.ar}</span><span lang="zh" style="display:none">${messages.zh}</span><span lang="ru" style="display:none">${messages.ru}</span><span lang="tr" style="display:none">${messages.tr}</span>`;
+            updateContent();
+
+            if (remainingSpins > 0) {
+                spinButton.disabled = false;
+            } else {
+                spinButton.disabled = true;
+                spinButton.textContent = currentLang === 'fa' ? 'شانس روزانه تمام شد' : 'Daily spins exhausted';
+            }
+
+            localStorage.setItem('spinData', JSON.stringify(spinData));
+        }
+
+        async function spinSlot() {
+            const isAuthenticated = localStorage.getItem('biometricAuth') === 'true';
+            if (!isAuthenticated || !(await verifyBiometric())) {
+                alert('لطفاً ابتدا با بیومتریک تأیید هویت کنید.');
+                return;
+            }
+
+            const spinData = JSON.parse(localStorage.getItem('spinData')) || { timestamp: getTodayTimestamp(), count: 0 };
+            if (spinData.count >= 3) return;
+
+            const slot1 = document.getElementById('slot1');
+            const slot2 = document.getElementById('slot2');
+            const slot3 = document.getElementById('slot3');
             const rewardMessage = document.getElementById('reward-message');
+
             rewardMessage.style.display = 'none';
 
-            rows.forEach(row => {
-                row.innerHTML = '';
-                for (let i = 0; i < 3; i++) {
-                    const item = document.createElement('div');
-                    item.className = 'wheel-item';
-                    item.textContent = wheelItems[Math.floor(Math.random() * wheelItems.length)];
-                    row.appendChild(item);
-                }
-            });
+            const item1 = slotItems[Math.floor(Math.random() * slotItems.length)];
+            const item2 = slotItems[Math.floor(Math.random() * slotItems.length)];
+            const item3 = slotItems[Math.floor(Math.random() * slotItems.length)];
 
-            rows.forEach(row => {
-                const items = row.querySelectorAll('.wheel-item');
-                if (items[0].textContent === items[1].textContent && items[1].textContent === items[2].textContent) {
-                    rewardMessage.style.display = 'block';
-                }
-            });
+            slot1.textContent = item1;
+            slot2.textContent = item2;
+            slot3.textContent = item3;
+
+            spinData.count++;
+            localStorage.setItem('spinData', JSON.stringify(spinData));
+            updateSpinCount();
+
+            if (item1 === item2 && item2 === item3) {
+                rewardMessage.style.display = 'block';
+            }
+        }
+
+        function updateSpinCountText() {
+            const isAuthenticated = localStorage.getItem('biometricAuth') === 'true';
+            if (isAuthenticated) {
+                updateSpinCount();
+            }
         }
 
         window.onload = function() {
             loadSavedTheme();
             loadSavedLanguage();
             loadSavedSection();
-            spinWheel(); // چرخونه شانس به صورت پیش‌فرض یک بار اجرا می‌شود
+
+            const isAuthenticated = localStorage.getItem('biometricAuth') === 'true';
+            if (isAuthenticated) {
+                document.getElementById('biometric-container').style.display = 'none';
+                document.getElementById('slot-machine').style.display = 'flex';
+                updateSpinCount();
+            }
         };
         window.onhashchange = loadSectionFromHash;
     </script>
