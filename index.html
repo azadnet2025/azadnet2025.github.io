@@ -361,21 +361,6 @@
             border-radius: 5px;
             display: none;
         }
-        .biometric-container {
-            margin-top: 20px;
-        }
-        .biometric-container button {
-            padding: 8px 16px;
-            background-color: var(--link-color);
-            color: white;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            font-family: 'Estedad', Arial, sans-serif;
-        }
-        .biometric-container button:hover {
-            background-color: #0056b3;
-        }
         .about-image {
             margin-top: 20px;
             max-width: 100%;
@@ -530,16 +515,13 @@
                     </div>
                     <div class="slot-machine-container">
                         <h2><span lang="fa">ماشین اسلات</span><span lang="en" style="display:none">Slot Machine</span><span lang="ar" style="display:none">آلة القمار</span><span lang="zh" style="display:none">老虎机</span><span lang="ru" style="display:none">Игровой автомат</span><span lang="tr" style="display:none">Slot Makinesi</span></h2>
-                        <div id="biometric-container" class="biometric-container">
-                            <button onclick="authenticateWithBiometrics()">ورود با بیومتریک</button>
-                        </div>
-                        <div class="slot-machine" id="slot-machine" style="display: none;">
+                        <div class="slot-machine" id="slot-machine">
                             <div class="slot-column" id="slot1"></div>
                             <div class="slot-column" id="slot2"></div>
                             <div class="slot-column" id="slot3"></div>
                         </div>
-                        <button class="spin-button" id="spin-button" onclick="spinSlot()" disabled>چرخاندن</button>
-                        <p id="spin-count-text"><span lang="fa">شانس باقی‌مانده امروز: 3</span><span lang="en" style="display:none">Remaining spins today: 3</span><span lang="ar" style="display:none">الفرص المتبقية اليوم: 3</span><span lang="zh" style="display:none">今天剩余次数：3</span><span lang="ru" style="display:none">Оставшиеся попытки сегодня: 3</span><span lang="tr" style="display:none">Bugün kalan şans: 3</span></p>
+                        <button class="spin-button" id="spin-button" onclick="spinSlot()">چرخاندن</button>
+                        <p id="spin-count-text"><span lang="fa">شانس باقی‌مانده در ۶ ساعت: ۳</span><span lang="en" style="display:none">Remaining spins in 6 hours: 3</span><span lang="ar" style="display:none">الفرص المتبقية في 6 ساعات: 3</span><span lang="zh" style="display:none">6小时内剩余次数：3</span><span lang="ru" style="display:none">Оставшиеся попытки за 6 часов: 3</span><span lang="tr" style="display:none">6 saat içindeki kalan şans: 3</span></p>
                         <div class="reward-message" id="reward-message">
                             <p><span lang="fa">تبریک! جایزه شما: </span><span lang="en" style="display:none">Congratulations! Your reward: </span><span lang="ar" style="display:none">تهانينا! جائزتك: </span><span lang="zh" style="display:none">恭喜！您的奖励： </span><span lang="ru" style="display:none">Поздравляем! Ваш приз: </span><span lang="tr" style="display:none">Tebrikler! Ödülünüz: </span><a href="https://example.com/reward" target="_blank">لینک جایزه</a></p>
                         </div>
@@ -947,84 +929,19 @@
             }
         }
 
-        async function authenticateWithBiometrics() {
-            if (!window.PublicKeyCredential) {
-                alert('مرورگر شما از احراز هویت بیومتریک پشتیبانی نمی‌کند.');
-                return;
-            }
-
-            try {
-                // ثبت کاربر (اگر هنوز ثبت نشده باشد)
-                const publicKeyCredentialCreationOptions = {
-                    challenge: Uint8Array.from("random-challenge", c => c.charCodeAt(0)),
-                    rp: { name: "Azadnet" },
-                    user: {
-                        id: Uint8Array.from("unique-user-id", c => c.charCodeAt(0)),
-                        name: "user@azadnet.com",
-                        displayName: "User"
-                    },
-                    pubKeyCredParams: [{ alg: -7, type: "public-key" }],
-                    authenticatorSelection: { authenticatorAttachment: "platform" },
-                    timeout: 60000
-                };
-
-                const credential = await navigator.credentials.create({
-                    publicKey: publicKeyCredentialCreationOptions
-                });
-
-                if (credential) {
-                    localStorage.setItem('biometricAuth', 'true');
-                    localStorage.setItem('biometricUserId', btoa(credential.id));
-                    document.getElementById('biometric-container').style.display = 'none';
-                    document.getElementById('slot-machine').style.display = 'flex';
-                    updateSpinCount();
-                }
-            } catch (error) {
-                console.error('خطا در ثبت بیومتریک:', error);
-                alert('خطا در احراز هویت بیومتریک. لطفاً دوباره تلاش کنید.');
-            }
-        }
-
-        async function verifyBiometric() {
-            const userId = localStorage.getItem('biometricUserId');
-            if (!userId) return false;
-
-            try {
-                const publicKeyCredentialRequestOptions = {
-                    challenge: Uint8Array.from("random-challenge", c => c.charCodeAt(0)),
-                    allowCredentials: [{
-                        id: Uint8Array.from(atob(userId), c => c.charCodeAt(0)),
-                        type: "public-key"
-                    }],
-                    timeout: 60000
-                };
-
-                const assertion = await navigator.credentials.get({
-                    publicKey: publicKeyCredentialRequestOptions
-                });
-
-                return !!assertion;
-            } catch (error) {
-                console.error('خطا در تأیید بیومتریک:', error);
-                return false;
-            }
-        }
-
-        function getTodayTimestamp() {
-            const today = new Date();
-            today.setHours(0, 0, 0, 0);
-            return today.getTime();
+        function getCurrentPeriodStart() {
+            const now = new Date();
+            const periodDuration = 6 * 60 * 60 * 1000; // 6 ساعت به میلی‌ثانیه
+            const periodStart = Math.floor(now.getTime() / periodDuration) * periodDuration;
+            return periodStart;
         }
 
         function updateSpinCount() {
-            const isAuthenticated = localStorage.getItem('biometricAuth') === 'true';
-            if (!isAuthenticated) return;
+            const currentPeriod = getCurrentPeriodStart();
+            const spinData = JSON.parse(localStorage.getItem('spinData')) || { periodStart: null, count: 0 };
 
-            const today = getTodayTimestamp();
-            const spinData = JSON.parse(localStorage.getItem('spinData')) || { timestamp: null, count: 0 };
-
-            if (spinData.timestamp !== today) {
-                spinData.timestamp = today;
+            if (spinData.periodStart !== currentPeriod) {
+                spinData.periodStart = currentPeriod;
                 spinData.count = 0;
             }
 
@@ -1034,12 +951,12 @@
             const currentLang = document.documentElement.lang || 'fa';
 
             const messages = {
-                fa: `شانس باقی‌مانده امروز: ${remainingSpins}`,
-                en: `Remaining spins today: ${remainingSpins}`,
-                ar: `الفرص المتبقية اليوم: ${remainingSpins}`,
-                zh: `今天剩余次数：${remainingSpins}`,
-                ru: `Оставшиеся попытки сегодня: ${remainingSpins}`,
-                tr: `Bugün kalan şans: ${remainingSpins}`
+                fa: `شانس باقی‌مانده در ۶ ساعت: ${remainingSpins}`,
+                en: `Remaining spins in 6 hours: ${remainingSpins}`,
+                ar: `الفرص المتبقية في 6 ساعات: ${remainingSpins}`,
+                zh: `6小时内剩余次数：${remainingSpins}`,
+                ru: `Оставшиеся попытки за 6 часов: ${remainingSpins}`,
+                tr: `6 saat içindeki kalan şans: ${remainingSpins}`
             };
 
             spinCountText.innerHTML = `<span lang="fa">${messages.fa}</span><span lang="en" style="display:none">${messages.en}</span><span lang="ar" style="display:none">${messages.ar}</span><span lang="zh" style="display:none">${messages.zh}</span><span lang="ru" style="display:none">${messages.ru}</span><span lang="tr" style="display:none">${messages.tr}</span>`;
@@ -1047,22 +964,24 @@
 
             if (remainingSpins > 0) {
                 spinButton.disabled = false;
+                spinButton.textContent = currentLang === 'fa' ? 'چرخاندن' : 'Spin';
             } else {
                 spinButton.disabled = true;
-                spinButton.textContent = currentLang === 'fa' ? 'شانس روزانه تمام شد' : 'Daily spins exhausted';
+                spinButton.textContent = currentLang === 'fa' ? 'شانس ۶ ساعته تمام شد' : '6-hour spins exhausted';
             }
 
             localStorage.setItem('spinData', JSON.stringify(spinData));
         }
 
-        async function spinSlot() {
-            const isAuthenticated = localStorage.getItem('biometricAuth') === 'true';
-            if (!isAuthenticated || !(await verifyBiometric())) {
-                alert('لطفاً ابتدا با بیومتریک تأیید هویت کنید.');
-                return;
+        function spinSlot() {
+            const spinData = JSON.parse(localStorage.getItem('spinData')) || { periodStart: getCurrentPeriodStart(), count: 0 };
+            const currentPeriod = getCurrentPeriodStart();
+
+            if (spinData.periodStart !== currentPeriod) {
+                spinData.periodStart = currentPeriod;
+                spinData.count = 0;
             }
 
-            const spinData = JSON.parse(localStorage.getItem('spinData')) || { timestamp: getTodayTimestamp(), count: 0 };
             if (spinData.count >= 3) return;
 
             const slot1 = document.getElementById('slot1');
@@ -1090,23 +1009,14 @@
         }
 
         function updateSpinCountText() {
-            const isAuthenticated = localStorage.getItem('biometricAuth') === 'true';
-            if (isAuthenticated) {
-                updateSpinCount();
-            }
+            updateSpinCount();
         }
 
         window.onload = function() {
             loadSavedTheme();
             loadSavedLanguage();
             loadSavedSection();
-
-            const isAuthenticated = localStorage.getItem('biometricAuth') === 'true';
-            if (isAuthenticated) {
-                document.getElementById('biometric-container').style.display = 'none';
-                document.getElementById('slot-machine').style.display = 'flex';
-                updateSpinCount();
-            }
+            updateSpinCount();
         };
         window.onhashchange = loadSectionFromHash;
     </script>
