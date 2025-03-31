@@ -44,6 +44,10 @@
             overflow-x: hidden;
             background-color: var(--bg-color, #ffffff);
             color: var(--text-color, #333);
+            -webkit-user-select: none; /* غیرفعال کردن انتخاب متن در کل سایت */
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
         }
         [lang="en"] body, [lang="zh"] body, [lang="ru"] body, [lang="tr"] body {
             direction: ltr;
@@ -92,7 +96,6 @@
             width: 100px;
             height: auto;
             margin: 20px auto;
-            user-select: none;
             will-change: transform;
         }
         .nav-menu .site-logo:hover {
@@ -162,12 +165,6 @@
         }
         .content.active {
             display: flex;
-        }
-        #home .text-section {
-            user-select: none;
-            -webkit-user-select: none;
-            -moz-user-select: none;
-            -ms-user-select: none;
         }
         #blog.content.active, #technology.content.active {
             padding-top: 80px;
@@ -244,7 +241,6 @@
             transition: transform 0.3s ease;
         }
         .hamburger.active {
-            content: '✕';
             transform: rotate(90deg);
         }
         .hamburger::before {
@@ -385,7 +381,7 @@
         }
         .about-image {
             margin-top: 20px;
-            max-width: 100%;
+            max-width: 300px; /* اندازه کوچکتر برای جلوگیری از اسکرول */
             height: auto;
         }
         @media (min-width: 769px) {
@@ -432,7 +428,7 @@
             }
             #about .text-section .about-image {
                 flex: 1;
-                max-width: 50%;
+                max-width: 300px; /* اندازه کوچکتر برای دسکتاپ */
                 margin-top: 0;
             }
             .icons-container a img {
@@ -675,7 +671,6 @@
             let techNewsCache = null;
             const slotItems = ['⭐', '💎', '🎁', '🍀', '🔔', '🍒', '⚡'];
 
-            // منوی همبرگر
             function toggleMenu() {
                 navMenu.classList.toggle('active');
                 hamburger.classList.toggle('active');
@@ -683,7 +678,6 @@
             }
             hamburger.addEventListener('click', toggleMenu);
 
-            // نمایش بخش‌ها
             function showSection(id) {
                 const section = document.getElementById(id);
                 if (!section) {
@@ -705,7 +699,6 @@
                 console.log(`بخش ${id} فعال شد`);
             }
 
-            // اتصال رویداد به لینک‌ها
             links.forEach(link => {
                 link.addEventListener('click', function(e) {
                     e.preventDefault();
@@ -716,7 +709,6 @@
                 });
             });
 
-            // تغییر زبان
             async function changeLanguage(lang) {
                 document.documentElement.lang = lang;
                 localStorage.setItem('selectedLanguage', lang);
@@ -940,7 +932,6 @@
                 changeLanguage(savedLanguage);
             }
 
-            // مدیریت آکاردئون‌ها
             accordionHeaders.forEach(header => {
                 header.addEventListener('click', function() {
                     const accordion = this.parentElement;
@@ -1027,17 +1018,16 @@
                 updateSpinCount();
             }
 
-            // غیرفعال کردن کلیک راست و کپی در صفحه اول
+            // غیرفعال کردن کلیک راست و کپی در کل سایت
             document.addEventListener('contextmenu', function(e) {
                 e.preventDefault();
             });
-            document.querySelector('#home').addEventListener('keydown', function(e) {
+            document.addEventListener('keydown', function(e) {
                 if ((e.ctrlKey && e.key === 'c') || (e.metaKey && e.key === 'c')) {
                     e.preventDefault();
                 }
             });
 
-            // پیام‌های خطا
             const errorMessages = {
                 fa: 'خطا در بارگذاری. لطفاً اینترنت خود را بررسی کرده و صفحه را رفرش کنید.',
                 en: 'Error loading. Please check your internet connection and refresh the page.',
@@ -1047,7 +1037,6 @@
                 tr: 'Yükleme hatası. Lütfen internet bağlantınızı kontrol edin ve sayfayı yenileyin.'
             };
 
-            // بارگذاری اولیه
             loadSavedTheme();
             loadSavedLanguage();
             loadSavedSection();
